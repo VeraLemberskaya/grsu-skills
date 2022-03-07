@@ -54,6 +54,7 @@
   transform: translateX(-50%);
   top: 8.75rem;
   text-align: center;
+  box-shadow: 0 4px 4px var(--color-shadow);
 }
 
 .login-card h1 {
@@ -93,10 +94,12 @@
   border-bottom: 2px solid var(--color-foreground);
   display: flex;
   justify-content: space-between;
+  height: 2rem;
 }
 
 .login-form input {
   font-family: inherit;
+  font-weight: 500;
   display: block;
   width: 100%;
   font-size: 1rem;
@@ -119,10 +122,19 @@
 }
 
 .login-form .visibility-icon {
-  width: 1.4rem;
-  height: 1rem;
+  /* width: 1.4rem;
+  height: 1rem; */
+  width: 22.51px;
+  height: 15.44px;
   align-self: center;
   cursor: pointer;
+}
+
+.login-form .visibility-icon.hide {
+  /* width: 1.5rem;
+  height: 1.1rem; */
+  width: 22.51px;
+  height: 17.84px;
 }
 
 .login-form .error-block {
@@ -176,6 +188,45 @@
   height: 1rem;
   width: 1rem;
   background: var(--color-foreground);
+}
+
+.login-tooltip-wrapper {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.login-tooltip-wrapper.visible {
+  opacity: 100;
+}
+
+.login-tooltip {
+  position: absolute;
+  width: 26rem;
+  height: 10rem;
+  background: var(--color-white);
+  z-index: 3;
+  border-radius: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 4px var(--color-shadow);
+  left: 100%;
+  transform: translateX(0.6rem);
+}
+
+.login-tooltip .tooltip-text {
+  width: 22.125rem;
+  font-weight: 400;
+  font-size: 1.125rem;
+}
+
+.login-tooltip .line {
+  width: 7rem;
+  height: 0.3125rem;
+  background-color: var(--color-orange);
+  border-radius: 2.5px;
 }
 
 @media (-webkit-min-device-pixel-ratio: 1.25) {

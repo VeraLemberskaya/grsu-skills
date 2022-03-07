@@ -1,8 +1,12 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import Visibility from "../../../../assets/icons/MakeVisible.svg";
+import MakeVisible from "../../../../assets/icons/MakeVisible.svg";
+import MakeNotVisible from "../../../../assets/icons/MakeNotVisible.svg";
+import { useState } from "react";
 
 const LoginForm = () => {
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+
   const {
     register,
     formState: { errors },
@@ -16,8 +20,19 @@ const LoginForm = () => {
       </div>
       <div className="error-block"></div>
       <div className="input">
-        <input name="password" type="password" placeholder="Пароль" />
-        <img className="visibility-icon" src={Visibility} alt="Make visible" />
+        <input
+          name="password"
+          type={isPasswordVisible ? "text" : "password"}
+          placeholder="Пароль"
+        />
+        <img
+          onClick={() => {
+            setIsPasswordVisible((prev) => !prev);
+          }}
+          className={`visibility-icon ${isPasswordVisible ? "hide" : ""}`}
+          src={isPasswordVisible ? MakeNotVisible : MakeVisible}
+          alt="Make visible"
+        />
       </div>
       <div className="error-block"></div>
       <button type="submit">Войти</button>

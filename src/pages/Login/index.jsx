@@ -2,6 +2,7 @@ import React from "react";
 import "./index.css";
 import Globus from "../../assets/icons/Globus.svg";
 import LoginCard from "./components/LoginCard";
+import Tooltip from "./components/LoginTooltip";
 
 const Login = () => {
   return (
