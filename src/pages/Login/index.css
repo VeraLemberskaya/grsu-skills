@@ -128,6 +128,11 @@
   height: 15.44px;
   align-self: center;
   cursor: pointer;
+  display: none;
+}
+
+.login-form .visibility-icon.display {
+  display: block;
 }
 
 .login-form .visibility-icon.hide {
@@ -139,6 +144,10 @@
 
 .login-form .error-block {
   height: 2rem;
+  text-align: left;
+  font-size: 0.875rem;
+  color: #c20000;
+  font-weight: 500;
 }
 
 .login-form button {

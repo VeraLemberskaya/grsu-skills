@@ -3,39 +3,66 @@ import { useForm } from "react-hook-form";
 import MakeVisible from "../../../../assets/icons/MakeVisible.svg";
 import MakeNotVisible from "../../../../assets/icons/MakeNotVisible.svg";
 import { useState } from "react";
+import useValidation from "./validation.js";
 
 const LoginForm = () => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const { login: loginValidation, password: passwordValidation } =
+    useValidation();
+
+  console.log(useValidation());
 
   const {
     register,
-    formState: { errors },
+    formState: { errors, isValid },
     handleSubmit,
     reset,
-  } = useForm({ mode: "onBlur" });
+  } = useForm({ mode: "onTouched" });
   return (
     <form className="login-form">
       <div className="input">
-        <input name="login" type="text" placeholder="Логин" />
+        <input
+          {...register("login", loginValidation)}
+          name="login"
+          type="text"
+          placeholder="Логин"
+        />
       </div>
-      <div className="error-block"></div>
+      <div className="error-block">
+        {errors?.login && <p>{errors?.login?.message || "Ошибка!"}</p>}
+      </div>
       <div className="input">
         <input
+          {...register("password", passwordValidation)}
           name="password"
           type={isPasswordVisible ? "text" : "password"}
           placeholder="Пароль"
         />
         <img
           onClick={() => {
-            setIsPasswordVisible((prev) => !prev);
+            setIsPasswordVisible(true);
           }}
-          className={`visibility-icon ${isPasswordVisible ? "hide" : ""}`}
-          src={isPasswordVisible ? MakeNotVisible : MakeVisible}
-          alt="Make visible"
+          src={MakeVisible}
+          alt="Make Visible"
+          className={`visibility-icon ${isPasswordVisible ? "" : "display"}`}
+        />
+        <img
+          onClick={() => {
+            setIsPasswordVisible(false);
+          }}
+          src={MakeNotVisible}
+          alt="Make Not Visible"
+          className={`visibility-icon hide ${
+            isPasswordVisible ? "display" : ""
+          }`}
         />
       </div>
-      <div className="error-block"></div>
-      <button type="submit">Войти</button>
+      <div className="error-block">
+        {errors?.password && <p>{errors?.password?.message || "Ошибка!"}</p>}
+      </div>
+      <button type="submit" disabled={!isValid}>
+        Войти
+      </button>
     </form>
   );
 };

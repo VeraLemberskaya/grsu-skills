@@ -11,9 +11,6 @@ const LoginCard = () => {
       <Tooltip visibility={isTooltipVisible} />
       <div>
         <div
-          // onMouseEnter={() => {
-          //   setIsTooltipVisible(true);
-          // }}
           onMouseOut={() => {
             setIsTooltipVisible(false);
           }}
