@@ -3,6 +3,8 @@ import InfoIcon from "../../../../assets/icons/Info.svg";
 import LoginForm from "../LoginForm";
 import Tooltip from "../LoginTooltip";
 import { useState } from "react";
+import { GrsuSkillsLogoDark } from "../../../../components/GrsuSkillsLogo";
+import { Link } from "react-router-dom";
 
 const LoginCard = () => {
   const [isTooltipVisible, setIsTooltipVisible] = useState(false);
@@ -30,11 +32,11 @@ const LoginCard = () => {
           </h3>
         </div>
         <LoginForm />
-        <button className="btn">Войти как гость</button>
-        <div className="logo">
-          <div className="logo-icon"></div>
-          <p>grsu.skills</p>
-        </div>
+
+        <Link to="/main">
+          <button className="btn">Войти как гость</button>
+        </Link>
+        <GrsuSkillsLogoDark />
       </div>
     </div>
   );

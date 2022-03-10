@@ -1,0 +1,289 @@
+.page-main {
+  width: 100%;
+  overflow: hidden;
+}
+
+/* -----------------HEADER-------------------- */
+
+.header {
+  background: url(../../assets/images/grsu_autumn.png) no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 42rem;
+  border-radius: 0 0 20px 20px;
+  box-shadow: 0 4px 4px var(--color-shadow);
+  display: flex;
+  text-align: center;
+  position: relative;
+  text-align: center;
+}
+
+.header .logo {
+  margin-top: 2.93rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.header .logo .grsu-skills-logo .logo-icon {
+  height: 2.2rem;
+  width: 2.2rem;
+}
+
+.header .main-title {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 15.5rem;
+}
+
+.header .main-title h1 {
+  height: 7.5rem;
+  text-transform: uppercase;
+  font-family: "Oswald", sans-serif;
+  font-weight: 700;
+  color: var(--color-white);
+  font-size: 7.5rem;
+}
+
+.header .main-title h3 {
+  height: 4rem;
+  text-transform: uppercase;
+  font-weight: 400;
+  color: var(--color-white);
+  font-size: 4rem;
+}
+
+/* -----------------MAIN SECTION------------------- */
+
+.main-section {
+  width: 100%;
+  background: var(--color-bg-primary);
+  margin-top: 6.25rem;
+  margin-bottom: 9.625rem;
+  display: flex;
+  border-radius: 20px;
+  position: relative;
+  height: 57rem;
+  padding-top: 2.5rem;
+}
+
+.main-section .container {
+  width: 87%;
+  margin: 0 auto;
+  padding-top: 2.8rem;
+  background: url(../../assets/icons/CirclesMainSection.svg) no-repeat;
+}
+
+.main-section .section-card {
+  width: 25rem;
+  height: 12.375rem;
+  background: var(--color-white);
+  text-align: center;
+  box-shadow: 0 8px 8px var(--color-shadow);
+  border-radius: 5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-section .section-card h4 {
+  font-family: "Oswald", sans-serif;
+  font-weight: 700;
+  font-size: 2.25rem;
+  margin-bottom: 2rem;
+}
+
+.main-section .section-card p {
+  display: block;
+  width: 20rem;
+  font-weight: 400;
+  font-size: 1.125rem;
+}
+
+.main-section .university-card-block {
+  width: 100%;
+  position: relative;
+  display: flex;
+}
+
+.main-section .university-card-block img {
+  width: 100%;
+  position: absolute;
+}
+
+.main-section .university-card-block .section-card {
+  margin: 0 auto;
+  margin-top: 1.7rem;
+}
+
+.main-section .card-block {
+  width: 24%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+}
+
+.main-section .card-block img {
+  width: 100%;
+  position: relative;
+}
+
+.main-section .card-block.specialities-card-block {
+  left: 15rem;
+  top: 9.5rem;
+}
+
+.main-section .card-block.glossary-card-block {
+  left: 50%;
+  top: 16.5rem;
+  transform: translateX(-50%);
+  width: 21.5%;
+}
+
+.main-section .card-block.progress-card-block {
+  right: 16.9rem;
+  top: 12.5rem;
+  width: 20.5%;
+}
+
+.main-section .card-block.specialities-card-block img {
+  top: 3.9rem;
+}
+
+.main-section .card-block.glossary-card-block img {
+  top: 4.5rem;
+}
+
+.main-section .card-block.progress-card-block img {
+  top: 4.5rem;
+}
+
+/* -----------------FOOTER-------------------- */
+
+.main-footer .footer-info {
+  width: 100%;
+  height: 39.5rem;
+  background: url(../../assets/images/TressMainFooter.svg) no-repeat;
+  background-size: contain;
+  display: flex;
+  z-index: -2;
+  position: relative;
+}
+
+.main-footer .footer-info .text {
+  width: 100%;
+  text-align: center;
+  margin-top: 10rem;
+}
+
+.main-footer .footer-info h2 {
+  height: 4.5rem;
+  font-family: "Oswald", sans-serif;
+  font-weight: 700;
+  color: var(--color-orange);
+  font-size: 6rem;
+  text-shadow: 0 4px 4px var(--color-shadow);
+  margin-bottom: 1.2rem;
+}
+
+.main-footer .footer-info h4 {
+  font-weight: 700;
+  font-size: 2.25rem;
+  color: var(--color-foreground);
+}
+
+.main-footer .footer-bottom {
+  margin-top: 1rem;
+  background: var(--color-bg-secondary);
+  position: relative;
+  padding-top: 4.81rem;
+  padding-bottom: 2.9rem;
+}
+.main-footer .footer-bottom .container {
+  width: 82.5rem;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.main-footer .footer-contacts {
+  padding-top: 3rem;
+  width: 28.43rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.main-footer .footer-contacts .contact {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.main-footer .footer-contacts p,
+.main-footer .footer-contacts a {
+  color: var(--color-white);
+  font-weight: 500;
+  font-size: 1.125rem;
+}
+
+.footer-bottom .footer-contacts .icon-location {
+  width: 1.49rem;
+  height: 2.08rem;
+  margin-right: 0.5rem;
+}
+
+.footer-bottom .footer-contacts .icon-contacts {
+  width: 1.875rem;
+  height: 1.85rem;
+}
+
+.footer-bottom .footer-contacts .mail {
+  padding-left: 2.8rem;
+}
+
+.footer-bottom .footer-map {
+  display: block;
+}
+
+.footer-bottom .footer-map img {
+  width: 35rem;
+  height: 18.375rem;
+}
+
+.footer-bottom .line {
+  margin: 0 auto;
+  width: 82.5rem;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--color-white);
+}
+
+.footer-bottom .circles {
+  position: absolute;
+  bottom: 67%;
+  z-index: -1;
+}
+
+@media (-webkit-min-device-pixel-ratio: 1.25) {
+  .header {
+    height: 38rem;
+  }
+  .main-section .container {
+    width: 100%;
+  }
+  .main-section .card-block.specialities-card-block {
+    left: 13rem;
+  }
+  .main-section .card-block.progress-card-block {
+    right: 14.9rem;
+  }
+}

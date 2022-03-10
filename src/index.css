@@ -35,8 +35,14 @@ input:-webkit-autofill {
 
 h1,
 h2,
-h2 {
+h3,
+h4 {
   display: block;
+  color: var(--color-foreground);
+}
+
+p {
+  color: var(--color-foreground);
 }
 
 .container {

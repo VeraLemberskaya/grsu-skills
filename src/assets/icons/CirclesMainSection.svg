@@ -1,0 +1,66 @@
+<svg width="1557" height="835" viewBox="0 0 1557 835" fill="none" xmlns="http://www.w3.org/2000/svg">
+<mask id="mask0_401_564" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="546" y="261" width="146" height="146">
+<circle cx="619" cy="334" r="73" fill="#C4C4C4"/>
+</mask>
+<g mask="url(#mask0_401_564)">
+<line x1="636.607" y1="223.327" x2="509.327" y2="350.607" stroke="#376EA7" stroke-width="4"/>
+<line x1="660.886" y1="238.884" x2="533.607" y2="366.163" stroke="#376EA7" stroke-width="4"/>
+<line x1="685.165" y1="254.44" x2="557.886" y2="381.719" stroke="#376EA7" stroke-width="4"/>
+<line x1="709.444" y1="269.996" x2="582.165" y2="397.276" stroke="#376EA7" stroke-width="4"/>
+<line x1="733.723" y1="285.553" x2="606.444" y2="412.832" stroke="#376EA7" stroke-width="4"/>
+<line x1="758.002" y1="301.109" x2="630.723" y2="428.388" stroke="#376EA7" stroke-width="4"/>
+<line x1="782.282" y1="316.665" x2="655.002" y2="443.945" stroke="#376EA7" stroke-width="4"/>
+<line x1="806.561" y1="332.222" x2="679.282" y2="459.501" stroke="#376EA7" stroke-width="4"/>
+</g>
+<mask id="mask1_401_564" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="439" width="224" height="224">
+<circle cx="112" cy="551" r="112" fill="#C4C4C4"/>
+</mask>
+<g mask="url(#mask1_401_564)">
+<line x1="138.257" y1="380.445" x2="-57.0204" y2="575.723" stroke="#376EA7" stroke-width="4"/>
+<line x1="162.125" y1="404.313" x2="-33.1531" y2="599.59" stroke="#376EA7" stroke-width="4"/>
+<line x1="185.992" y1="428.18" x2="-9.28588" y2="623.458" stroke="#376EA7" stroke-width="4"/>
+<line x1="209.859" y1="452.047" x2="14.5814" y2="647.325" stroke="#376EA7" stroke-width="4"/>
+<line x1="233.726" y1="475.915" x2="38.4487" y2="671.192" stroke="#376EA7" stroke-width="4"/>
+<line x1="257.594" y1="499.782" x2="62.316" y2="695.06" stroke="#376EA7" stroke-width="4"/>
+<line x1="281.461" y1="523.649" x2="86.1832" y2="718.927" stroke="#376EA7" stroke-width="4"/>
+<line x1="305.328" y1="547.516" x2="110.051" y2="742.794" stroke="#376EA7" stroke-width="4"/>
+</g>
+<mask id="mask2_401_564" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="1333" y="611" width="224" height="224">
+<circle cx="1445" cy="723" r="112" fill="#C4C4C4"/>
+</mask>
+<g mask="url(#mask2_401_564)">
+<line x1="1471.26" y1="552.445" x2="1275.98" y2="747.723" stroke="#376EA7" stroke-width="4"/>
+<line x1="1495.12" y1="576.313" x2="1299.85" y2="771.59" stroke="#376EA7" stroke-width="4"/>
+<line x1="1518.99" y1="600.18" x2="1323.71" y2="795.458" stroke="#376EA7" stroke-width="4"/>
+<line x1="1542.86" y1="624.047" x2="1347.58" y2="819.325" stroke="#376EA7" stroke-width="4"/>
+<line x1="1566.73" y1="647.915" x2="1371.45" y2="843.192" stroke="#376EA7" stroke-width="4"/>
+<line x1="1590.59" y1="671.782" x2="1395.32" y2="867.06" stroke="#376EA7" stroke-width="4"/>
+<line x1="1614.46" y1="695.649" x2="1419.18" y2="890.927" stroke="#376EA7" stroke-width="4"/>
+<line x1="1638.33" y1="719.516" x2="1443.05" y2="914.794" stroke="#376EA7" stroke-width="4"/>
+</g>
+<mask id="mask3_401_564" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="1282" y="106" width="103" height="103">
+<circle cx="1333.5" cy="157.5" r="51.5" fill="#C4C4C4"/>
+</mask>
+<g mask="url(#mask3_401_564)">
+<line x1="1346.34" y1="79.8392" x2="1256.54" y2="169.632" stroke="#376EA7" stroke-width="4"/>
+<line x1="1365.13" y1="90.8139" x2="1275.34" y2="180.607" stroke="#376EA7" stroke-width="4"/>
+<line x1="1383.92" y1="101.789" x2="1294.13" y2="191.581" stroke="#376EA7" stroke-width="4"/>
+<line x1="1402.72" y1="112.763" x2="1312.92" y2="202.556" stroke="#376EA7" stroke-width="4"/>
+<line x1="1421.51" y1="123.738" x2="1331.72" y2="213.531" stroke="#376EA7" stroke-width="4"/>
+<line x1="1440.3" y1="134.713" x2="1350.51" y2="224.505" stroke="#376EA7" stroke-width="4"/>
+<line x1="1459.09" y1="145.687" x2="1369.3" y2="235.48" stroke="#376EA7" stroke-width="4"/>
+</g>
+<mask id="mask4_401_564" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="838" y="0" width="180" height="180">
+<circle cx="928" cy="90" r="90" fill="#C4C4C4"/>
+</mask>
+<g mask="url(#mask4_401_564)">
+<line x1="949.378" y1="-46.775" x2="792.458" y2="110.145" stroke="#376EA7" stroke-width="4"/>
+<line x1="968.556" y1="-27.596" x2="811.637" y2="129.324" stroke="#376EA7" stroke-width="4"/>
+<line x1="987.735" y1="-8.4169" x2="830.816" y2="148.503" stroke="#376EA7" stroke-width="4"/>
+<line x1="1006.91" y1="10.7622" x2="849.995" y2="167.682" stroke="#376EA7" stroke-width="4"/>
+<line x1="1026.09" y1="29.9413" x2="869.174" y2="186.861" stroke="#376EA7" stroke-width="4"/>
+<line x1="1045.27" y1="49.1203" x2="888.353" y2="206.04" stroke="#376EA7" stroke-width="4"/>
+<line x1="1064.45" y1="68.2993" x2="907.532" y2="225.219" stroke="#376EA7" stroke-width="4"/>
+<line x1="1083.63" y1="87.4785" x2="926.711" y2="244.398" stroke="#376EA7" stroke-width="4"/>
+</g>
+</svg>

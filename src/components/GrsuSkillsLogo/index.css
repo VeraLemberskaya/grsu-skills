@@ -1,0 +1,17 @@
+.grsu-skills-logo {
+  display: flex;
+  gap: 0.5rem;
+  width: fit-content;
+  height: fit-content;
+  justify-content: center;
+  align-items: center;
+}
+
+.grsu-skills-logo .logo-icon {
+  object-fit: contain;
+}
+
+.grsu-skills-logo .logo-text {
+  width: 7.9rem;
+  height: 1.59rem;
+}

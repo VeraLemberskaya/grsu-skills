@@ -1,6 +1,6 @@
-.page {
+.page-login {
   background: var(--color-bg-primary);
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   overflow: hidden;
   position: relative;
@@ -38,7 +38,6 @@
 .header-block .logo {
   width: 4.75rem;
   height: 4.75rem;
-  background: var(--color-white);
   margin-top: 0.625rem;
   margin-left: 2.125rem;
 }
@@ -146,8 +145,11 @@
   height: 2rem;
   text-align: left;
   font-size: 0.875rem;
-  color: #c20000;
   font-weight: 500;
+}
+
+.login-form .error-block p {
+  color: #c20000;
 }
 
 .login-form button {
@@ -175,28 +177,16 @@
   cursor: pointer;
 }
 
-.login-card .logo {
-  display: flex;
-  gap: 0.5rem;
-  width: fit-content;
-  height: fit-content;
-  justify-content: center;
-  align-items: center;
+.login-card .grsu-skills-logo {
   position: absolute;
   bottom: 1.9rem;
   left: 50%;
   transform: translateX(-50%);
 }
 
-.login-card .logo p {
-  display: block;
-  font-weight: 600;
-}
-
-.login-card .logo-icon {
-  height: 1rem;
-  width: 1rem;
-  background: var(--color-foreground);
+.login-card .grsu-skills-logo .logo-text {
+  width: 4.84rem;
+  height: 0.97rem;
 }
 
 .login-tooltip-wrapper {
@@ -238,11 +228,23 @@
   border-radius: 2.5px;
 }
 
+.footer-block {
+  width: 65%;
+  height: 25rem;
+  margin: 0 auto;
+  background: url(../../assets/icons/CirclesLogin.svg) no-repeat;
+  background-size: contain;
+}
+
 @media (-webkit-min-device-pixel-ratio: 1.25) {
   .login-card {
     top: 6.8rem;
   }
   .header-block {
     height: 38rem;
+  }
+  .footer-block {
+    width: 62%;
+    height: 20.5rem;
   }
 }

@@ -26,6 +26,7 @@ const LoginForm = () => {
           name="login"
           type="text"
           placeholder="Логин"
+          maxLength="25"
         />
       </div>
       <div className="error-block">
@@ -37,6 +38,7 @@ const LoginForm = () => {
           name="password"
           type={isPasswordVisible ? "text" : "password"}
           placeholder="Пароль"
+          maxLength="16"
         />
         <img
           onClick={() => {

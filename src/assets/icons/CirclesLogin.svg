@@ -1,0 +1,40 @@
+<svg width="1130" height="379" viewBox="0 0 1130 379" fill="none" xmlns="http://www.w3.org/2000/svg">
+<mask id="mask0_401_566" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="322" y="0" width="146" height="146">
+<circle cx="395" cy="73" r="73" fill="#C4C4C4"/>
+</mask>
+<g mask="url(#mask0_401_566)">
+<line x1="412.607" y1="-37.6726" x2="285.327" y2="89.6066" stroke="#376EA7" stroke-width="4"/>
+<line x1="439.886" y1="-22.1162" x2="312.607" y2="105.163" stroke="#376EA7" stroke-width="4"/>
+<line x1="467.165" y1="-6.55979" x2="339.886" y2="120.719" stroke="#376EA7" stroke-width="4"/>
+<line x1="494.444" y1="8.99649" x2="367.165" y2="136.276" stroke="#376EA7" stroke-width="4"/>
+<line x1="521.723" y1="24.5528" x2="394.444" y2="151.832" stroke="#376EA7" stroke-width="4"/>
+<line x1="549.002" y1="40.1092" x2="421.723" y2="167.388" stroke="#376EA7" stroke-width="4"/>
+<line x1="576.282" y1="55.6656" x2="449.002" y2="182.945" stroke="#376EA7" stroke-width="4"/>
+</g>
+<mask id="mask1_401_566" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="146" width="224" height="224">
+<circle cx="112" cy="258" r="112" fill="#C4C4C4"/>
+</mask>
+<g mask="url(#mask1_401_566)">
+<line x1="138.257" y1="87.4455" x2="-57.0204" y2="282.723" stroke="#376EA7" stroke-width="4"/>
+<line x1="162.125" y1="111.313" x2="-33.1531" y2="306.59" stroke="#376EA7" stroke-width="4"/>
+<line x1="185.992" y1="135.18" x2="-9.28588" y2="330.458" stroke="#376EA7" stroke-width="4"/>
+<line x1="209.859" y1="159.047" x2="14.5814" y2="354.325" stroke="#376EA7" stroke-width="4"/>
+<line x1="233.726" y1="182.915" x2="38.4487" y2="378.192" stroke="#376EA7" stroke-width="4"/>
+<line x1="257.594" y1="206.782" x2="62.3159" y2="402.059" stroke="#376EA7" stroke-width="4"/>
+<line x1="281.461" y1="230.649" x2="86.1832" y2="425.927" stroke="#376EA7" stroke-width="4"/>
+<line x1="305.328" y1="254.516" x2="110.051" y2="449.794" stroke="#376EA7" stroke-width="4"/>
+</g>
+<mask id="mask2_401_566" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="800" y="179" width="330" height="330">
+<circle cx="965" cy="344" r="165" fill="#C4C4C4"/>
+</mask>
+<g mask="url(#mask2_401_566)">
+<line x1="998.588" y1="106.414" x2="758.001" y2="347.001" stroke="#376EA7" stroke-width="4"/>
+<line x1="1029.17" y1="135.819" x2="788.588" y2="376.406" stroke="#376EA7" stroke-width="4"/>
+<line x1="1059.76" y1="165.224" x2="819.174" y2="405.811" stroke="#376EA7" stroke-width="4"/>
+<line x1="1090.35" y1="194.629" x2="849.761" y2="435.216" stroke="#376EA7" stroke-width="4"/>
+<line x1="1120.93" y1="224.034" x2="880.348" y2="464.621" stroke="#376EA7" stroke-width="4"/>
+<line x1="1151.52" y1="253.439" x2="910.934" y2="494.026" stroke="#376EA7" stroke-width="4"/>
+<line x1="1182.11" y1="282.844" x2="941.521" y2="523.431" stroke="#376EA7" stroke-width="4"/>
+<line x1="1212.69" y1="312.249" x2="972.108" y2="552.836" stroke="#376EA7" stroke-width="4"/>
+</g>
+</svg>
