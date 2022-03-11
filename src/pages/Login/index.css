@@ -56,7 +56,7 @@
   box-shadow: 0 4px 4px var(--color-shadow);
 }
 
-.login-card h1 {
+.login-card h2 {
   font-family: "Oswald", sans-serif;
   color: var(--color-orange);
   font-weight: 700;

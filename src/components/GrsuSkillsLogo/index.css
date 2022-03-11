@@ -5,10 +5,14 @@
   height: fit-content;
   justify-content: center;
   align-items: center;
+  margin-top: 2.93rem;
+  width: 100%;
 }
 
 .grsu-skills-logo .logo-icon {
   object-fit: contain;
+  height: 2.2rem;
+  width: 2.2rem;
 }
 
 .grsu-skills-logo .logo-text {

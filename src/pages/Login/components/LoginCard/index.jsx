@@ -24,7 +24,7 @@ const LoginCard = () => {
           <img src={InfoIcon} alt="Info" />
         </div>
         <div className="title">
-          <h1>ВХОД</h1>
+          <h2>ВХОД</h2>
           <h3>
             В систему
             <br />

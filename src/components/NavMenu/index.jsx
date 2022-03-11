@@ -13,9 +13,16 @@ import { Link, Outlet } from "react-router-dom";
 const NavMenu = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
+
   return (
     <>
-      <div className={`overlay ${isMenuOpen ? "visible" : ""}`}></div>
+      <div
+        onClick={closeMenu}
+        className={`overlay ${isMenuOpen ? "visible" : ""}`}
+      ></div>
       <button
         className="menu-btn"
         onClick={() => {
@@ -27,9 +34,7 @@ const NavMenu = () => {
       <div className={`menu ${isMenuOpen ? "opened" : ""}`}>
         <div className="hamburger-navigation">
           <img
-            onClick={() => {
-              setIsMenuOpen(false);
-            }}
+            onClick={closeMenu}
             className="hamburger"
             src={Hamburger}
             alt="Навигация"
@@ -37,13 +42,13 @@ const NavMenu = () => {
           <p>Навигация</p>
         </div>
         <div className="menu-tabs">
-          <Link to="/main">
+          <Link to="/main" onClick={closeMenu}>
             <button className="nav-tab main">
               <img src={Main} />
               <p>Главная</p>
             </button>
           </Link>
-          <Link to="/main">
+          <Link to="/specialities" onClick={closeMenu}>
             <button className="nav-tab specialities">
               <img src={Specialities} />
               <p>Специальности</p>

@@ -1,7 +1,9 @@
 import React from "react";
 import Location from "../../assets/icons/Location.svg";
 import Contacts from "../../assets/icons/Contacts.svg";
-import Map from "../../assets/images/Map.png";
+import Map from "../../assets/images/Map.svg";
+import LogoGRSU from "../../assets/icons/LogoGRSU.svg";
+import { GrsuSkillsLogoLight } from "../GrsuSkillsLogo";
 import "./index.css";
 
 const FooterBootom = ({ circlesImage }) => {
@@ -9,18 +11,31 @@ const FooterBootom = ({ circlesImage }) => {
     <div className="footer-bottom">
       <img className="circles" src={circlesImage} />
       <div className="container">
-        <div className="footer-contacts">
-          <div className="contact">
-            <img className="icon-location" src={Location} alt="Адрес" />
-            <p>Республика Беларусь, г. Гродно, 230023, ул. Ожешко, 22</p>
+        <div className="info">
+          <div className="footer-contacts">
+            <div className="contact">
+              <img className="icon-location" src={Location} alt="Адрес" />
+              <p>Республика Беларусь, г. Гродно, 230023, ул. Ожешко, 22</p>
+            </div>
+            <div className="contact">
+              <img className="icon-contacts" src={Contacts} alt="Контакты" />
+              <p>
+                Телефон: <a href="tel:+375152731900">+375 (152) 73-19-00</a> ,
+                факс: <a href="tel:+375152731900">+375 (152) 73-19-10</a>
+              </p>
+            </div>
+            <div className="contact mail">
+              <p>Почта:</p>
+              <a href="mailto:mail@grsu.by">mail@grsu.by</a>
+            </div>
           </div>
-          <div className="contact">
-            <img className="icon-contacts" src={Contacts} alt="Контакты" />
-            <p>Телефон: +375 (152) 73-19-00, факс: +375 (152) 73-19-10</p>
-          </div>
-          <div className="contact mail">
-            <p>Почта:</p>
-            <a href="mailto:mail@grsu.by">mail@grsu.by</a>
+          <div className="logos">
+            <a href="https://www.grsu.by/" target="_blank">
+              <img className="main-logo" src={LogoGRSU} alt="GRSU" />
+            </a>
+            <div className="logo">
+              <GrsuSkillsLogoLight />
+            </div>
           </div>
         </div>
         <a

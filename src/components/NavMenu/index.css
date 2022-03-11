@@ -98,6 +98,7 @@
   border-radius: 1.06rem;
   box-shadow: 0 4px 4px var(--color-shadow);
   cursor: pointer;
+  margin-bottom: 0.1rem;
 }
 
 .menu-tabs .nav-tab img {
@@ -107,7 +108,8 @@
 }
 
 .menu-tabs .nav-tab.specialities img {
-  height: 1.15rem;
+  height: 1.07rem;
+  width: 0.93rem;
 }
 
 .menu-tabs .nav-tab p {

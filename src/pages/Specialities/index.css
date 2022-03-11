@@ -1,0 +1,58 @@
+.specialities-page {
+  width: 100%;
+}
+
+.specialities-header {
+  background: url(../../assets/images/autumn-small.svg);
+  background-size: cover;
+  width: 100%;
+  height: 16.25rem;
+  border-radius: 0 0 20px 20px;
+  box-shadow: 0 4px 4px var(--color-shadow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3.5rem;
+  margin-bottom: 3.75rem;
+}
+
+.specialities-main {
+  background: url(../../assets/images/BgSpecialities.svg) no-repeat;
+  background-size: contain;
+  background-position: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.specialities-main p {
+  align-self: center;
+  width: 40rem;
+  height: 10rem;
+  font-weight: 400;
+  font-size: 1.5rem;
+  text-align: center;
+  line-height: 1.82rem;
+}
+
+/* HARDCODE */
+.specialities-main .area {
+  width: 50rem;
+  margin: 0 auto;
+  height: 45rem;
+  background: #000;
+}
+
+@media (-webkit-min-device-pixel-ratio: 1.25) {
+  .specialities-header {
+    height: 14rem;
+  }
+
+  .specialities-header h1 {
+    font-weight: 6.5rem;
+  }
+
+  .specialities-header .grsu-skills-logo {
+    margin-top: 1.5rem;
+  }
+}

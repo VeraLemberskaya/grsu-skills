@@ -8,7 +8,6 @@ import "./index.css";
 export const GrsuSkillsLogoLight = () => {
   return (
     <div className="grsu-skills-logo light">
-      {/* <div className="logo-icon"></div> */}
       <img src={LogoLight} alt="grsu.skills" className="logo-icon" />
       <img className="logo-text" src={GrsuSkillsLight} alt="grsu.skills" />
     </div>
@@ -18,7 +17,6 @@ export const GrsuSkillsLogoLight = () => {
 export const GrsuSkillsLogoDark = () => {
   return (
     <div className="grsu-skills-logo dark">
-      {/* <div className="logo-icon"></div> */}
       <img src={LogoDark} alt="grsu.skills" className="logo-icon" />
       <img className="logo-text" src={GrsuSkillsDark} alt="grsu.skills" />
     </div>

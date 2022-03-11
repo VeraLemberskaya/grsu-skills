@@ -1,6 +1,6 @@
 .page-main {
   width: 100%;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 /* -----------------HEADER-------------------- */
@@ -18,7 +18,7 @@
   text-align: center;
 }
 
-.header .logo {
+/* .header .logo {
   margin-top: 2.93rem;
   width: 100%;
   display: flex;
@@ -28,7 +28,7 @@
 .header .logo .grsu-skills-logo .logo-icon {
   height: 2.2rem;
   width: 2.2rem;
-}
+} */
 
 .header .main-title {
   display: flex;
@@ -40,21 +40,13 @@
   top: 15.5rem;
 }
 
-.header .main-title h1 {
-  height: 7.5rem;
-  text-transform: uppercase;
-  font-family: "Oswald", sans-serif;
-  font-weight: 700;
-  color: var(--color-white);
-  font-size: 7.5rem;
-}
-
 .header .main-title h3 {
   height: 4rem;
   text-transform: uppercase;
   font-weight: 400;
   color: var(--color-white);
   font-size: 4rem;
+  text-shadow: 0 8px 8px rgba(0, 0, 0, 0.6);
 }
 
 /* -----------------MAIN SECTION------------------- */
