@@ -71,11 +71,19 @@
   padding-top: 2.5rem;
 }
 
+.main-section img {
+  pointer-events: none;
+}
+
 .main-section .container {
   width: 87%;
   margin: 0 auto;
   padding-top: 2.8rem;
   background: url(../../assets/icons/CirclesMainSection.svg) no-repeat;
+}
+
+.main-section a {
+  display: block;
 }
 
 .main-section .section-card {
@@ -90,6 +98,7 @@
   gap: 0.8rem;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 
 .main-section .section-card h4 {
@@ -117,7 +126,7 @@
   position: absolute;
 }
 
-.main-section .university-card-block .section-card {
+.main-section .university-card-block a {
   margin: 0 auto;
   margin-top: 1.7rem;
 }
@@ -197,80 +206,6 @@
   font-weight: 700;
   font-size: 2.25rem;
   color: var(--color-foreground);
-}
-
-.main-footer .footer-bottom {
-  margin-top: 1rem;
-  background: var(--color-bg-secondary);
-  position: relative;
-  padding-top: 4.81rem;
-  padding-bottom: 2.9rem;
-}
-.main-footer .footer-bottom .container {
-  width: 82.5rem;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 1rem;
-}
-
-.main-footer .footer-contacts {
-  padding-top: 3rem;
-  width: 28.43rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1.1rem;
-}
-
-.main-footer .footer-contacts .contact {
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-}
-
-.main-footer .footer-contacts p,
-.main-footer .footer-contacts a {
-  color: var(--color-white);
-  font-weight: 500;
-  font-size: 1.125rem;
-}
-
-.footer-bottom .footer-contacts .icon-location {
-  width: 1.49rem;
-  height: 2.08rem;
-  margin-right: 0.5rem;
-}
-
-.footer-bottom .footer-contacts .icon-contacts {
-  width: 1.875rem;
-  height: 1.85rem;
-}
-
-.footer-bottom .footer-contacts .mail {
-  padding-left: 2.8rem;
-}
-
-.footer-bottom .footer-map {
-  display: block;
-}
-
-.footer-bottom .footer-map img {
-  width: 35rem;
-  height: 18.375rem;
-}
-
-.footer-bottom .line {
-  margin: 0 auto;
-  width: 82.5rem;
-  height: 4px;
-  border-radius: 2px;
-  background: var(--color-white);
-}
-
-.footer-bottom .circles {
-  position: absolute;
-  bottom: 67%;
-  z-index: -1;
 }
 
 @media (-webkit-min-device-pixel-ratio: 1.25) {

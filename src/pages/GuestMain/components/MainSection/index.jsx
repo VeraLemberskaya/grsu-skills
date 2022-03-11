@@ -11,12 +11,14 @@ const GuestMainSection = () => {
       <div className="container">
         <div className="university-card-block">
           <img src={MainClouds} alt="Clouds" />
-          <MainSectionCard
-            title="Университет"
-            text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-            radius="5rem"
-            height="12.375rem"
-          />
+          <a href="https://www.grsu.by/" target="_blank">
+            <MainSectionCard
+              title="Университет"
+              text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+              radius="5rem"
+              height="12.375rem"
+            />
+          </a>
         </div>
         <div className="card-block specialities-card-block">
           <img src={TreesSpecialities} alt="Специальности" />

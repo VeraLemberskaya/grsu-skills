@@ -1,0 +1,136 @@
+.menu-btn {
+  width: 4rem;
+  height: 4rem;
+  background: #efefef;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1.25rem;
+  position: fixed;
+  z-index: 2;
+  cursor: pointer;
+  left: 2.5rem;
+  top: 1.5rem;
+  box-shadow: 0 4px 4px var(--color-shadow);
+}
+
+.overlay {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--color-shadow);
+  display: none;
+}
+
+@keyframes make-overlay {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 100;
+  }
+}
+
+.overlay.visible {
+  animation: make-overlay 1s;
+  display: block;
+}
+
+.menu-btn img {
+  pointer-events: none;
+}
+
+.menu {
+  left: 50%;
+  transform: translateX(-50%);
+  width: 98.75%;
+  background: var(--color-white);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.68rem;
+  box-shadow: 0 4px 4px var(--color-shadow);
+  border-radius: 0px 0px 20px 20px;
+  z-index: 2;
+  position: fixed;
+  top: -100%;
+  transition: top 0.4s;
+}
+
+.menu.opened {
+  top: 0;
+}
+
+.hamburger-navigation {
+  display: flex;
+  gap: 1.625rem;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+}
+
+.hamburger {
+  width: 2.75rem;
+  height: 2rem;
+  cursor: pointer;
+}
+
+.hamburger-navigation p {
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+.menu-tabs {
+  display: flex;
+  gap: 1.25rem;
+}
+
+.menu-tabs .nav-tab {
+  background: #efefef;
+  padding: 0.65rem 1rem;
+  display: flex;
+  gap: 0.65rem;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1.06rem;
+  box-shadow: 0 4px 4px var(--color-shadow);
+  cursor: pointer;
+}
+
+.menu-tabs .nav-tab img {
+  width: 1rem;
+  height: 1rem;
+  pointer-events: none;
+}
+
+.menu-tabs .nav-tab.specialities img {
+  height: 1.15rem;
+}
+
+.menu-tabs .nav-tab p {
+  font-weight: 300;
+  font-size: 1.25rem;
+  pointer-events: none;
+}
+
+.guest {
+  display: flex;
+  gap: 0.68rem;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+}
+
+.guest p {
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+
+.guest .guest-icon {
+  width: 3.5rem;
+  height: 3.5rem;
+  cursor: pointer;
+}
