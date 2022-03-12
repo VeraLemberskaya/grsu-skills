@@ -1,6 +1,6 @@
 .page-main {
   width: 100%;
-  /* overflow: hidden; */
+  animation-duration: 0.8s;
 }
 
 /* -----------------HEADER-------------------- */
@@ -17,18 +17,6 @@
   position: relative;
   text-align: center;
 }
-
-/* .header .logo {
-  margin-top: 2.93rem;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-
-.header .logo .grsu-skills-logo .logo-icon {
-  height: 2.2rem;
-  width: 2.2rem;
-} */
 
 .header .main-title {
   display: flex;

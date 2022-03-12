@@ -1,5 +1,23 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700&family=Oswald:wght@200;300;400;500;600;700&display=swap");
 
+@keyframes slideInUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInDown {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -17,6 +35,8 @@
   --color-bg-primary: #3e97d5;
   --color-bg-secondary: #376ea7;
   --color-shadow: rgba(0, 0, 0, 0.25);
+  --slideInDown: slideInDown;
+  --slideInUp: slideInUp;
 }
 
 html {

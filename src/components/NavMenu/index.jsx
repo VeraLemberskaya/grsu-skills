@@ -42,13 +42,21 @@ const NavMenu = () => {
           <p>Навигация</p>
         </div>
         <div className="menu-tabs">
-          <Link to="/main" onClick={closeMenu}>
+          <Link
+            to="/main"
+            state={{ animation: "slideInDown" }}
+            onClick={closeMenu}
+          >
             <button className="nav-tab main">
               <img src={Main} />
               <p>Главная</p>
             </button>
           </Link>
-          <Link to="/specialities" onClick={closeMenu}>
+          <Link
+            to="/specialities"
+            state={{ animation: "slideInDown" }}
+            onClick={closeMenu}
+          >
             <button className="nav-tab specialities">
               <img src={Specialities} />
               <p>Специальности</p>

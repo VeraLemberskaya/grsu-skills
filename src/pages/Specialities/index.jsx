@@ -4,10 +4,19 @@ import "./index.css";
 import SpecialitiesArea from "./SpecialitiesArea";
 import FooterBootom from "../../components/FooterBottom";
 import FooterCircles from "../../assets/images/Footer.svg";
+import { useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 const Specialities = () => {
+  const animation = useLocation().state?.animation;
+
+  //will perform just once with first render
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
-    <div className="specialities-page">
+    <div className="specialities-page" style={{ animationName: animation }}>
       <header className="specialities-header">
         <GrsuSkillsLogoLight />
         <h1>Специальности</h1>
