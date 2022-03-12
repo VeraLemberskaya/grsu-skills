@@ -1,7 +1,7 @@
 import React from "react";
 import { GrsuSkillsLogoLight } from "../../components/GrsuSkillsLogo";
 import "./index.css";
-import SpecialitiesArea from "./SpecialitiesArea";
+import SpecialitiesArea from "./components/SpecialitiesArea";
 import FooterBootom from "../../components/FooterBottom";
 import FooterCircles from "../../assets/images/Footer.svg";
 import { useLocation } from "react-router-dom";
