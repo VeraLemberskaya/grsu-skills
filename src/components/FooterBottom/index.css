@@ -10,7 +10,7 @@
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 1rem;
+  margin-bottom: 0.6rem;
 }
 
 .footer-bottom .info {
@@ -21,6 +21,7 @@
 .footer-bottom .info .logos .main-logo {
   width: 4.75rem;
   height: 4.75rem;
+  margin-bottom: 0.1rem;
 }
 
 .footer-bottom .info {
@@ -36,9 +37,9 @@
 }
 
 .footer-bottom .logos .logo .grsu-skills-logo .logo-icon {
-  height: 1.96rem;
-  width: 2.25rem;
-  margin-bottom: 0.5rem;
+  height: 2rem;
+  width: 2.3rem;
+  margin-bottom: 0.6rem;
 }
 
 .footer-contacts {
@@ -79,11 +80,6 @@
 
 .footer-bottom .footer-map {
   display: block;
-}
-
-.footer-bottom .footer-map img {
-  width: 35rem;
-  height: 18.5rem;
 }
 
 .footer-bottom .line {

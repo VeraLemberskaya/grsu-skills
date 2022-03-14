@@ -41,7 +41,7 @@ const NavMenu = () => {
           />
           <p>Навигация</p>
         </div>
-        <div className="menu-tabs">
+        <nav className="menu-tabs">
           <Link
             to="/main"
             state={{ animation: "slideInDown" }}
@@ -80,7 +80,7 @@ const NavMenu = () => {
               <p>Университет</p>
             </button>
           </a>
-        </div>
+        </nav>
         <div className="guest">
           <p>Гость</p>
           <Link to="/">

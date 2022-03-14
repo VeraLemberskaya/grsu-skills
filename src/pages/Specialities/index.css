@@ -22,15 +22,32 @@
 }
 
 .specialities-main {
-  background: url(../../assets/images/BgSpecialities.svg) no-repeat;
-  background-size: contain;
-  background-position: 0 2rem;
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.specialities-main p {
+.specialities-main .bg {
+  object-fit: cover;
+  position: absolute;
+  top: 4rem;
+}
+
+.specialities-main .trees-left {
+  width: 30rem;
+  height: 40rem;
+  left: 0;
+}
+
+.specialities-main .trees-right {
+  width: 30rem;
+  height: 38rem;
+  top: 8rem;
+  right: 0;
+}
+
+.specialities-main p.text {
   align-self: center;
   width: 40rem;
   height: 10rem;
@@ -42,10 +59,14 @@
 
 /* HARDCODE */
 .specialities-main .area {
-  width: 50rem;
   margin: 0 auto;
-  height: 45rem;
-  background: #000;
+  display: flex;
+  gap: 5rem;
+  flex-direction: column;
+  margin-top: 5rem;
+  margin-bottom: 4rem;
+  justify-content: center;
+  align-items: center;
   position: relative;
 }
 
@@ -53,6 +74,7 @@
 .sorting-bar {
   display: flex;
   gap: 1.5rem;
+  justify-self: center;
 }
 
 .sorting-bar .search-input .closed .wrapper {
@@ -130,6 +152,7 @@
   height: 3.75rem;
   width: 12.6875rem;
   border-radius: 1.875rem;
+  padding-left: 1rem;
   box-shadow: 0 4px 4px var(--color-shadow);
   display: flex;
   align-items: center;
@@ -163,17 +186,141 @@
 .sorting-bar .picker .faculty img {
   width: 1.4rem;
   height: 0.8rem;
-  justify-self: flex-start;
   cursor: pointer;
 }
 
 .sorting-bar .picker .faculty p {
-  justify-self: center;
   line-height: 1.52rem;
   font-weight: 700;
   display: block;
   height: fit-content;
   font-size: 1.25rem;
+  width: 100%;
+}
+
+/*------------------MODAL----------------- */
+
+.faculty-modal {
+  z-index: 2;
+  transition: opacity 0.5s;
+  position: absolute;
+  /* top: 0;
+  right: 0; */
+  left: 15%;
+  top: 15%;
+  display: none;
+  opacity: 0;
+}
+
+.faculty-modal.opened {
+  opacity: 100;
+  display: block;
+}
+
+.faculty-modal ul {
+  background: var(--color-gray);
+  width: 41.31rem;
+  height: 36.625rem;
+  border-radius: 1.875rem;
+  box-shadow: 0 4px 4px var(--color-shadow);
+  padding: 0.625rem 1.875rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  padding-bottom: 2.25rem;
+}
+
+.faculty-modal li {
+  height: 2.5rem;
+  width: fit-content;
+  border-radius: 1.25rem;
+  box-shadow: 0 4px 4px var(--color-shadow);
+  background: #f8f8f8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.2rem 1.5rem;
+  font-size: 1.125rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.faculty-modal li.active {
+  background: var(--color-orange);
+  color: var(--color-white);
+}
+
+/* -----------SPECIALITIES LIST---------------- */
+
+.specialities-list {
+  display: grid;
+  grid-gap: 1.25rem;
+  padding-right: 1.2rem;
+}
+
+.specialities-list .row {
+  display: grid;
+  grid-template-columns: 11.25rem 18.75rem 12.5rem 7.5rem;
+  grid-gap: 1.25rem;
+}
+
+.specialities-list .row div {
+  text-transform: uppercase;
+  border-radius: 1.25rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.875rem;
+}
+
+.specialities-list .row.speciality div {
+  padding: 0.5rem 1rem;
+}
+
+.specialities-list .table-header div {
+  background: #c4c4c4;
+  font-weight: 600;
+  padding: 0 0.6rem;
+}
+
+.specialities-list .row.speciality div.f-col,
+.specialities-list .row.speciality div.t-col,
+.specialities-list .row.speciality div.four-col {
+  background: var(--color-gray);
+  font-weight: 400;
+}
+
+.specialities-list .row.speciality div.s-col {
+  background: #f8f8f8;
+  box-shadow: 0 4px 4px var(--color-shadow);
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.specialities-list .row.speciality div.s-col:hover {
+  transform: translateY(-2px);
+}
+
+.specialities-list .spec-form {
+  grid-column: 3 / 5;
+  display: grid !important;
+  grid-gap: 0.625rem;
+  padding: 0 !important;
+}
+
+.specialities-list .spec-form .form-row {
+  display: grid;
+  grid-template-columns: 12.5rem 7.5rem;
+  grid-gap: 1.25rem;
+  padding: 0 !important;
+  height: 100%;
+}
+
+.specialities-list .spec-form .form-row div {
+  height: 100%;
 }
 
 @media (-webkit-min-device-pixel-ratio: 1.25) {
@@ -187,5 +334,21 @@
 
   .specialities-header .grsu-skills-logo {
     margin-top: 1.5rem;
+  }
+
+  .specialities-main .bg {
+    top: 5rem;
+  }
+  .specialities-main .trees-left {
+    width: 26rem;
+    height: 36rem;
+    left: 0;
+  }
+
+  .specialities-main .trees-right {
+    width: 26rem;
+    height: 34rem;
+    top: 8rem;
+    right: 0;
   }
 }
