@@ -2,8 +2,7 @@ import React from "react";
 import { GrsuSkillsLogoLight } from "../../components/GrsuSkillsLogo";
 import "./index.css";
 import SpecialitiesArea from "./components/SpecialitiesArea";
-import FooterBootom from "../../components/FooterBottom";
-import FooterCircles from "../../assets/images/Footer.svg";
+import { FooterBottom } from "../../components/FooterBottom";
 import TreesLeft from "../../assets/images/TreesSpLeft.svg";
 import TreesRight from "../../assets/images/TreesSpRight.svg";
 import { useLocation } from "react-router-dom";
@@ -14,7 +13,7 @@ const Specialities = () => {
 
   //will perform just once with first render
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollBy(0, 0);
   }, []);
 
   return (
@@ -35,7 +34,7 @@ const Specialities = () => {
         <SpecialitiesArea />
       </main>
       <footer>
-        <FooterBootom circlesImage={FooterCircles} />
+        <FooterBottom />
       </footer>
     </div>
   );

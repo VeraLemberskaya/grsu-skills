@@ -1,6 +1,5 @@
 import React from "react";
-import FooterBootom from "../../../../components/FooterBottom";
-import CirclesFooter from "../../../../assets/images/FooterMain.svg";
+import { FooterBottomMain } from "../../../../components/FooterBottom";
 
 const MainFooter = () => {
   return (
@@ -11,7 +10,7 @@ const MainFooter = () => {
           <h4>Начни свой путь с нами!</h4>
         </div>
       </div>
-      <FooterBootom circlesImage={CirclesFooter} />
+      <FooterBottomMain />
     </footer>
   );
 };

@@ -300,10 +300,6 @@
   transition: transform 0.2s ease;
 }
 
-.specialities-list .row.speciality div.s-col:hover {
-  transform: translateY(-2px);
-}
-
 .specialities-list .spec-form {
   grid-column: 3 / 5;
   display: grid !important;

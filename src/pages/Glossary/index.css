@@ -1,0 +1,128 @@
+.glossary-page {
+  animation-duration: 0.5s;
+}
+
+.glossary-header {
+  background: url(../../assets/images/autumn-small.svg);
+  background-size: cover;
+  width: 100%;
+  height: 16.25rem;
+  border-radius: 0 0 20px 20px;
+  box-shadow: 0 4px 4px var(--color-shadow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3.5rem;
+  margin-bottom: 3.75rem;
+}
+
+.glossary-main {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.glossary-main .bg {
+  object-fit: cover;
+  position: absolute;
+  z-index: -1;
+}
+
+.glossary-main .books-left {
+  width: 38.375rem;
+  height: 21.375rem;
+  left: 0;
+}
+
+.glossary-main .books-right {
+  width: 34rem;
+  height: 24.3rem;
+  right: 0;
+}
+
+.glossary-main p.text {
+  align-self: center;
+  width: 40rem;
+  height: 10rem;
+  font-weight: 400;
+  font-size: 1.5rem;
+  text-align: center;
+  line-height: 1.82rem;
+}
+
+/* -------------SEARCH INPUT ----------*/
+.glossary-search-input {
+  background: var(--color-gray);
+  box-shadow: 0 4px 4px var(--color-shadow);
+  border-radius: 1.875rem;
+  width: 35rem;
+  display: flex;
+  padding: 1rem;
+  gap: 1.5rem;
+}
+
+.glossary-search-input img {
+  pointer-events: none;
+  width: 1.811rem;
+  height: 1.875rem;
+}
+
+.glossary-search-input input {
+  background: var(--color-gray);
+  font-family: inherit;
+  font-weight: 500;
+  width: 100%;
+  font-size: 1.2rem;
+}
+
+/* -----------PAGINATION----------- */
+.pagination-bar .letters {
+  display: flex;
+  background: #c4c4c4;
+  width: fit-content;
+  border-radius: 1.25rem;
+  padding: 0.3125rem 1rem;
+  gap: 0.625rem;
+}
+
+.pagination-bar .letters .letter {
+  font-size: 1.125rem;
+  font-weight: 300;
+  text-transform: uppercase;
+  width: 1.875rem;
+  height: 1.875rem;
+  border-radius: 50%;
+  background: var(--color-gray);
+  box-shadow: 0 4px 4px var(--color-shadow);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+}
+
+.pagination-bar .letters .letter.active {
+  font-weight: 700;
+  font-size: 2.25rem;
+  color: var(--color-white);
+  z-index: 1;
+}
+
+.pagination-bar .letters .letter.active::before {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  width: 2.5rem;
+  height: 4.375rem;
+  background: var(--color-orange);
+  border-radius: 1.5625rem;
+}
+
+/*----------GLOSSARY GRID------------*/
+
+@media (-webkit-min-device-pixel-ratio: 1.25) {
+  .glossary-header {
+    height: 14rem;
+  }
+}

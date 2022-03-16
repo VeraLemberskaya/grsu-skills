@@ -1,7 +1,7 @@
 .menu-btn {
   width: 4rem;
   height: 4rem;
-  background: #efefef;
+  background: var(--color-gray);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -129,6 +129,28 @@
 .guest p {
   font-weight: 600;
   font-size: 1.25rem;
+}
+
+.btn-up {
+  background: var(--color-gray);
+  position: fixed;
+  width: 4rem;
+  height: 4rem;
+  z-index: 2;
+  cursor: pointer;
+  box-shadow: 0 4px 4px var(--color-shadow);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  left: 2.5rem;
+  bottom: 10rem;
+}
+
+.btn-up img {
+  pointer-events: none;
+  width: 1.8rem;
+  height: 1rem;
 }
 
 .guest .guest-icon {

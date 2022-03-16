@@ -2,7 +2,8 @@ import "./App.css";
 import LoginPage from "./pages/Login";
 import MainGuestPage from "./pages/GuestMain";
 import NavMenu from "./components/NavMenu";
-import Specialities from "./pages/Specialities";
+import SpecialitiesPage from "./pages/Specialities";
+import GlossaryPage from "./pages/Glossary";
 import { Routes, Route } from "react-router-dom";
 
 function App() {
@@ -12,7 +13,8 @@ function App() {
         <Route path="/" element={<LoginPage />} />
         <Route path="/" element={<NavMenu />}>
           <Route path="main" element={<MainGuestPage />} />
-          <Route path="/specialities" element={<Specialities />} />
+          <Route path="specialities" element={<SpecialitiesPage />} />
+          <Route path="glossary" element={<GlossaryPage />} />
         </Route>
       </Routes>
     </div>

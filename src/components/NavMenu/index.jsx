@@ -7,8 +7,10 @@ import Specialities from "../../assets/icons/Specialities.svg";
 import Glossary from "../../assets/icons/Glossary.svg";
 import Progress from "../../assets/icons/Progress.svg";
 import University from "../../assets/icons/University.svg";
+import ArrowUp from "../../assets/icons/ArrowUp.svg";
 import Guest from "../../assets/icons/Guest.svg";
 import { Link, Outlet } from "react-router-dom";
+import { logDOM } from "@testing-library/react";
 
 const NavMenu = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -53,6 +55,7 @@ const NavMenu = () => {
             </button>
           </Link>
           <Link
+            ink
             to="/specialities"
             state={{ animation: "slideInDown" }}
             onClick={closeMenu}
@@ -62,19 +65,23 @@ const NavMenu = () => {
               <p>Специальности</p>
             </button>
           </Link>
-          <Link to="/main">
+          <Link
+            to="/glossary"
+            state={{ animation: "slideInDown" }}
+            onClick={closeMenu}
+          >
             <button className="nav-tab glossary">
               <img src={Glossary} />
               <p>Глоссарий</p>
             </button>
           </Link>
-          <Link to="/main">
+          <Link to="/main" onClick={closeMenu}>
             <button className="nav-tab progress">
               <img src={Progress} />
               <p>Прогресс</p>
             </button>
           </Link>
-          <a href="https://www.grsu.by/" target="_blank">
+          <a href="https://www.grsu.by/" target="_blank" onClick={closeMenu}>
             <button className="nav-tab university">
               <img src={University} />
               <p>Университет</p>
@@ -88,6 +95,14 @@ const NavMenu = () => {
           </Link>
         </div>
       </div>
+      <button
+        className="btn-up"
+        onClick={() => {
+          window.scrollTo(0, 0);
+        }}
+      >
+        <img src={ArrowUp} />
+      </button>
       <Outlet />
     </>
   );
