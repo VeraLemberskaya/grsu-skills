@@ -63,13 +63,13 @@ h4 {
 }
 
 h1 {
-  height: 7.5rem;
   text-transform: uppercase;
   font-family: "Oswald", sans-serif;
   font-weight: 700;
   color: var(--color-white);
   font-size: 7.5rem;
   text-shadow: 0 8px 8px rgba(0, 0, 0, 0.6);
+  margin-bottom: 5rem;
 }
 
 p {
@@ -93,5 +93,11 @@ img {
 @media (-webkit-min-device-pixel-ratio: 1.25) {
   html {
     font-size: 14px;
+  }
+}
+
+@media (-webkit-min-device-pixel-ratio: 1.25) {
+  h1 {
+    font-size: 6.8rem;
   }
 }

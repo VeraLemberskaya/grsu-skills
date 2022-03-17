@@ -36,7 +36,6 @@ const PaginationBar = () => {
   const [chosenLetter, setChosenLetter] = useState("а");
 
   const renderedPaginationLetters = letters.map((letter) => {
-    console.log(letter, chosenLetter);
     return letter == chosenLetter.toLowerCase() ? (
       <li className="letter active">{letter}</li>
     ) : (
