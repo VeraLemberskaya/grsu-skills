@@ -214,6 +214,21 @@
   }
 
   .glossary-grid {
-    width: 80.75;
+    width: 90.75rem;
+  }
+
+  .glossary-card {
+    width: 28.25rem;
+  }
+
+  .glossary-card .title {
+    font-size: 1.4rem;
+    line-height: 1.7rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .glossary-card .text-info {
+    font-size: 1rem;
+    line-height: 1.2rem;
   }
 }
