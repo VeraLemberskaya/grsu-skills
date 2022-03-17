@@ -12,7 +12,7 @@ const Glossary = () => {
   const animation = useLocation().state?.animation;
 
   useEffect(() => {
-    window.scrollBy(0, 0);
+    window.scrollTo(0, 0);
   }, []);
 
   return (

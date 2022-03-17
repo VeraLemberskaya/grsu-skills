@@ -75,6 +75,7 @@
 .hamburger {
   width: 2.75rem;
   height: 2rem;
+  object-fit: contain;
   cursor: pointer;
 }
 
@@ -102,17 +103,18 @@
 }
 
 .menu-tabs .nav-tab img {
-  width: 1rem;
-  height: 1rem;
+  width: 1.1rem;
+  height: 1.1rem;
   pointer-events: none;
 }
 
 .menu-tabs .nav-tab.specialities img {
-  height: 1.07rem;
-  width: 0.93rem;
+  height: 1.14rem;
+  width: 1rem;
 }
 
 .menu-tabs .nav-tab p {
+  font-family: "Montserrat", sans-serif;
   font-weight: 300;
   font-size: 1.25rem;
   pointer-events: none;
@@ -157,4 +159,22 @@
   width: 3.5rem;
   height: 3.5rem;
   cursor: pointer;
+}
+
+@media (-webkit-min-device-pixel-ratio: 1.25) {
+  .menu-btn,
+  .btn-up {
+    width: 3.7rem;
+    height: 3.7rem;
+    left: 2.3rem;
+  }
+
+  .btn-up {
+    bottom: 2rem;
+  }
+
+  .hamburger {
+    width: 2.5rem;
+    height: 2rem;
+  }
 }

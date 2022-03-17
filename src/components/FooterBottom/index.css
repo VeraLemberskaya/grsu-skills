@@ -97,29 +97,17 @@
 }
 
 @media (-webkit-min-device-pixel-ratio: 1.25) {
-  .footer-bottom .container {
-    width: 75rem;
-    margin-bottom: 1rem;
+  .footer-bottom .footer-map img {
+    width: 35rem;
+    height: 18.375rem;
+    border-radius: 1.25rem;
   }
-  .footer-bottom .line {
-    width: 75rem;
+
+  .footer-bottom .container {
+    margin-bottom: 1rem;
   }
   .footer-contacts p,
   .footer-contacts a {
-    font-size: 1rem;
-  }
-  .footer-bottom .info .logos .main-logo {
-    width: 4.5rem;
-    height: 4.5rem;
-  }
-  .footer-bottom .logos .logo .grsu-skills-logo .logo-icon {
-    height: 1.8rem;
-    width: 2.1rem;
-  }
-
-  .footer-bottom .footer-map img {
-    width: 33rem;
-    height: 16.375rem;
-    border-radius: 1.25rem;
+    font-size: 1.1rem;
   }
 }

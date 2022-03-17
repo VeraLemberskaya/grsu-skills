@@ -1,9 +1,9 @@
 import React from "react";
 import MainSectionCard from "../MainSectionCard";
 import MainClouds from "../../../../assets/icons/MainClouds.svg";
-import TreesSpecialities from "../../../../assets/icons/TreesSpecialities.svg";
-import TreesGlossary from "../../../../assets/icons/TreesGlossary.svg";
-import TreesProgress from "../../../../assets/icons/TreesProgress.svg";
+import TreesSpecialities from "../../../../assets/icons/TreesSpecialities.png";
+import TreesGlossary from "../../../../assets/icons/TreesGlossary.png";
+import TreesProgress from "../../../../assets/icons/TreesProgress.png";
 import { Link } from "react-router-dom";
 
 const GuestMainSection = () => {
@@ -18,6 +18,7 @@ const GuestMainSection = () => {
               text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
               radius="5rem"
               height="12.375rem"
+              fontWeight="400"
             />
           </a>
         </div>
@@ -33,16 +34,19 @@ const GuestMainSection = () => {
             />
           </div>
         </Link>
-        <div className="card-block glossary-card-block">
-          <img src={TreesGlossary} alt="Глоссарий" />
-          <MainSectionCard
-            title="Глоссарий"
-            text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tincidunt purus id quam ullamcorper sodales. "
-            radius="1.25rem"
-            height="16.25rem"
-            paddingTop="2rem"
-          />
-        </div>
+        <Link to="/glossary" state={{ animation: "slideInUp" }}>
+          <div className="card-block glossary-card-block">
+            <img src={TreesGlossary} alt="Глоссарий" />
+            <MainSectionCard
+              title="Глоссарий"
+              text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tincidunt purus id quam ullamcorper sodales. "
+              radius="1.25rem"
+              height="16.25rem"
+              paddingTop="2rem"
+            />
+          </div>
+        </Link>
+
         <div className="card-block progress-card-block">
           <img src={TreesProgress} alt="Прогресс" />
           <MainSectionCard

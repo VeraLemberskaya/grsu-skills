@@ -65,6 +65,7 @@
 }
 
 .login-card h3 {
+  text-transform: lowercase;
   margin-top: 2.2rem;
   font-weight: 600;
   font-size: 1.75rem;
@@ -121,10 +122,8 @@
 }
 
 .login-form .visibility-icon {
-  /* width: 1.4rem;
-  height: 1rem; */
-  width: 22.51px;
-  height: 15.44px;
+  width: 1.4rem;
+  height: 0.965rem;
   align-self: center;
   cursor: pointer;
   display: none;
@@ -135,10 +134,8 @@
 }
 
 .login-form .visibility-icon.hide {
-  /* width: 1.5rem;
-  height: 1.1rem; */
-  width: 22.51px;
-  height: 17.84px;
+  width: 1.4rem;
+  height: 1.115rem;
 }
 
 .login-form .error-block {
@@ -182,6 +179,11 @@
   bottom: 1.9rem;
   left: 50%;
   transform: translateX(-50%);
+}
+
+.login-card .grsu-skills-logo .logo-icon {
+  height: 1.5rem;
+  width: 1.5rem;
 }
 
 .login-card .grsu-skills-logo .logo-text {
@@ -237,14 +239,7 @@
 }
 
 @media (-webkit-min-device-pixel-ratio: 1.25) {
-  .login-card {
-    top: 6.8rem;
-  }
   .header-block {
-    height: 38rem;
-  }
-  .footer-block {
-    width: 62%;
-    height: 20.5rem;
+    height: 41.8rem;
   }
 }

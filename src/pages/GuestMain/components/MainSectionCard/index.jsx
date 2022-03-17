@@ -11,7 +11,7 @@ const MainSectionCard = (props) => {
       className="section-card"
     >
       <h4>{props.title}</h4>
-      <p>{props.text}</p>
+      <p style={{ fontWeight: props.fontWeight }}>{props.text}</p>
     </div>
   );
 };

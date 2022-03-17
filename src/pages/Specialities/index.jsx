@@ -3,8 +3,8 @@ import { GrsuSkillsLogoLight } from "../../components/GrsuSkillsLogo";
 import "./index.css";
 import SpecialitiesArea from "./components/SpecialitiesArea";
 import { FooterBottom } from "../../components/FooterBottom";
-import TreesLeft from "../../assets/images/TreesSpLeft.svg";
-import TreesRight from "../../assets/images/TreesSpRight.svg";
+import TreesLeft from "../../assets/images/TreesSpLeft.png";
+import TreesRight from "../../assets/images/TreesSpRight.png";
 import { useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 
@@ -13,7 +13,7 @@ const Specialities = () => {
 
   //will perform just once with first render
   useEffect(() => {
-    window.scrollBy(0, 0);
+    window.scrollTo(0, 0);
   }, []);
 
   return (

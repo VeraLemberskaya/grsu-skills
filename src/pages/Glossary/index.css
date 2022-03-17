@@ -178,57 +178,17 @@
 
 @media (-webkit-min-device-pixel-ratio: 1.25) {
   .glossary-header {
-    height: 14rem;
+    height: 15.75rem;
   }
-
-  .glossary-header .grsu-skills-logo {
-    margin-top: 1.5rem;
-  }
-
-  .glossary-main p.text {
-    width: 37rem;
-    font-size: 1.4rem;
-    line-height: 1.6rem;
-  }
-
-  .glossary-main .bg {
-    top: 0;
-  }
-  .glossary-main .books-left {
-    width: 33.375rem;
-    height: 18.375rem;
-  }
-
-  .glossary-main .books-right {
-    width: 29rem;
-    height: 19.3rem;
-  }
-
   .glossary-search-input {
     margin-bottom: 10rem;
   }
 
-  .pagination-bar .letters .letter {
-    width: 1.6rem;
-    height: 1.6rem;
+  .pagination-bar .letters {
+    gap: 0.6rem;
   }
 
   .glossary-grid {
-    width: 90.75rem;
-  }
-
-  .glossary-card {
-    width: 28.25rem;
-  }
-
-  .glossary-card .title {
-    font-size: 1.4rem;
-    line-height: 1.7rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .glossary-card .text-info {
-    font-size: 1rem;
-    line-height: 1.2rem;
+    width: 96.75rem;
   }
 }
