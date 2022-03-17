@@ -1,4 +1,5 @@
 import React from "react";
+import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { GrsuSkillsLogoLight } from "../../components/GrsuSkillsLogo";
 import BooksLeft from "../../assets/images/BooksLeft.png";
@@ -9,6 +10,11 @@ import "./index.css";
 
 const Glossary = () => {
   const animation = useLocation().state?.animation;
+
+  useEffect(() => {
+    window.scrollBy(0, 0);
+  }, []);
+
   return (
     <div className="glossary-page" style={{ animationName: animation }}>
       <header className="glossary-header">

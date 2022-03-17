@@ -32,8 +32,8 @@ const letters = [
   "я",
 ];
 
-const PaginationBar = () => {
-  const [chosenLetter, setChosenLetter] = useState("а");
+const PaginationBar = ({ chosenLetter, setChosenLetter }) => {
+  // const [chosenLetter, setChosenLetter] = useState("а");
 
   const renderedPaginationLetters = letters.map((letter) => {
     return letter == chosenLetter.toLowerCase() ? (
