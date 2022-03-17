@@ -328,6 +328,11 @@
   .specialities-header .grsu-skills-logo {
     margin-top: 1.5rem;
   }
+  .specialities-main p.text {
+    width: 37rem;
+    font-size: 1.4rem;
+    line-height: 1.6rem;
+  }
 
   .specialities-main .bg {
     top: 5rem;

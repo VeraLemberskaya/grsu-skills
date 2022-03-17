@@ -6,7 +6,7 @@ const SearchBar = ({ handleInput }) => {
     <div className="glossary-search-input">
       <img src={Search} alt="Поиск" />
       <input
-        onKeyUp={(e) => handleInput(e.target.value)}
+        onChange={(e) => handleInput(e.target.value)}
         autoComplete="off"
         maxLength="40"
         type="text"

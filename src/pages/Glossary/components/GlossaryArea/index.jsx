@@ -2,7 +2,7 @@ import React from "react";
 import SearchBar from "../SearchBar";
 import PaginationBar from "../PaginationBar";
 import GlossaryGrid from "../GlossaryGrid";
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 const competencies = [
   {
@@ -49,6 +49,10 @@ const competencies = [
     title: "Брокер",
     text: "Брокер - лицо, как правило, не приобретающее право собственности на товар, а лишь содействующее его купле-продаже. Он только сводит продавца и получает за свои услуги вознаграждение.",
   },
+  {
+    title: "Беженец",
+    text: "Беженец - лицо, которое, в силу обоснованного страха преследования по признаку расы, религии, гражданства, принадлежности к конкретной социальной группе или в силу политических мнений, находится вне страны своего гражданства и не может или, в силу такого страха, не желает воспользоваться для себя защитой этой страны. Термин также используется в более общем плане для описания лица в ситуации, аналогичной беженцу, например, в отношении лиц в поисках убежища.",
+  },
 ];
 
 const GlossaryArea = () => {
@@ -57,9 +61,11 @@ const GlossaryArea = () => {
     competencies.filter((comp) => comp.title.toLowerCase().startsWith("а"))
   );
 
+  const previosLetter = useRef(letter);
+
   const handleSearch = (inputValue) => {
     if (inputValue === "") {
-      handleLetterSetting("а");
+      handleLetterSetting(previosLetter.current);
     } else {
       setLetter("");
       setCompetenciesState(
@@ -72,6 +78,7 @@ const GlossaryArea = () => {
 
   const handleLetterSetting = (letter) => {
     setLetter(letter);
+    previosLetter.current = letter;
     setCompetenciesState(
       competencies.filter((comp) =>
         comp.title.toLowerCase().startsWith(letter.toLowerCase())
