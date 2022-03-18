@@ -75,7 +75,11 @@ const NavMenu = () => {
               <p>Глоссарий</p>
             </button>
           </Link>
-          <Link to="/main" onClick={closeMenu}>
+          <Link
+            to="/progress"
+            state={{ animation: "slideInDown" }}
+            onClick={closeMenu}
+          >
             <button className="nav-tab progress">
               <img src={Progress} />
               <p>Прогресс</p>

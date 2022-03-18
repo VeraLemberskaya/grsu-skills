@@ -46,17 +46,18 @@ const GuestMainSection = () => {
             />
           </div>
         </Link>
-
-        <div className="card-block progress-card-block">
-          <img src={TreesProgress} alt="Прогресс" />
-          <MainSectionCard
-            title="Прогресс"
-            text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tincidunt purus id quam ullamcorper sodales. Maecenas ut vehicula mi."
-            radius="1.25rem"
-            height="18.75rem"
-            paddingTop="2rem"
-          />
-        </div>
+        <Link to="/progress" state={{ animation: "slideInUp" }}>
+          <div className="card-block progress-card-block">
+            <img src={TreesProgress} alt="Прогресс" />
+            <MainSectionCard
+              title="Прогресс"
+              text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tincidunt purus id quam ullamcorper sodales. Maecenas ut vehicula mi."
+              radius="1.25rem"
+              height="18.75rem"
+              paddingTop="2rem"
+            />
+          </div>
+        </Link>
       </div>
     </section>
   );

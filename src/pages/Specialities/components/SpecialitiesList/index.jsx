@@ -1,6 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { useEffect } from "react";
-import { renderIntoDocument } from "react-dom/test-utils";
 
 const specFiid = [
   {
@@ -90,20 +90,22 @@ const SpecialitiesList = ({ faculty }) => {
 
   const renderedSpecialities = specialities.map((spec) => {
     return (
-      <li key={spec.id} className="row speciality">
-        <div className="f-col">{spec.code}</div>
-        <div className="s-col">{spec.name}</div>
-        <div className="spec-form">
-          {spec.type.map((type) => {
-            return (
-              <div className="form-row">
-                <div className="t-col">{type.form}</div>
-                <div className="four-col">{type.period}</div>
-              </div>
-            );
-          })}
-        </div>
-      </li>
+      <Link key={spec.id} to={`/specialities/${spec.name}`}>
+        <li className="row speciality">
+          <div className="f-col">{spec.code}</div>
+          <div className="s-col">{spec.name}</div>
+          <div className="spec-form">
+            {spec.type.map((type) => {
+              return (
+                <div className="form-row">
+                  <div className="t-col">{type.form}</div>
+                  <div className="four-col">{type.period}</div>
+                </div>
+              );
+            })}
+          </div>
+        </li>
+      </Link>
     );
   });
 
