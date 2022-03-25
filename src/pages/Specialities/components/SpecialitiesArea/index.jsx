@@ -1,7 +1,8 @@
 import React from "react";
 import SortingBar from "../SortingBar";
 import SpecialitiesList from "../SpecialitiesList";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import useFaculties from "../../../../hooks/useFaculties";
 
 const faculties = [
   {
@@ -55,8 +56,12 @@ const faculties = [
   },
 ];
 
+//let faculties;
+
 const SpecialitiesArea = () => {
-  const [faculty, setFaculty] = useState(faculties[9]);
+  const fac = useFaculties();
+  console.log(fac.faculties);
+  const [faculty, setFaculty] = useState(faculties);
 
   return (
     <div className="area">

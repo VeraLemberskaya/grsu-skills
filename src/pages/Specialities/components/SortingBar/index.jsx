@@ -2,7 +2,7 @@ import React from "react";
 import Search from "../../../../assets/icons/Search.svg";
 import ArrowDown from "../../../../assets/icons/ArrowDown.svg";
 import { useState, useRef } from "react";
-
+import useFaculties from "../../../../hooks/useFaculties";
 const faculties = [
   {
     id: 1,
@@ -56,6 +56,7 @@ const faculties = [
 ];
 
 const SortingBar = ({ faculty, setFaculty }) => {
+  // const { faculties } = useFaculties();
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isPickerOpen, setIsPickerOpen] = useState(false);
 
