@@ -1,15 +1,24 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { useState, useEffect, useMemo } from "react";
 import FacultiesContext from "../../contexts/FacultiesContext";
 import { getFaculties } from "../../api/ApiRequests";
 
 const FacultiesProvider = ({ children }) => {
-  const [faculties, setFaculties] = useState([]);
+  const [faculties, setFaculties] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [faculty, setFaculty] = useState(null);
+
+  const setFacultyState = useCallback(
+    (fac) => {
+      setFaculty(fac);
+    },
+    [faculty]
+  );
 
   async function loadFaculties() {
     const result = await getFaculties();
     setFaculties(result);
+    setFaculty(result[0]);
     setIsLoaded(true);
   }
 
@@ -21,8 +30,10 @@ const FacultiesProvider = ({ children }) => {
     () => ({
       faculties,
       isLoaded,
+      faculty,
+      setFacultyState,
     }),
-    [isLoaded]
+    [faculty, isLoaded]
   );
 
   return (

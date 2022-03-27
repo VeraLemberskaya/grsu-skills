@@ -3,60 +3,9 @@ import Search from "../../../../assets/icons/Search.svg";
 import ArrowDown from "../../../../assets/icons/ArrowDown.svg";
 import { useState, useRef } from "react";
 import useFaculties from "../../../../hooks/useFaculties";
-// const faculties = [
-//   {
-//     id: 1,
-//     name: "Факультет математики и информатики",
-//   },
-//   {
-//     id: 2,
-//     name: "Физико-технический факультет",
-//   },
-//   {
-//     id: 3,
-//     name: "Инженерно-строительный факультет",
-//   },
-//   {
-//     id: 4,
-//     name: "Факультет инновационных технологий машиностроения",
-//   },
-//   {
-//     id: 5,
-//     name: "Факультет биологии и экологии",
-//   },
-//   {
-//     id: 6,
-//     name: "Факультет истории, коммуникации и туризма",
-//   },
-//   {
-//     id: 7,
-//     name: "Юридический факультет",
-//   },
-//   {
-//     id: 8,
-//     name: "Факультет психологии",
-//   },
-//   {
-//     id: 9,
-//     name: "Факультет экономики и управления",
-//   },
-//   { id: 10, name: "Факультет искусств и дизайна" },
-//   {
-//     id: 11,
-//     name: "Военный факультет",
-//   },
-//   {
-//     id: 12,
-//     name: "Филологический факультет",
-//   },
-//   {
-//     id: 13,
-//     name: "Факультет физической культуры",
-//   },
-// ];
 
-const SortingBar = ({ faculty, setFaculty }) => {
-  const { faculties } = useFaculties();
+const SortingBar = () => {
+  const { faculties, faculty, setFacultyState: setFaculty } = useFaculties();
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isPickerOpen, setIsPickerOpen] = useState(false);
 
