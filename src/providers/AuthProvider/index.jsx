@@ -6,12 +6,12 @@ const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(1);
 
   const setJwtToken = useCallback((token) => {
-    console.log("set token");
+    //console.log("set token");
     setToken(token);
   }, []);
 
   const removeJwtToken = useCallback(() => {
-    console.log("remove token");
+    //console.log("remove token");
     setToken({ ...token, jwtToken: "" });
   }, [setJwtToken]);
 
@@ -27,7 +27,7 @@ const AuthProvider = ({ children }) => {
   }, [setJwtToken]);
 
   useEffect(() => {
-    console.log("new instance of set jwt token");
+    //console.log("new instance of set jwt token");
   }, [setJwtToken]);
 
   const contextValue = useMemo(

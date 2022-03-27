@@ -10,8 +10,6 @@ const LoginForm = () => {
   const { login: loginValidation, password: passwordValidation } =
     useValidation();
 
-  console.log(useValidation());
-
   const {
     register,
     formState: { errors, isValid },

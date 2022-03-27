@@ -12,7 +12,6 @@ import FacultiesProvider from "../../providers/FacultiesProvider";
 const Specialities = () => {
   const animation = useLocation().state?.animation;
 
-  //will perform just once with first render
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);

@@ -7,7 +7,7 @@ const SingleSpeciality = () => {
   const { title } = useParams();
 
   useEffect(() => {
-    console.log("render");
+    //console.log("render");
   });
 
   return (
