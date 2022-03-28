@@ -1,26 +1,32 @@
-import React, { useRef } from "react";
+import React from "react";
 import SortingBar from "../SortingBar";
 import SpecialitiesList from "../SpecialitiesList";
-import { useState, useEffect } from "react";
-import useFaculties from "../../../../hooks/useFaculties";
+import { useState } from "react";
+import { useFacultiesState } from "../../../../hooks/useFaculties";
+import Loader from "../Loader";
 
 const SpecialitiesArea = () => {
-  const { isLoaded } = useFaculties();
+  const { isLoaded, setFacultyState } = useFacultiesState();
+  console.log(useFacultiesState());
+  const [searchValue, setSearchValue] = useState("");
+
+  function handleSearchInput(value) {
+    setSearchValue(value);
+    setFacultyState(null);
+  }
 
   return (
     <div className="area">
       {isLoaded ? (
         <>
-          <SortingBar />
-          <SpecialitiesList />
+          <SortingBar
+            searchValue={searchValue}
+            handleSearch={handleSearchInput}
+          />
+          <SpecialitiesList searchValue={searchValue} />
         </>
       ) : (
-        <div className="lds-ring">
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
+        <Loader />
       )}
     </div>
   );

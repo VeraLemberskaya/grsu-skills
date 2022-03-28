@@ -2,20 +2,29 @@ import React from "react";
 import Search from "../../../../assets/icons/Search.svg";
 import ArrowDown from "../../../../assets/icons/ArrowDown.svg";
 import { useState, useRef } from "react";
-import useFaculties from "../../../../hooks/useFaculties";
+// import useFaculties from "../../../../hooks/useFaculties";
+import { useFacultiesState } from "../../../../hooks/useFaculties";
+import SearchInput from "../SearchInput";
+import Picker from "../Picker";
 
-const SortingBar = () => {
-  const { faculties, faculty, setFacultyState: setFaculty } = useFaculties();
+const SortingBar = ({ searchValue, handleSearch }) => {
+  const {
+    faculties,
+    faculty,
+    setFacultyState: setFaculty,
+  } = useFacultiesState();
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isPickerOpen, setIsPickerOpen] = useState(false);
 
   const renderedModalFaculties = faculties.map((fac) => {
-    if (fac.id === faculty.id)
-      return (
-        <li className="active" data-id={fac.id} key={fac.id}>
-          {fac.name}
-        </li>
-      );
+    if (faculty) {
+      if (fac.id === faculty.id)
+        return (
+          <li className="active" data-id={fac.id} key={fac.id}>
+            {fac.name}
+          </li>
+        );
+    }
     return (
       <li key={fac.id} data-id={fac.id}>
         {fac.name}
@@ -25,11 +34,18 @@ const SortingBar = () => {
 
   const handlePickerClick = (e) => {
     const id = e.target.dataset.id;
-    //data-id keeps value as a string that is why not strict equal
     const chosenFaculty = faculties.find((fac) => fac.id == id);
     setIsPickerOpen(false);
     setFaculty(chosenFaculty);
   };
+
+  // const handleInput = (e) => {
+  //   if (e.key === "Enter") {
+  //     setIsSearchOpen(false);
+  //     handleSearch(e.target.value);
+  //     e.target.value = "";
+  //   }
+  // };
 
   return (
     <>
@@ -41,7 +57,11 @@ const SortingBar = () => {
         className={`overlay ${isSearchOpen || isPickerOpen ? "visible" : ""}`}
       ></div>
       <div className="sorting-bar">
-        <div className="search-input">
+        <SearchInput
+          isSearchOpen={isSearchOpen}
+          setIsSearchOpen={setIsSearchOpen}
+        />
+        {/* <div className="search-input">
           <div className={`opened ${isSearchOpen ? "visible" : ""}`}>
             <div className="wrapper">
               <img src={Search} alt="Поиск" />
@@ -50,6 +70,7 @@ const SortingBar = () => {
                 maxLength="40"
                 type="text"
                 placeholder="Поиск..."
+                onKeyUp={handleInput}
               />
             </div>
           </div>
@@ -63,16 +84,17 @@ const SortingBar = () => {
               <img src={Search} alt="Поиск" />
             </div>
           </div>
-        </div>
-        <div className="picker">
+        </div> */}
+        <Picker setIsPickerOpen={setIsPickerOpen} />
+        {/* <div className="picker">
           <div className="choose-faculty">
             <p>Выберите факультет</p>
           </div>
           <div className="faculty">
             <img src={ArrowDown} onClick={() => setIsPickerOpen(true)} />
-            <p>{faculty.name}</p>
+            <p>{faculty ? faculty.name : searchValue}</p>
           </div>
-        </div>
+        </div> */}
       </div>
       <div className={`faculty-modal ${isPickerOpen ? "opened" : ""}`}>
         <ul onClick={handlePickerClick}>{renderedModalFaculties}</ul>

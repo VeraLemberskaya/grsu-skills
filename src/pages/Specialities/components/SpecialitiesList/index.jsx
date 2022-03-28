@@ -1,32 +1,54 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
-import useFaculties from "../../../../hooks/useFaculties";
+// import useFaculties from "../../../../hooks/useFaculties";
+import { findSpecialitiesByQuery } from "../../../../services/facultiesService";
+import { useFacultiesState } from "../../../../hooks/useFaculties";
 
-const SpecialitiesList = () => {
-  const { faculty } = useFaculties();
-  const specialities = faculty.specialities;
+const SpecialitiesList = ({ searchValue }) => {
+  const { faculty, faculties } = useFacultiesState();
 
-  const renderedSpecialities = specialities.map((spec) => {
-    return (
-      <Link to={`/specialities/${spec.name}`}>
+  const renderTable = () => {
+    if (faculty) {
+      return renderedSpecialities(faculty.specialities);
+    } else {
+      const foundSpecialities = findSpecialitiesByQuery(faculties, searchValue);
+      if (foundSpecialities) {
+        return foundSpecialities.map((fac) => {
+          return (
+            <>
+              <div className="faculty-name-row">{fac.name}</div>
+              {renderedSpecialities(fac.specialities)}
+            </>
+          );
+        });
+      }
+    }
+  };
+
+  const renderedSpecialities = (specialities) =>
+    specialities.map((spec) => {
+      return (
         <li key={spec.id} className="row speciality">
           <div className="f-col">{spec.specialityCode}</div>
-          <div className="s-col">{spec.name}</div>
+          <Link to={`/specialities/${spec.name}`}>
+            <div className="s-col">{spec.name}</div>
+          </Link>
           <div className="spec-form">
             {spec.educationForms.map((form) => {
               return (
                 <div className="form-row">
-                  <div className="t-col">{form.title}</div>
+                  <div className="t-col">
+                    {form.title.split("(").map((str) => `${str} `)}
+                  </div>
                   <div className="four-col">{form.termOfStudy}</div>
                 </div>
               );
             })}
           </div>
         </li>
-      </Link>
-    );
-  });
+      );
+    });
 
   return (
     <div className="specialities-list">
@@ -38,7 +60,7 @@ const SpecialitiesList = () => {
           <div className="four-col">Срок обучения (в годах)</div>
         </div>
       </div>
-      {renderedSpecialities}
+      {renderTable()}
     </div>
   );
 };

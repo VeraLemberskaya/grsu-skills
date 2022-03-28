@@ -289,6 +289,16 @@
   padding: 0 0.6rem;
 }
 
+.specialities-list .faculty-name-row {
+  text-align: center;
+  background: #dfdfdf;
+  color: var(--color-foreground);
+  border-radius: 1.25rem;
+  padding: 0.6rem;
+  font-weight: 500;
+  font-size: 1.25rem;
+}
+
 .specialities-list .row.speciality div.f-col,
 .specialities-list .row.speciality div.t-col,
 .specialities-list .row.speciality div.four-col {
@@ -302,6 +312,7 @@
   font-weight: 600;
   cursor: pointer;
   transition: transform 0.2s ease;
+  height: 100%;
 }
 
 .specialities-list .spec-form {
