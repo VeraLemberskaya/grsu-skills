@@ -4,26 +4,19 @@ import SpecialitiesList from "../SpecialitiesList";
 import { useState } from "react";
 import { useFacultiesState } from "../../../../hooks/useFaculties";
 import Loader from "../Loader";
+import Filter from "../Filter";
 
-const SpecialitiesArea = () => {
-  const { isLoaded, setFacultyState } = useFacultiesState();
-  console.log(useFacultiesState());
-  const [searchValue, setSearchValue] = useState("");
-
-  function handleSearchInput(value) {
-    setSearchValue(value);
-    setFacultyState(null);
-  }
+const SpecialitiesArea = ({ children }) => {
+  const { isLoaded } = useFacultiesState();
 
   return (
     <div className="area">
       {isLoaded ? (
         <>
-          <SortingBar
-            searchValue={searchValue}
-            handleSearch={handleSearchInput}
-          />
-          <SpecialitiesList searchValue={searchValue} />
+          {/* <SortingBar />
+          <Filter />
+          <SpecialitiesList /> */}
+          {children}
         </>
       ) : (
         <Loader />

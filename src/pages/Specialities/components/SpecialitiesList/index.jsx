@@ -1,29 +1,25 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
-// import useFaculties from "../../../../hooks/useFaculties";
-import { findSpecialitiesByQuery } from "../../../../services/facultiesService";
-import { useFacultiesState } from "../../../../hooks/useFaculties";
+import {
+  useFacultiesState,
+  useFilteredFaculties,
+} from "../../../../hooks/useFaculties";
 
-const SpecialitiesList = ({ searchValue }) => {
-  const { faculty, faculties } = useFacultiesState();
+const SpecialitiesList = () => {
+  console.log("render SpecList");
+  const filterFaculties = useFilteredFaculties();
+
+  const filteredFaculties = filterFaculties();
 
   const renderTable = () => {
-    if (faculty) {
-      return renderedSpecialities(faculty.specialities);
-    } else {
-      const foundSpecialities = findSpecialitiesByQuery(faculties, searchValue);
-      if (foundSpecialities) {
-        return foundSpecialities.map((fac) => {
-          return (
-            <>
-              <div className="faculty-name-row">{fac.name}</div>
-              {renderedSpecialities(fac.specialities)}
-            </>
-          );
-        });
-      }
-    }
+    return filteredFaculties.map((fac) => {
+      return (
+        <>
+          {fac.name && <div className="faculty-name-row">{fac.name}</div>}
+          {renderedSpecialities(fac.specialities)}
+        </>
+      );
+    });
   };
 
   const renderedSpecialities = (specialities) =>
@@ -52,15 +48,21 @@ const SpecialitiesList = ({ searchValue }) => {
 
   return (
     <div className="specialities-list">
-      <div className="table">
-        <div className="row table-header">
-          <div className="f-col">Код специальности</div>
-          <div className="s-col">название специальности</div>
-          <div className="t-col">Форма получения образования</div>
-          <div className="four-col">Срок обучения (в годах)</div>
-        </div>
-      </div>
-      {renderTable()}
+      {filteredFaculties ? (
+        <>
+          <div className="table">
+            <div className="row table-header">
+              <div className="f-col">Код специальности</div>
+              <div className="s-col">название специальности</div>
+              <div className="t-col">Форма получения образования</div>
+              <div className="four-col">Срок обучения (в годах)</div>
+            </div>
+          </div>
+          {renderTable()}
+        </>
+      ) : (
+        <p className="text-not-found">По вашему запросу ничего не найдено</p>
+      )}
     </div>
   );
 };

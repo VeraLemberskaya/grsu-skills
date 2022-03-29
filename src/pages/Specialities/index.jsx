@@ -8,6 +8,9 @@ import TreesRight from "../../assets/images/TreesSpRight.png";
 import { useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import FacultiesProvider from "../../providers/FacultiesProvider";
+import SortingBar from "./components/SortingBar";
+import Filter from "./components/Filter";
+import SpecialitiesList from "./components/SpecialitiesList";
 
 const Specialities = () => {
   const animation = useLocation().state?.animation;
@@ -32,7 +35,11 @@ const Specialities = () => {
           </p>
           <img src={TreesLeft} className="bg trees-left" />
           <img src={TreesRight} className="bg trees-right" />
-          <SpecialitiesArea />
+          <SpecialitiesArea>
+            <SortingBar />
+            <Filter />
+            <SpecialitiesList />
+          </SpecialitiesArea>
         </main>
         <footer>
           <FooterBottom />

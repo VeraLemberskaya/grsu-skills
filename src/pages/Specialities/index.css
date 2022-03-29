@@ -291,12 +291,14 @@
 
 .specialities-list .faculty-name-row {
   text-align: center;
-  background: #dfdfdf;
-  color: var(--color-foreground);
+  background: var(--color-orange);
+  color: var(--color-white);
   border-radius: 1.25rem;
   padding: 0.6rem;
-  font-weight: 500;
-  font-size: 1.25rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-style: italic;
+  font-size: 1.125rem;
 }
 
 .specialities-list .row.speciality div.f-col,
@@ -334,6 +336,12 @@
   height: 100%;
 }
 
+.specialities-list .text-not-found {
+  font-weight: 400;
+  font-size: 1.2rem;
+  text-align: center;
+}
+
 /* ----------LOADER--------- */
 .lds-ring {
   display: inline-block;
@@ -369,6 +377,70 @@
   100% {
     transform: rotate(360deg);
   }
+}
+
+.filter-radio {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+  user-select: none;
+}
+
+.filter-radio + label {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 2rem;
+}
+
+.filter-radio + label::before {
+  content: "";
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  border: 1px solid #adb5bd;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 50% 50%;
+}
+
+.filter-radio:not(:disabled):not(:checked) + label:hover::before {
+  border-color: #b3d7ff;
+}
+
+.filter-radio:not(:disabled):active + label::before {
+  background-color: #b3d7ff;
+  border-color: #b3d7ff;
+}
+.filter-radio:focus + label::before {
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.filter-radio:checked + label::before {
+  border-color: #0b76ef;
+  background-color: #0b76ef;
+}
+
+.filter-radio:focus:not(:checked) + label::before {
+  border-color: #80bdff;
+}
+
+.filter-radio:checked + label::before {
+  border-color: #0b76ef;
+  background-color: #0b76ef;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e");
+}
+.filter-radio:disabled + label::before {
+  background-color: #e9ecef;
+}
+
+.filter-buttons .radio {
+  text-transform: uppercase;
+}
+
+.filter-buttons {
+  display: flex;
 }
 
 @media (-webkit-min-device-pixel-ratio: 1.25) {

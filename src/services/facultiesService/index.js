@@ -1,9 +1,11 @@
-export const findSpecialitiesByQuery = (faculties, query) => {
+import { FORM_TYPE } from "../../providers/FacultiesProvider";
+
+const findSpecialities = (faculties, filterValue, callback) => {
   const result = [];
   faculties.forEach((fac) => {
     let specArray = [];
     fac.specialities.forEach((spec) => {
-      if (spec.name.toLowerCase().includes(query.toLowerCase())) {
+      if (callback(spec, filterValue)) {
         specArray.push(spec);
       }
     });
@@ -15,4 +17,36 @@ export const findSpecialitiesByQuery = (faculties, query) => {
     }
   });
   return result.length ? result : null;
+};
+
+const checkQuery = (speciality, query) => {
+  return speciality.name.toLowerCase().includes(query.toLowerCase());
+};
+
+const checkFormType = (speciality, formType) => {
+  if (formType === FORM_TYPE.both) return true;
+  return speciality.educationForms.some((form) =>
+    form.title.toLowerCase().includes(formType.toLowerCase())
+  );
+};
+
+export const getFilteredFaculties = (
+  faculties,
+  faculty,
+  queryFilter,
+  educationFormFilter
+) => {
+  if (faculty) {
+    return findSpecialities(
+      [{ ...faculty, name: null }],
+      educationFormFilter,
+      checkFormType
+    );
+  } else {
+    return findSpecialities(
+      findSpecialities(faculties, queryFilter, checkQuery),
+      educationFormFilter,
+      checkFormType
+    );
+  }
 };
