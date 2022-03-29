@@ -17,7 +17,6 @@ const SearchInput = ({ isSearchOpen, setIsSearchOpen }) => {
         setFacultyState(null);
         setSearchQuery(query);
       }
-      e.target.value = "";
     }
   };
 

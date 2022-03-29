@@ -6,7 +6,6 @@ import {
 } from "../../../../hooks/useFaculties";
 
 const SpecialitiesList = () => {
-  console.log("render SpecList");
   const filterFaculties = useFilteredFaculties();
 
   const filteredFaculties = filterFaculties();
@@ -35,7 +34,7 @@ const SpecialitiesList = () => {
               return (
                 <div className="form-row">
                   <div className="t-col">
-                    {form.title.split("(").map((str) => `${str} `)}
+                    {form.title.split("(").join(" (")}
                   </div>
                   <div className="four-col">{form.termOfStudy}</div>
                 </div>

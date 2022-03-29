@@ -10,6 +10,18 @@ const Filter = () => {
         <input
           type="radio"
           className="filter-radio"
+          id="both-radio"
+          name="form"
+          value="both"
+          onChange={() => setEducationForm(FORM_TYPE.both)}
+          defaultChecked
+        />
+        <label htmlFor="both-radio">Все формы обучения</label>
+      </div>
+      <div className="radio">
+        <input
+          type="radio"
+          className="filter-radio"
           id="daily"
           name="form"
           value="daily"
@@ -27,18 +39,6 @@ const Filter = () => {
           onChange={() => setEducationForm(FORM_TYPE.extramural)}
         />
         <label htmlFor="extramural">Заочная</label>
-      </div>
-      <div className="radio">
-        <input
-          type="radio"
-          className="filter-radio"
-          id="both-radio"
-          name="form"
-          value="both"
-          onChange={() => setEducationForm(FORM_TYPE.both)}
-          defaultChecked
-        />
-        <label htmlFor="both-radio">Все формы обучения</label>
       </div>
     </div>
   );
