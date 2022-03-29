@@ -44,9 +44,9 @@ export const getFilteredFaculties = (
     );
   } else {
     return findSpecialities(
-      findSpecialities(faculties, queryFilter, checkQuery),
-      educationFormFilter,
-      checkFormType
+      findSpecialities(faculties, educationFormFilter, checkFormType),
+      queryFilter,
+      checkQuery
     );
   }
 };
