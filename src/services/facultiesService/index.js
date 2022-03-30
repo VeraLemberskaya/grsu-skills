@@ -30,7 +30,15 @@ const checkFormType = (speciality, formType) => {
   );
 };
 
-export const getFilteredFaculties = (
+const findSpecialitiesByForm = (faculties, educationFormFilter) => {
+  return findSpecialities(faculties, educationFormFilter, checkFormType);
+};
+
+const findSpecialitiesByQuery = (faculties, queryFilter) => {
+  return findSpecialities(faculties, queryFilter, checkQuery);
+};
+
+export const filterFaculties = (
   faculties,
   faculty,
   queryFilter,

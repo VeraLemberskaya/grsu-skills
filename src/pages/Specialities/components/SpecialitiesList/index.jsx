@@ -1,15 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import {
-  useFacultiesState,
-  useFilteredFaculties,
-} from "../../../../hooks/useFaculties";
+import { useFilterFaculties } from "../../../../hooks/useFaculties";
 
 const SpecialitiesList = () => {
-  const filterFaculties = useFilteredFaculties();
-
-  const filteredFaculties = filterFaculties();
-
+  console.log("render SpecList");
+  const filteredFaculties = useFilterFaculties();
   const renderTable = () => {
     return filteredFaculties.map((fac) => {
       return (
@@ -20,7 +15,6 @@ const SpecialitiesList = () => {
       );
     });
   };
-
   const renderedSpecialities = (specialities) =>
     specialities.map((spec) => {
       return (
@@ -44,7 +38,6 @@ const SpecialitiesList = () => {
         </li>
       );
     });
-
   return (
     <div className="specialities-list">
       {filteredFaculties ? (

@@ -1,9 +1,11 @@
 import React from "react";
-import { useFacultiesFilters } from "../../../../hooks/useFaculties";
+import { useFacultiesFiltersActions } from "../../../../hooks/useFaculties";
 import { FORM_TYPE } from "../../../../providers/FacultiesProvider";
 
 const Filter = () => {
-  const { setEducationForm } = useFacultiesFilters();
+  console.log("render Filter");
+  const { setEducationForm } = useFacultiesFiltersActions();
+
   return (
     <div className="filter-buttons">
       <div className="radio">

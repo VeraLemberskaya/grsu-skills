@@ -80,6 +80,7 @@
 
 .footer-bottom .footer-map {
   display: block;
+  user-select: none;
 }
 
 .footer-bottom .line {
@@ -94,6 +95,7 @@
   position: absolute;
   bottom: 67%;
   z-index: -1;
+  user-select: none;
 }
 
 @media (-webkit-min-device-pixel-ratio: 1.25) {

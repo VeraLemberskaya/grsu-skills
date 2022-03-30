@@ -4,9 +4,10 @@ import FacultiesContext from "../../contexts/FacultiesContext";
 import {
   facultiesStateContext,
   facultiesFiltersContext,
+  facultiesActionsContext,
+  facultiesFiltersActionsContext,
 } from "../../contexts/FacultiesContext";
 import { getFaculties } from "../../api/ApiRequests";
-import { getFilteredFaculties } from "../../services/facultiesService";
 
 export const FORM_TYPE = {
   daytime: "дневная",
@@ -16,71 +17,64 @@ export const FORM_TYPE = {
 
 const FacultiesProvider = ({ children }) => {
   const [faculties, setFaculties] = useState(null);
-  const [isLoaded, setIsLoaded] = useState(false);
   const [faculty, setFaculty] = useState(null);
   const [queryFilter, setQueryFilter] = useState("");
   const [educationFormFilter, setEducationFormFilter] = useState(
     FORM_TYPE.both
   );
 
-  const setSearchQuery = useCallback((query) => {
-    setQueryFilter(query);
-  }, []);
-
-  const setEducationForm = useCallback((formType) => {
-    setEducationFormFilter(formType);
-  }, []);
-
-  const setFacultyState = useCallback((fac) => {
-    setFaculty(fac);
-  }, []);
-
   async function loadFaculties() {
     const result = await getFaculties();
     setFaculties(result);
     setFaculty(result[0]);
-    setIsLoaded(true);
   }
 
   useEffect(() => {
     loadFaculties();
   }, []);
 
-  const facultiesStateValue = useMemo(
+  const facultiesFilterState = useMemo(
     () => ({
-      faculties,
-      isLoaded,
-      faculty,
-      setFacultyState,
-    }),
-    [faculty, isLoaded]
-  );
-
-  const facultiesFilterValue = useMemo(
-    () => ({
-      queryFilter,
       educationFormFilter,
-      setSearchQuery,
-      setEducationForm,
     }),
-    [queryFilter, educationFormFilter]
+    [educationFormFilter]
   );
 
-  const filterFaculties = useCallback(() => {
-    return getFilteredFaculties(
-      faculties,
+  const facultiesState = useMemo(
+    () => ({
       faculty,
       queryFilter,
-      educationFormFilter
-    );
-  }, [faculties, faculty, queryFilter, educationFormFilter]);
+    }),
+    [faculty, queryFilter]
+  );
+
+  const facultiesActions = useMemo(
+    () => ({
+      setFacultyState: setFaculty,
+      setSearchQuery: setQueryFilter,
+    }),
+    []
+  );
+
+  const facultiesFilterActions = useMemo(
+    () => ({
+      setEducationForm: setEducationFormFilter,
+    }),
+    []
+  );
 
   return (
-    <FacultiesContext.Provider value={filterFaculties}>
-      <facultiesStateContext.Provider value={facultiesStateValue}>
-        <facultiesFiltersContext.Provider value={facultiesFilterValue}>
-          {children}
-        </facultiesFiltersContext.Provider>
+    <FacultiesContext.Provider value={faculties}>
+      <facultiesStateContext.Provider value={facultiesState}>
+        <facultiesActionsContext.Provider value={facultiesActions}>
+          <facultiesFiltersContext.Provider value={facultiesFilterState}>
+            <facultiesFiltersActionsContext.Provider
+              value={facultiesFilterActions}
+            >
+              {children}
+            </facultiesFiltersActionsContext.Provider>
+          </facultiesFiltersContext.Provider>
+        </facultiesActionsContext.Provider>
       </facultiesStateContext.Provider>
     </FacultiesContext.Provider>
   );

@@ -1,22 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import SortingBar from "../SortingBar";
 import SpecialitiesList from "../SpecialitiesList";
-import { useState } from "react";
-import { useFacultiesState } from "../../../../hooks/useFaculties";
+import { useFaculties } from "../../../../hooks/useFaculties";
 import Loader from "../Loader";
-import Filter from "../Filter";
 
-const SpecialitiesArea = ({ children }) => {
-  const { isLoaded } = useFacultiesState();
+const SpecialitiesArea = () => {
+  console.log("render SpecArea");
+  const faculties = useFaculties();
 
   return (
     <div className="area">
-      {isLoaded ? (
+      {faculties ? (
         <>
-          {/* <SortingBar />
-          <Filter />
-          <SpecialitiesList /> */}
-          {children}
+          <SortingBar />
+          <SpecialitiesList />
         </>
       ) : (
         <Loader />

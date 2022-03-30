@@ -1,12 +1,16 @@
 import React from "react";
-import { useFacultiesState } from "../../../../hooks/useFaculties";
+import {
+  useFaculties,
+  useFacultiesState,
+  useFacultiesActions,
+} from "../../../../hooks/useFaculties";
+import Overlay from "../Overlay";
 
 const Modal = ({ isPickerOpen, setIsPickerOpen }) => {
-  const {
-    faculty,
-    faculties,
-    setFacultyState: setFaculty,
-  } = useFacultiesState();
+  console.log("render modal");
+  const faculties = useFaculties();
+  const { faculty } = useFacultiesState();
+  const { setFacultyState: setFaculty } = useFacultiesActions();
 
   const handlePickerClick = (e) => {
     const id = e.target.dataset.id;
@@ -32,9 +36,12 @@ const Modal = ({ isPickerOpen, setIsPickerOpen }) => {
   });
 
   return (
-    <div className={`faculty-modal ${isPickerOpen ? "opened" : ""}`}>
-      <ul onClick={handlePickerClick}>{renderedModalFaculties}</ul>
-    </div>
+    <>
+      <Overlay state={isPickerOpen} setState={setIsPickerOpen} />
+      <div className={`faculty-modal ${isPickerOpen ? "opened" : ""}`}>
+        <ul onClick={handlePickerClick}>{renderedModalFaculties}</ul>
+      </div>
+    </>
   );
 };
 

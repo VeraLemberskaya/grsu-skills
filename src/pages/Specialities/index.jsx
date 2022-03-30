@@ -37,7 +37,7 @@ const Specialities = () => {
           <img src={TreesRight} className="bg trees-right" />
           <SpecialitiesArea>
             <SortingBar />
-            <Filter />
+            {/* <Filter /> */}
             <SpecialitiesList />
           </SpecialitiesArea>
         </main>

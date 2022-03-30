@@ -32,6 +32,7 @@
   object-fit: contain;
   position: absolute;
   top: 4rem;
+  user-select: none;
 }
 
 .specialities-main .trees-left {
@@ -135,6 +136,44 @@
 .sorting-bar .search-input .opened.visible {
   opacity: 100;
   display: block;
+}
+
+.error-div {
+  width: fit-content;
+  height: fit-content;
+  background: #000;
+}
+/* @keyframes flash {
+  from,
+  50%,
+  to {
+    box-shadow: 0;
+  }
+
+  25%,
+  75% {
+    box-shadow: 0 0 4px 4px rgba(255, 51, 0, 0.25);
+  }
+} */
+@keyframes flash {
+  from,
+  50%,
+  to {
+    opacity: 1;
+  }
+
+  25%,
+  75% {
+    opacity: 0;
+  }
+}
+
+.sorting-bar .search-input .opened.visible.incorrect {
+  /* border: 1px solid #c20000; */
+  box-shadow: 0 0 4px 4px rgba(255, 51, 0, 0.25);
+  animation: flash;
+
+  animation-duration: 1s;
 }
 
 .sorting-bar .search-input .opened input {
