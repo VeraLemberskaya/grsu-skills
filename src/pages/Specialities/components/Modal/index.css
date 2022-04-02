@@ -1,0 +1,49 @@
+.faculty-modal {
+  z-index: 2;
+  transition: opacity 0.5s;
+  position: absolute;
+  top: 0;
+  left: 15%;
+  /* top: 15%;  */
+  display: none;
+  opacity: 0;
+}
+
+.faculty-modal.opened {
+  opacity: 100;
+  display: block;
+}
+
+.faculty-modal ul {
+  background: var(--color-gray);
+  width: 41.31rem;
+  height: 36.625rem;
+  border-radius: 1.875rem;
+  box-shadow: 0 4px 4px var(--color-shadow);
+  padding: 0.625rem 1.875rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  padding-bottom: 2.25rem;
+}
+
+.faculty-modal li {
+  height: 2.5rem;
+  width: fit-content;
+  border-radius: 1.25rem;
+  box-shadow: 0 4px 4px var(--color-shadow);
+  background: #f8f8f8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.2rem 1.5rem;
+  font-size: 1.125rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.faculty-modal li.active {
+  background: var(--color-orange);
+  color: var(--color-white);
+}

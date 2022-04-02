@@ -1,0 +1,54 @@
+.sorting-bar .picker {
+  display: flex;
+}
+
+.sorting-bar .picker .choose-faculty {
+  background: var(--color-orange);
+  height: 3.75rem;
+  width: 12.6875rem;
+  border-radius: 1.875rem;
+  padding-left: 1rem;
+  box-shadow: 0 4px 4px var(--color-shadow);
+  display: flex;
+  align-items: center;
+}
+
+.sorting-bar .picker .choose-faculty p {
+  font-weight: 700;
+  font-size: 1.125rem;
+  line-height: 1.37rem;
+  color: var(--color-white);
+  display: block;
+  width: 8.125rem;
+  height: fit-content;
+  margin-left: 1rem;
+}
+
+.sorting-bar .picker .faculty {
+  display: flex;
+  width: 39.81rem;
+  height: 3.75rem;
+  background: var(--color-gray);
+  border-radius: 1.875rem;
+  align-items: center;
+  padding: 1.17rem;
+  text-align: center;
+  position: relative;
+  left: -3rem;
+  box-shadow: 0 4px 4px var(--color-shadow);
+  z-index: 0;
+}
+.sorting-bar .picker .faculty img {
+  width: 1.4rem;
+  height: 0.8rem;
+  cursor: pointer;
+}
+
+.sorting-bar .picker .faculty p {
+  line-height: 1.52rem;
+  font-weight: 700;
+  display: block;
+  height: fit-content;
+  font-size: 1.25rem;
+  width: 100%;
+}

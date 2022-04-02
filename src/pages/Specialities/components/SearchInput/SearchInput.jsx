@@ -2,24 +2,25 @@ import React, { useState } from "react";
 import Search from "../../../../assets/icons/Search.svg";
 import { useFacultiesActions } from "../../../../hooks/useFaculties";
 import Overlay from "../Overlay";
+import "./index.css";
 
 const SearchInput = () => {
   console.log("render Search");
-  const [isInputCorrect, setIsInputCorrect] = useState(true);
+  // const [isInputCorrect, setIsInputCorrect] = useState(true);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const { setFacultyState, setSearchQuery } = useFacultiesActions();
 
   const handleInput = (e) => {
-    setIsInputCorrect(true);
+    // setIsInputCorrect(true);
     const query = e.target.value;
     if (e.key === "Enter") {
       if (query.length >= 2) {
-        setIsInputCorrect(true);
+        // setIsInputCorrect(true);
         setIsSearchOpen(false);
         setFacultyState(null);
         setSearchQuery(query);
       } else {
-        setIsInputCorrect(false);
+        // setIsInputCorrect(false);
       }
     }
   };
@@ -28,11 +29,7 @@ const SearchInput = () => {
     <>
       <Overlay state={isSearchOpen} setState={setIsSearchOpen} />
       <div className="search-input">
-        <div
-          className={`opened ${isSearchOpen ? "visible" : ""} ${
-            isInputCorrect ? "" : "incorrect"
-          }`}
-        >
+        <div className={`opened ${isSearchOpen ? "visible" : ""}`}>
           <div className="wrapper">
             <img src={Search} alt="Поиск" />
             <input

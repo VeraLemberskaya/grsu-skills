@@ -1,0 +1,85 @@
+.specialities-list {
+  display: grid;
+  grid-gap: 1.25rem;
+  padding-right: 1.2rem;
+}
+
+.specialities-list .row {
+  display: grid;
+  grid-template-columns: 11.25rem 18.75rem 12.5rem 7.5rem;
+  grid-gap: 1.25rem;
+}
+
+.specialities-list .row div {
+  text-transform: uppercase;
+  border-radius: 1.25rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.875rem;
+  color: var(--color-foreground);
+}
+
+.specialities-list .row.speciality div {
+  padding: 0.5rem 1rem;
+}
+
+.specialities-list .table-header div {
+  background: #c4c4c4;
+  font-weight: 600;
+  padding: 0 0.6rem;
+}
+
+.specialities-list .faculty-name-row {
+  text-align: center;
+  background: var(--color-orange);
+  color: var(--color-white);
+  border-radius: 1.25rem;
+  padding: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-style: italic;
+  font-size: 1.125rem;
+}
+
+.specialities-list .row.speciality div.f-col,
+.specialities-list .row.speciality div.t-col,
+.specialities-list .row.speciality div.four-col {
+  background: var(--color-gray);
+  font-weight: 400;
+}
+
+.specialities-list .row.speciality div.s-col {
+  background: #f8f8f8;
+  box-shadow: 0 4px 4px var(--color-shadow);
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  height: 100%;
+}
+
+.specialities-list .spec-form {
+  grid-column: 3 / 5;
+  display: grid !important;
+  grid-gap: 0.625rem;
+  padding: 0 !important;
+}
+
+.specialities-list .spec-form .form-row {
+  display: grid;
+  grid-template-columns: 12.5rem 7.5rem;
+  grid-gap: 1.25rem;
+  padding: 0 !important;
+  height: 100%;
+}
+
+.specialities-list .spec-form .form-row div {
+  height: 100%;
+}
+
+.specialities-list .text-not-found {
+  font-weight: 400;
+  font-size: 1.2rem;
+  text-align: center;
+}

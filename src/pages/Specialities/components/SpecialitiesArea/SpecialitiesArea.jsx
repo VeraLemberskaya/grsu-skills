@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from "react";
-import SortingBar from "../SortingBar";
+import React from "react";
 import SpecialitiesList from "../SpecialitiesList";
 import { useFaculties } from "../../../../hooks/useFaculties";
 import Loader from "../Loader";
+import Picker from "../Picker";
+import Filter from "../Filter";
+import SearchInput from "../SearchInput";
+import "./index.css";
 
 const SpecialitiesArea = () => {
   console.log("render SpecArea");
@@ -12,7 +15,11 @@ const SpecialitiesArea = () => {
     <div className="area">
       {faculties ? (
         <>
-          <SortingBar />
+          <div className="sorting-bar">
+            <SearchInput />
+            <Picker />
+          </div>
+          <Filter />
           <SpecialitiesList />
         </>
       ) : (

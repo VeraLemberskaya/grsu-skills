@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import ArrowDown from "../../../../assets/icons/ArrowDown.svg";
 import { useFacultiesState } from "../../../../hooks/useFaculties";
-import { useFacultiesFilters } from "../../../../hooks/useFaculties";
 import Modal from "../Modal";
+import "./index.css";
 
 const Picker = () => {
   console.log("render Picker");

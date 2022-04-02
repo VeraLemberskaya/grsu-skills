@@ -5,6 +5,7 @@ import {
   useFacultiesActions,
 } from "../../../../hooks/useFaculties";
 import Overlay from "../Overlay";
+import "./index.css";
 
 const Modal = ({ isPickerOpen, setIsPickerOpen }) => {
   console.log("render modal");

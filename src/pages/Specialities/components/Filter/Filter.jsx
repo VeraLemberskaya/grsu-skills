@@ -1,4 +1,5 @@
 import React from "react";
+import "./index.css";
 import { useFacultiesFiltersActions } from "../../../../hooks/useFaculties";
 import { FORM_TYPE } from "../../../../providers/FacultiesProvider";
 

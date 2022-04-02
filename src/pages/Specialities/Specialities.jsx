@@ -1,16 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { GrsuSkillsLogoLight } from "../../components/GrsuSkillsLogo";
 import "./index.css";
 import SpecialitiesArea from "./components/SpecialitiesArea";
 import { FooterBottom } from "../../components/FooterBottom";
-import TreesLeft from "../../assets/images/TreesSpLeft.png";
-import TreesRight from "../../assets/images/TreesSpRight.png";
+import { TreesLeft, TreesRight } from "../../assets/images";
 import { useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
 import FacultiesProvider from "../../providers/FacultiesProvider";
-import SortingBar from "./components/SortingBar";
-import Filter from "./components/Filter";
-import SpecialitiesList from "./components/SpecialitiesList";
 
 const Specialities = () => {
   const animation = useLocation().state?.animation;
@@ -35,11 +30,7 @@ const Specialities = () => {
           </p>
           <img src={TreesLeft} className="bg trees-left" />
           <img src={TreesRight} className="bg trees-right" />
-          <SpecialitiesArea>
-            <SortingBar />
-            {/* <Filter /> */}
-            <SpecialitiesList />
-          </SpecialitiesArea>
+          <SpecialitiesArea />
         </main>
         <footer>
           <FooterBottom />

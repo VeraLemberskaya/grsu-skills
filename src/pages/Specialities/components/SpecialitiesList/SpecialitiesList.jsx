@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useFilterFaculties } from "../../../../hooks/useFaculties";
+import "./index.css";
 
 const SpecialitiesList = () => {
   console.log("render SpecList");
