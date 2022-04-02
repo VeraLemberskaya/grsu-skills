@@ -1,26 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Search from "../../../../assets/icons/Search.svg";
 import { useFacultiesActions } from "../../../../hooks/useFaculties";
 import Overlay from "../Overlay";
 import "./index.css";
 
 const SearchInput = () => {
-  console.log("render Search");
-  // const [isInputCorrect, setIsInputCorrect] = useState(true);
+  useEffect(() => {
+    console.log("render Search");
+  });
+
+  const searchRef = useRef();
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const { setFacultyState, setSearchQuery } = useFacultiesActions();
 
   const handleInput = (e) => {
-    // setIsInputCorrect(true);
-    const query = e.target.value;
+    searchRef.current.classList.remove("incorrect");
     if (e.key === "Enter") {
+      const query = e.target.value;
       if (query.length >= 2) {
-        // setIsInputCorrect(true);
         setIsSearchOpen(false);
         setFacultyState(null);
         setSearchQuery(query);
       } else {
-        // setIsInputCorrect(false);
+        searchRef.current.classList.add("incorrect");
+        setTimeout(() => {
+          searchRef.current.classList.remove("incorrect");
+        }, 500);
       }
     }
   };
@@ -29,7 +34,10 @@ const SearchInput = () => {
     <>
       <Overlay state={isSearchOpen} setState={setIsSearchOpen} />
       <div className="search-input">
-        <div className={`opened ${isSearchOpen ? "visible" : ""}`}>
+        <div
+          ref={searchRef}
+          className={`opened ${isSearchOpen ? "visible" : ""}`}
+        >
           <div className="wrapper">
             <img src={Search} alt="Поиск" />
             <input

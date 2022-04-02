@@ -61,23 +61,21 @@
   background: #000;
 }
 @keyframes flash {
-  from,
-  50%,
-  to {
-    opacity: 1;
+  from {
+    outline: 2px solid transparent;
   }
-
-  25%,
-  75% {
-    opacity: 0;
+  50% {
+    outline: 2px solid rgba(255, 0, 0, 0.507);
+  }
+  to {
+    outline: 2px solid transparent;
   }
 }
 
 .sorting-bar .search-input .opened.visible.incorrect {
-  box-shadow: 0 0 4px 4px rgba(255, 51, 0, 0.25);
   animation: flash;
 
-  animation-duration: 1s;
+  animation-duration: 0.5s;
 }
 
 .sorting-bar .search-input .opened input {
