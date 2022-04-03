@@ -1,7 +1,7 @@
 import React from "react";
 import SpecialitiesList from "../SpecialitiesList";
 import { useFaculties } from "../../../../hooks/useFaculties";
-import Loader from "../Loader";
+import Loader from "../../../../components/Loader/Loader";
 import Picker from "../Picker";
 import Filter from "../Filter";
 import SearchInput from "../SearchInput";

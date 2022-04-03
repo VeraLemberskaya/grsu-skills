@@ -18,7 +18,9 @@ export const getCompetencies = async () => {
 };
 
 export const getCompetenciesByLetter = async (letter) => {
-  return await API.post(competenciesEndPoint, null, { params: letter })
+  return await API.post(competenciesEndPoint, {
+    letter,
+  })
     .then((response) => response.data)
     .catch((error) => console.log(error));
 };

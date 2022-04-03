@@ -1,0 +1,30 @@
+.glossary-search-input {
+  background: var(--color-gray);
+  box-shadow: 0 4px 4px var(--color-shadow);
+  border-radius: 1.875rem;
+  width: 35rem;
+  display: flex;
+  padding: 1rem;
+  gap: 1.5rem;
+  margin-bottom: 11.875rem;
+}
+
+.glossary-search-input img {
+  pointer-events: none;
+  width: 1.811rem;
+  height: 1.875rem;
+}
+
+.glossary-search-input input {
+  background: var(--color-gray);
+  font-family: inherit;
+  font-weight: 500;
+  width: 100%;
+  font-size: 1.2rem;
+}
+
+@media (-webkit-min-device-pixel-ratio: 1.25) {
+  .glossary-search-input {
+    margin-bottom: 10rem;
+  }
+}

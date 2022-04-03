@@ -2,7 +2,13 @@ import React from "react";
 import SearchBar from "../SearchBar";
 import PaginationBar from "../PaginationBar";
 import GlossaryGrid from "../GlossaryGrid";
-import { useState, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
+import Loader from "../../../../components/Loader/Loader";
+import {
+  getCompetenciesByLetter,
+  getCompetencies,
+} from "../../../../api/ApiRequests";
+import "./index.css";
 
 const competencies = [
   {
@@ -57,9 +63,12 @@ const competencies = [
 
 const GlossaryArea = () => {
   const [letter, setLetter] = useState("а");
-  const [competenciesState, setCompetenciesState] = useState(
-    competencies.filter((comp) => comp.title.toLowerCase().startsWith("а"))
-  );
+  const [competencies, setCompetencies] = useState(null);
+
+  useEffect(async () => {
+    const data = await getCompetenciesByLetter(letter);
+    setCompetencies(data);
+  }, []);
 
   const previosLetter = useRef(letter);
 
@@ -68,7 +77,7 @@ const GlossaryArea = () => {
       handleLetterSetting(previosLetter.current);
     } else {
       setLetter("");
-      setCompetenciesState(
+      setCompetencies(
         competencies.filter((comp) => {
           return comp.title.toLowerCase().includes(inputValue.toLowerCase());
         })
@@ -79,7 +88,7 @@ const GlossaryArea = () => {
   const handleLetterSetting = (letter) => {
     setLetter(letter);
     previosLetter.current = letter;
-    setCompetenciesState(
+    setCompetencies(
       competencies.filter((comp) =>
         comp.title.toLowerCase().startsWith(letter.toLowerCase())
       )
@@ -88,12 +97,18 @@ const GlossaryArea = () => {
 
   return (
     <div className="glossary-area">
-      <SearchBar handleInput={handleSearch} />
-      <PaginationBar
-        chosenLetter={letter}
-        setChosenLetter={handleLetterSetting}
-      />
-      <GlossaryGrid competencies={competenciesState} />
+      {competencies ? (
+        <>
+          <SearchBar handleInput={handleSearch} />
+          <PaginationBar
+            chosenLetter={letter}
+            setChosenLetter={handleLetterSetting}
+          />
+          <GlossaryGrid competencies={competencies} />
+        </>
+      ) : (
+        <Loader />
+      )}
     </div>
   );
 };
