@@ -7,6 +7,10 @@ const Filter = () => {
   console.log("render Filter");
   const { setEducationForm } = useFacultiesFiltersActions();
 
+  const handleFilterChange = (e) => {
+    setEducationForm(e.target.value);
+  };
+
   return (
     <div className="filter-buttons">
       <div className="radio">
@@ -14,9 +18,9 @@ const Filter = () => {
           type="radio"
           className="filter-radio"
           id="both-radio"
-          name="form"
-          value="both"
-          onChange={() => setEducationForm(FORM_TYPE.both)}
+          name="filter"
+          value={FORM_TYPE.both}
+          onChange={handleFilterChange}
           defaultChecked
         />
         <label htmlFor="both-radio">Все формы обучения</label>
@@ -26,9 +30,9 @@ const Filter = () => {
           type="radio"
           className="filter-radio"
           id="daily"
-          name="form"
-          value="daily"
-          onChange={() => setEducationForm(FORM_TYPE.daytime)}
+          name="filter"
+          value={FORM_TYPE.daytime}
+          onChange={handleFilterChange}
         />
         <label htmlFor="daily">Дневная</label>
       </div>
@@ -37,9 +41,9 @@ const Filter = () => {
           type="radio"
           className="filter-radio"
           id="extramural"
-          name="form"
-          value="extramural"
-          onChange={() => setEducationForm(FORM_TYPE.extramural)}
+          name="filter"
+          value={FORM_TYPE.extramural}
+          onChange={handleFilterChange}
         />
         <label htmlFor="extramural">Заочная</label>
       </div>
