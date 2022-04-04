@@ -30,6 +30,7 @@
   object-fit: cover;
   position: absolute;
   z-index: -1;
+  user-select: none;
 }
 
 .glossary-main .books-left {

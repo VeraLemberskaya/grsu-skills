@@ -20,8 +20,9 @@ const SearchBar = () => {
   const handleSearchInput = (e) => {
     if (e.key === "Enter") {
       const query = e.target.value;
-      if (query.length > 2) {
+      if (query.length >= 2) {
         setQueryState(query);
+        window.scrollBy(0, 400);
       } else {
         searchWrapperRef.current.classList.add("incorrect");
         setTimeout(() => {

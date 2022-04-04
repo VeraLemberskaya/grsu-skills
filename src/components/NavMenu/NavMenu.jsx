@@ -10,7 +10,6 @@ import University from "../../assets/icons/University.svg";
 import ArrowUp from "../../assets/icons/ArrowUp.svg";
 import Guest from "../../assets/icons/Guest.svg";
 import { Link, Outlet } from "react-router-dom";
-import { logDOM } from "@testing-library/react";
 
 const NavMenu = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

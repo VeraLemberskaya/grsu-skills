@@ -13,9 +13,11 @@
   object-fit: contain;
   height: 2.2rem;
   width: 2.2rem;
+  user-select: none;
 }
 
 .grsu-skills-logo .logo-text {
   width: 7.9rem;
   height: 1.59rem;
+  user-select: none;
 }

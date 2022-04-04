@@ -24,6 +24,10 @@
   font-size: 1.2rem;
 }
 
+.glossary-search-input input::placeholder {
+  user-select: none;
+}
+
 .glossary-search-input.incorrect {
   animation: flash;
   animation-duration: 0.7s;
