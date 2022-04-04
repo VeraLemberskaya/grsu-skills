@@ -2,114 +2,20 @@ import React from "react";
 import SearchBar from "../SearchBar";
 import PaginationBar from "../PaginationBar";
 import GlossaryGrid from "../GlossaryGrid";
-import { useState, useEffect, useRef } from "react";
-import Loader from "../../../../components/Loader/Loader";
-import {
-  getCompetenciesByLetter,
-  getCompetencies,
-} from "../../../../api/ApiRequests";
+import CompetenciesProvider from "../../../../providers/CompetenciesProvider";
 import "./index.css";
 
-const competencies = [
-  {
-    title: "Аберрация оптических систем",
-    text: "Аберрация оптических систем - искажение изображения, вызываемое несовершенством реальных оптических систем.",
-  },
-  {
-    title: "Аберрация глаза",
-    text: "Аберрация глаза - искажение изображения на сетчатке вследствие несовершенства оптической системы глаза. Различа ют Дифракционную,сферическую и хроматическую аберрации глаза.",
-  },
-  {
-    title: "Абордаж",
-    text: "Абордаж - способ ведения боя гребными и парусными судами; сцепление атакующего корабля с неприятельским кораблем с целью его захвата в рукопашном бою.",
-  },
-  {
-    title: "Абиотическая среда",
-    text: "Абиотическая среда - неживое физическое и химическое окружение живых организмов. Абиотическую среду составляют природные условия, происхождение которых непосредственно не связано с жизнедеятельностью живущих организмов.",
-  },
-  {
-    title: "Абиотические факторы среды",
-    text: "Абиотические факторы среды - компоненты и явления неживой, неорганической природы, прямо или косвенно воздействующие на живые организмы: климатические, почвенные и гидрографические факторы.",
-  },
-  {
-    title: "Абонентская система",
-    text: "Абонентская система - в информационных сетях - система, которая является поставщиком или потребителем информации. Абонентская система реализуется в виде одного либо нескольких устройств.",
-  },
-  {
-    title: "Берег",
-    text: "Берег - узкая полоса взаимодействия между сушей и водоемом или между сушей и водотоком.Берег состоит из собственно берега (его надводной части) и из подводного берегового склона. Главными факторами формирования берега являются волны и волноприбойный поток, а также русловой поток.",
-  },
-  {
-    title: "Безработица",
-    text: "Безработица - социально-экономическое явление, когда часть экономически активного населения не находит себе работу и становится «излишним» населением.",
-  },
-  {
-    title: "Бакалавр",
-    text: "Бакалавр - в большинстве стран первая ученая степень (от ср.-век. лат. baccalaureus), приобретаемая студентом после освоения программ базового высшего образования (3-5 лет обучения в вузе).",
-  },
-  {
-    title: "Бонус",
-    text: "Бонус - 1) дополнительное вознаграждение; 2) дополнительная скидка, предоставляемая продавцом в соответствии с условиями сделки или отдельного соглашения; 3) премия, Б в современной организации - заранее предусмотренное премиальное вознаграждение, связанное закономерным, формализованным образом с качественными и количественными показателями труда.",
-  },
-  {
-    title: "Брокер",
-    text: "Брокер - лицо, как правило, не приобретающее право собственности на товар, а лишь содействующее его купле-продаже. Он только сводит продавца и получает за свои услуги вознаграждение.",
-  },
-  {
-    title: "Беженец",
-    text: "Беженец - лицо, которое, в силу обоснованного страха преследования по признаку расы, религии, гражданства, принадлежности к конкретной социальной группе или в силу политических мнений, находится вне страны своего гражданства и не может или, в силу такого страха, не желает воспользоваться для себя защитой этой страны. Термин также используется в более общем плане для описания лица в ситуации, аналогичной беженцу, например, в отношении лиц в поисках убежища.",
-  },
-];
-
 const GlossaryArea = () => {
-  const [letter, setLetter] = useState("а");
-  const [competencies, setCompetencies] = useState(null);
-
-  useEffect(async () => {
-    const data = await getCompetenciesByLetter(letter);
-    setCompetencies(data);
-  }, []);
-
-  const previosLetter = useRef(letter);
-
-  const handleSearch = (inputValue) => {
-    if (inputValue === "") {
-      handleLetterSetting(previosLetter.current);
-    } else {
-      setLetter("");
-      setCompetencies(
-        competencies.filter((comp) => {
-          return comp.title.toLowerCase().includes(inputValue.toLowerCase());
-        })
-      );
-    }
-  };
-
-  const handleLetterSetting = (letter) => {
-    setLetter(letter);
-    previosLetter.current = letter;
-    setCompetencies(
-      competencies.filter((comp) =>
-        comp.title.toLowerCase().startsWith(letter.toLowerCase())
-      )
-    );
-  };
+  console.log("render Glossary Area");
 
   return (
-    <div className="glossary-area">
-      {competencies ? (
-        <>
-          <SearchBar handleInput={handleSearch} />
-          <PaginationBar
-            chosenLetter={letter}
-            setChosenLetter={handleLetterSetting}
-          />
-          <GlossaryGrid competencies={competencies} />
-        </>
-      ) : (
-        <Loader />
-      )}
-    </div>
+    <CompetenciesProvider>
+      <div className="glossary-area">
+        <SearchBar />
+        <PaginationBar />
+        <GlossaryGrid />
+      </div>
+    </CompetenciesProvider>
   );
 };
 

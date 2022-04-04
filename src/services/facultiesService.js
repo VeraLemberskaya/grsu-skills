@@ -1,4 +1,4 @@
-import { FORM_TYPE } from "../../providers/FacultiesProvider";
+import { FORM_TYPE } from "../providers/FacultiesProvider";
 
 const findSpecialities = (faculties, filterValue, callback) => {
   const result = [];
@@ -28,14 +28,6 @@ const checkFormType = (speciality, formType) => {
   return speciality.educationForms.some((form) =>
     form.title.toLowerCase().includes(formType.toLowerCase())
   );
-};
-
-const findSpecialitiesByForm = (faculties, educationFormFilter) => {
-  return findSpecialities(faculties, educationFormFilter, checkFormType);
-};
-
-const findSpecialitiesByQuery = (faculties, queryFilter) => {
-  return findSpecialities(faculties, queryFilter, checkQuery);
 };
 
 export const filterFaculties = (

@@ -1,30 +1,23 @@
 import React from "react";
 import "./index.css";
+import Loader from "../../../../components/Loader";
+import { divideCompetenciesOnColumns } from "../../../../services/competenciesService";
+import { useCompetenciesState } from "../../../../hooks/useCompetencies";
 
-const GlossaryGrid = ({ competencies }) => {
-  const createColumns = () => {
-    let col1 = [],
-      col2 = [],
-      col3 = [];
-    let counter = 1;
-    competencies.forEach((comp) => {
-      if (counter === 1) col1.push(comp);
-      else if (counter === 2) col2.push(comp);
-      else {
-        col3.push(comp);
-        counter = 0;
-      }
-      counter++;
-    });
+const GlossaryGrid = () => {
+  console.log("render Glossary Grid");
 
-    const createColumnOne = () => {
+  const { competencies, isLoaded } = useCompetenciesState();
+
+  const renderedColumns = () => {
+    const createColumn = (col) => {
       return (
-        <div className="column col-1">
-          {col1.map((comp) => {
+        <div className="column">
+          {col.map((comp) => {
             return (
-              <article className="glossary-card">
+              <article key={comp.id} className="glossary-card">
                 <h4 className="title">{comp.title}</h4>
-                <p className="text-info">{comp.text}</p>
+                <p className="text-info">{comp.description}</p>
               </article>
             );
           })}
@@ -32,43 +25,29 @@ const GlossaryGrid = ({ competencies }) => {
       );
     };
 
-    const createColumnTwo = () => {
-      return (
-        <div className="column col-2">
-          {col2.map((comp) => {
-            return (
-              <article className="glossary-card">
-                <h4 className="title">{comp.title}</h4>
-                <p className="text-info">{comp.text}</p>
-              </article>
-            );
-          })}
-        </div>
-      );
-    };
-
-    const createColumnThree = () => {
-      return (
-        <div className="column col-3">
-          {col3.map((comp) => {
-            return (
-              <article className="glossary-card">
-                <h4 className="title">{comp.title}</h4>
-                <p className="text-info">{comp.text}</p>
-              </article>
-            );
-          })}
-        </div>
-      );
-    };
-
-    return [createColumnOne, createColumnTwo, createColumnThree];
+    return divideCompetenciesOnColumns(competencies).map((col) =>
+      createColumn(col)
+    );
   };
 
-  const renderedColumns = createColumns().map((createCol) => {
-    return createCol();
-  });
-  return <div className="glossary-grid">{renderedColumns}</div>;
+  return (
+    <div className="glossary-grid">
+      {isLoaded ? (
+        <>
+          {competencies.length ? (
+            renderedColumns()
+          ) : (
+            <div className="text-not-found">
+              <p>Упс!</p>
+              <p> Похоже, по вашему запросу ничего не найдено!</p>
+            </div>
+          )}
+        </>
+      ) : (
+        <Loader />
+      )}
+    </div>
+  );
 };
 
 export default GlossaryGrid;

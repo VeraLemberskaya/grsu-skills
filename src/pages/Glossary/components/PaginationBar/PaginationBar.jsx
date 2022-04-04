@@ -1,5 +1,8 @@
 import React from "react";
-import { useState } from "react";
+import {
+  useCompetenciesFilters,
+  useCompetenciesFiltersActions,
+} from "../../../../hooks/useCompetencies";
 import "./index.css";
 
 const letters = [
@@ -33,12 +36,17 @@ const letters = [
   "я",
 ];
 
-const PaginationBar = ({ chosenLetter, setChosenLetter }) => {
-  // const [chosenLetter, setChosenLetter] = useState("а");
+const PaginationBar = () => {
+  const { letter: chosenLetter } = useCompetenciesFilters();
+  const { setLetter } = useCompetenciesFiltersActions();
+
+  console.log("render Pagination Bar");
 
   const renderedPaginationLetters = letters.map((letter) => {
-    return letter == chosenLetter.toLowerCase() ? (
-      <li className="letter active">{letter}</li>
+    return letter.toLowerCase() === chosenLetter.toLowerCase() ? (
+      <li key={letter} className="letter active">
+        {letter}
+      </li>
     ) : (
       <li className="letter">{letter}</li>
     );
@@ -46,7 +54,9 @@ const PaginationBar = ({ chosenLetter, setChosenLetter }) => {
 
   const handlePagination = (e) => {
     const letter = e.target.innerText;
-    if (letter.length === 1) setChosenLetter(letter);
+    if (letter.length === 1) {
+      setLetter(letter);
+    }
   };
 
   return (
