@@ -55,23 +55,6 @@
   display: block;
 }
 
-.error-div {
-  width: fit-content;
-  height: fit-content;
-  background: #000;
-}
-@keyframes flash {
-  from {
-    outline: 2px solid transparent;
-  }
-  50% {
-    outline: 2px solid rgba(255, 60, 0, 0.507);
-  }
-  to {
-    outline: 2px solid transparent;
-  }
-}
-
 .sorting-bar .search-input .opened.visible.incorrect {
   animation: flash;
 

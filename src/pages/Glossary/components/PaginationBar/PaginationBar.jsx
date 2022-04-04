@@ -38,7 +38,7 @@ const letters = [
 
 const PaginationBar = () => {
   const { letter: chosenLetter } = useCompetenciesFilters();
-  const { setLetter } = useCompetenciesFiltersActions();
+  const { setLetterState } = useCompetenciesFiltersActions();
 
   console.log("render Pagination Bar");
 
@@ -55,7 +55,7 @@ const PaginationBar = () => {
   const handlePagination = (e) => {
     const letter = e.target.innerText;
     if (letter.length === 1) {
-      setLetter(letter);
+      setLetterState(letter);
     }
   };
 

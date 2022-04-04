@@ -11,8 +11,9 @@
 
 .glossary-search-input img {
   pointer-events: none;
-  width: 1.811rem;
+  width: 1.875rem;
   height: 1.875rem;
+  user-select: none;
 }
 
 .glossary-search-input input {
@@ -21,6 +22,11 @@
   font-weight: 500;
   width: 100%;
   font-size: 1.2rem;
+}
+
+.glossary-search-input.incorrect {
+  animation: flash;
+  animation-duration: 0.7s;
 }
 
 @media (-webkit-min-device-pixel-ratio: 1.25) {

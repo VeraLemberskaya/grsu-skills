@@ -18,3 +18,13 @@ export const getCompetenciesByLetter = async (letter) => {
     .then((response) => response.data)
     .catch((error) => console.log(error));
 };
+
+export const getCompetenciesByQuery = async (query) => {
+  return API.get(competenciesEndPoint, {
+    params: {
+      query,
+    },
+  })
+    .then((response) => response.data)
+    .catch((error) => console.log(error));
+};

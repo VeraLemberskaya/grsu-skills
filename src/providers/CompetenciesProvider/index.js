@@ -4,24 +4,33 @@ import {
   CompetenciesFiltersContext,
   CompetenciesFiltersActionsContext,
 } from "../../contexts/CompetenciesContext";
-import { getCompetenciesByLetter } from "../../api/ApiRequests";
+import {
+  getCompetenciesByLetter,
+  getCompetenciesByQuery,
+} from "../../api/ApiRequests";
 
 const CompetenciesProvider = ({ children }) => {
   const [letter, setLetter] = useState("а");
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [competencies, setCompetencies] = useState(null);
 
   const loadCompetencies = async () => {
     setIsLoaded(false);
-    const data = await getCompetenciesByLetter(letter);
+    let data;
+    if (!query && letter) {
+      data = await getCompetenciesByLetter(letter);
+    } else {
+      data = await getCompetenciesByQuery(query);
+    }
+
     setCompetencies(data);
     setIsLoaded(true);
   };
 
   useEffect(() => {
     loadCompetencies();
-  }, [letter, query]);
+  }, [letter]);
 
   const competenciesState = useMemo(
     () => ({
@@ -36,13 +45,19 @@ const CompetenciesProvider = ({ children }) => {
       letter,
       query,
     }),
-    [letter, query]
+    [letter]
   );
 
   const competenciesFiltersActions = useMemo(
     () => ({
-      setLetter,
-      setQuery,
+      setLetterState: (letter) => {
+        setQuery(null);
+        setLetter(letter);
+      },
+      setQueryState: (query) => {
+        setQuery(query);
+        setLetter("");
+      },
     }),
     []
   );
