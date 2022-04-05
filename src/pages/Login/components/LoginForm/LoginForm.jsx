@@ -4,6 +4,7 @@ import MakeVisible from "../../../../assets/icons/MakeVisible.svg";
 import MakeNotVisible from "../../../../assets/icons/MakeNotVisible.svg";
 import { useState } from "react";
 import useValidation from "./validation.js";
+import "./index.css";
 
 const LoginForm = () => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);

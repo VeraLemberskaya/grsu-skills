@@ -1,0 +1,38 @@
+.login-tooltip-wrapper {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.login-tooltip-wrapper.visible {
+  opacity: 100;
+}
+
+.login-tooltip {
+  position: absolute;
+  width: 26rem;
+  height: 10rem;
+  background: var(--color-white);
+  z-index: 3;
+  border-radius: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 4px var(--color-shadow);
+  left: 100%;
+  transform: translateX(0.6rem);
+}
+
+.login-tooltip .tooltip-text {
+  width: 22.125rem;
+  font-weight: 400;
+  font-size: 1.125rem;
+}
+
+.login-tooltip .line {
+  width: 7rem;
+  height: 0.3125rem;
+  background-color: var(--color-orange);
+  border-radius: 2.5px;
+}

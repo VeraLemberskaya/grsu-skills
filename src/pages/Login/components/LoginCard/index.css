@@ -1,0 +1,59 @@
+.login-card {
+  width: 27.5rem;
+  height: 37.5rem;
+  background: var(--color-white);
+  z-index: 2;
+  border-radius: 1.25rem;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 8.75rem;
+  text-align: center;
+  box-shadow: 0 4px 4px var(--color-shadow);
+}
+
+.login-card h2 {
+  font-family: "Oswald", sans-serif;
+  color: var(--color-orange);
+  font-weight: 700;
+  font-size: 4.5rem;
+  margin-top: 3.75rem;
+}
+
+.login-card h3 {
+  text-transform: lowercase;
+  margin-top: 2.2rem;
+  font-weight: 600;
+  font-size: 1.75rem;
+  line-height: 2.13rem;
+}
+
+.login-card img {
+  width: 1.421rem;
+  height: 1.421rem;
+  user-select: none;
+}
+
+.login-card .info {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 1.16rem;
+  padding-top: 1.06rem;
+}
+
+.login-card .grsu-skills-logo {
+  position: absolute;
+  bottom: 1.9rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.login-card .grsu-skills-logo .logo-icon {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+.login-card .grsu-skills-logo .logo-text {
+  width: 4.84rem;
+  height: 0.97rem;
+}

@@ -5,6 +5,7 @@ import Tooltip from "../LoginTooltip";
 import { useState } from "react";
 import { GrsuSkillsLogoDark } from "../../../../components/GrsuSkillsLogo";
 import { Link } from "react-router-dom";
+import "./index.css";
 
 const LoginCard = () => {
   const [isTooltipVisible, setIsTooltipVisible] = useState(false);

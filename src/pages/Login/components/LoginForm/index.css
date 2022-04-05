@@ -1,0 +1,91 @@
+.login-form {
+  width: 65%;
+  margin: 0 auto;
+  margin-top: 1rem;
+}
+
+.login-form .input {
+  border-bottom: 2px solid var(--color-foreground);
+  display: flex;
+  justify-content: space-between;
+  height: 2rem;
+}
+
+.login-form input {
+  font-family: inherit;
+  font-weight: 500;
+  display: block;
+  width: 100%;
+  font-size: 1rem;
+  padding: 0.3rem;
+  background: transparent;
+}
+
+.login-form input[type="password"] {
+  font-family: Verdana;
+  font-weight: bold;
+  letter-spacing: 0.2rem;
+}
+
+.login-form input::placeholder {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0rem;
+}
+
+.login-form .visibility-icon {
+  width: 1.4rem;
+  height: 0.965rem;
+  align-self: center;
+  cursor: pointer;
+  display: none;
+  user-select: none;
+}
+
+.login-form .visibility-icon.display {
+  display: block;
+}
+
+.login-form .visibility-icon.hide {
+  width: 1.4rem;
+  height: 1.115rem;
+  user-select: none;
+}
+
+.login-form .error-block {
+  height: 2rem;
+  text-align: left;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.login-form .error-block p {
+  color: #c20000;
+}
+
+.login-form button {
+  height: 3rem;
+  width: 5rem;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 600;
+  background-color: transparent;
+  font-size: 1.125rem;
+  text-shadow: 0 0.15rem 0.2rem var(--color-shadow);
+}
+
+.login-card .btn {
+  width: 15rem;
+  height: 3rem;
+  background: var(--color-orange);
+  border-radius: 1.875rem;
+  color: var(--color-white);
+  font-weight: 400;
+  font-size: 1.125rem;
+  font-family: inherit;
+  margin-top: 1rem;
+  box-shadow: 0 4px 4px var(--color-shadow);
+  cursor: pointer;
+}

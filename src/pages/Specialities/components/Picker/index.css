@@ -42,6 +42,7 @@
   width: 1.4rem;
   height: 0.8rem;
   cursor: pointer;
+  user-select: none;
 }
 
 .sorting-bar .picker .faculty p {

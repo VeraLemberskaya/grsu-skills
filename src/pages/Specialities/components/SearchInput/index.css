@@ -24,8 +24,9 @@
 
 .sorting-bar .search-input img {
   pointer-events: none;
-  width: 1.811rem;
+  width: 1.875rem;
   height: 1.875rem;
+  user-select: none;
 }
 
 .sorting-bar .search-input .opened .wrapper {
