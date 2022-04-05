@@ -5,38 +5,39 @@ import {
 } from "../../../../hooks/useCompetencies";
 import "./index.css";
 
-const letters = [
-  "а",
-  "б",
-  "в",
-  "г",
-  "д",
-  "е",
-  "ж",
-  "з",
-  "и",
-  "к",
-  "л",
-  "м",
-  "н",
-  "о",
-  "п",
-  "р",
-  "с",
-  "т",
-  "у",
-  "ф",
-  "х",
-  "ц",
-  "ч",
-  "ш",
-  "щ",
-  "э",
-  "ю",
-  "я",
-];
+// const letters = [
+//   "а",
+//   "б",
+//   "в",
+//   "г",
+//   "д",
+//   "е",
+//   "ж",
+//   "з",
+//   "и",
+//   "к",
+//   "л",
+//   "м",
+//   "н",
+//   "о",
+//   "п",
+//   "р",
+//   "с",
+//   "т",
+//   "у",
+//   "ф",
+//   "х",
+//   "ц",
+//   "ч",
+//   "ш",
+//   "щ",
+//   "э",
+//   "ю",
+//   "я",
+// ];
 
-const PaginationBar = () => {
+const PaginationBar = ({ letters }) => {
+  console.log(letters);
   const { letter: chosenLetter } = useCompetenciesFilters();
   const { setLetterState } = useCompetenciesFiltersActions();
 

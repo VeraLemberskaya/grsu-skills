@@ -1,5 +1,9 @@
 import API from "../../api";
-import { allFacultiesEndPoint, competenciesEndPoint } from "../../constants";
+import {
+  allFacultiesEndPoint,
+  competenciesEndPoint,
+  competenciesLettersEndPoint,
+} from "../../constants";
 
 export const getFaculties = async () => {
   return await API.get(allFacultiesEndPoint)
@@ -25,6 +29,12 @@ export const getCompetenciesByQuery = async (query) => {
       query,
     },
   })
+    .then((response) => response.data)
+    .catch((error) => console.log(error));
+};
+
+export const getCompetenciesLetters = async () => {
+  return API.get(competenciesLettersEndPoint)
     .then((response) => response.data)
     .catch((error) => console.log(error));
 };

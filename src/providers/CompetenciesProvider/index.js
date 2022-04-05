@@ -30,7 +30,7 @@ const CompetenciesProvider = ({ children }) => {
 
   useEffect(() => {
     loadCompetencies();
-  }, [letter]);
+  }, [letter, query]);
 
   const competenciesState = useMemo(
     () => ({
@@ -45,7 +45,7 @@ const CompetenciesProvider = ({ children }) => {
       letter,
       query,
     }),
-    [letter]
+    [letter, query]
   );
 
   const competenciesFiltersActions = useMemo(
