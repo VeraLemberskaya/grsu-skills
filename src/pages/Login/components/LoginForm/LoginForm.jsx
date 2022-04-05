@@ -5,6 +5,7 @@ import MakeNotVisible from "../../../../assets/icons/MakeNotVisible.svg";
 import { useState } from "react";
 import useValidation from "./validation.js";
 import "./index.css";
+import { authenticateUser } from "../../../../api/ApiRequests";
 
 const LoginForm = () => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -14,11 +15,18 @@ const LoginForm = () => {
   const {
     register,
     formState: { errors, isValid },
-    handleSubmit,
-    reset,
-  } = useForm({ mode: "onTouched" });
+  } = useForm({ mode: "onChange" });
+
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    const login = e.target.login.value;
+    const password = e.target.password.value;
+    const result = await authenticateUser(login, password);
+    console.log(result);
+  };
+
   return (
-    <form className="login-form">
+    <form className="login-form" onSubmit={handleFormSubmit}>
       <div className="input">
         <input
           {...register("login", loginValidation)}
