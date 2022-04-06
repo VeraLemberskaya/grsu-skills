@@ -4,6 +4,11 @@ import Loader from "../../../../components/Loader";
 import { divideCompetenciesOnColumns } from "../../../../services/competenciesService";
 import { useCompetenciesState } from "../../../../hooks/useCompetencies";
 
+const COMP_TYPE = {
+  hard: "HARD",
+  soft: "SOFT",
+};
+
 const GlossaryGrid = () => {
   console.log("render Glossary Grid");
 
@@ -18,6 +23,13 @@ const GlossaryGrid = () => {
               <article key={comp.id} className="glossary-card">
                 <h4 className="title">{comp.title}</h4>
                 <p className="text-info">{comp.description}</p>
+                <div
+                  className={`skill-type ${
+                    comp.type === COMP_TYPE.hard ? "hard" : "soft"
+                  }`}
+                >
+                  {comp.type}
+                </div>
               </article>
             );
           })}

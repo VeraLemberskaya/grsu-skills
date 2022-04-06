@@ -1,48 +1,73 @@
 import React from "react";
-import { useState, useCallback, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect } from "react";
 import AuthContext from "../../contexts/AuthContext";
+import { AuthActionsContext } from "../../contexts/AuthContext";
+import { getUserInfo } from "../../services/authService";
 
 const AuthProvider = ({ children }) => {
-  const [token, setToken] = useState(1);
+  const [jwtToken, setJwtToken] = useState(localStorage.getItem("jwtToken"));
+  const [refreshToken, setRefreshToken] = useState(
+    localStorage.getItem("refreshToken")
+  );
+  const [user, setUser] = useState(getUserInfo(jwtToken));
 
-  const setJwtToken = useCallback((token) => {
-    //console.log("set token");
+  const removeJwtToken = () => {
+    setJwtToken("");
+  };
+
+  const removeRefreshToken = () => {
+    setRefreshToken("");
+  };
+
+  const setToken = (token) => {
+    localStorage.setItem("jwtToken", token.jwt);
+    localStorage.setItem("refreshToken", token.refreshToken);
+    setJwtToken(token.jwt);
+    setRefreshToken(token.refreshToken);
+  };
+
+  const removeToken = () => {
+    localStorage.removeItem("jwtToken");
+    localStorage.removeItem("refreshToken");
+    removeJwtToken();
+    removeRefreshToken();
+  };
+
+  const setCurrentUser = (token) => {
+    const user = getUserInfo(token);
+    setUser(user);
+  };
+
+  const authorizeUser = (token) => {
     setToken(token);
-  }, []);
+    setCurrentUser(token.jwt);
+  };
 
-  const removeJwtToken = useCallback(() => {
-    //console.log("remove token");
-    setToken({ ...token, jwtToken: "" });
-  }, [setJwtToken]);
-
-  const setRefreshToken = useCallback(
-    (refreshToken) => {
-      setToken({ ...token, refreshToken });
-    },
-    [setJwtToken]
+  const authActions = useMemo(
+    () => ({
+      setToken,
+      removeToken,
+      setCurrentUser,
+      authorizeUser,
+    }),
+    []
   );
 
-  const removeRefreshToken = useCallback(() => {
-    setToken({ ...token, refreshToken: "" });
-  }, [setJwtToken]);
-
-  useEffect(() => {
-    //console.log("new instance of set jwt token");
-  }, [setJwtToken]);
-
-  const contextValue = useMemo(
+  const authState = useMemo(
     () => ({
-      token,
-      setJwtToken,
-      removeJwtToken,
-      setRefreshToken,
-      removeRefreshToken,
+      jwtToken,
+      refreshToken,
+      user,
     }),
-    [token]
+    [jwtToken, user]
   );
 
   return (
-    <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={authState}>
+      <AuthActionsContext.Provider value={authActions}>
+        {children}
+      </AuthActionsContext.Provider>
+    </AuthContext.Provider>
   );
 };
 

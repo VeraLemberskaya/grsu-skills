@@ -29,6 +29,19 @@
   width: 18.75rem;
 }
 
+.glossary-card .skill-type {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.glossary-card .skill-type.hard {
+  color: var(--color-orange);
+}
+
+.glossary-card .skill-type.soft {
+  color: var(--color-bg-primary);
+}
+
 .glossary-card .title::first-letter {
   color: var(--color-orange);
 }

@@ -1,0 +1,7 @@
+.profile-page .main-profile {
+  min-height: 44rem;
+  background-image: url(../../assets/images/images/TreesProfile.png);
+  background-repeat: no-repeat;
+  background-position: bottom 2rem right -6.8rem;
+  position: relative;
+}

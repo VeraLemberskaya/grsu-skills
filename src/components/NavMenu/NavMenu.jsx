@@ -10,9 +10,11 @@ import University from "../../assets/icons/University.svg";
 import ArrowUp from "../../assets/icons/ArrowUp.svg";
 import Guest from "../../assets/icons/Guest.svg";
 import { Link, Outlet } from "react-router-dom";
+import { useAuth } from "../../hooks/useAuth";
 
 const NavMenu = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { user } = useAuth();
 
   const closeMenu = () => {
     setIsMenuOpen(false);
@@ -91,11 +93,24 @@ const NavMenu = () => {
             </button>
           </a>
         </nav>
-        <div className="guest">
-          <p>Гость</p>
-          <Link to="/">
-            <img className="guest-icon" src={Guest} />
-          </Link>
+        <div className="user">
+          {user ? (
+            <>
+              <p>
+                <span>{user.surname}</span>&nbsp;{user.name}
+              </p>
+              <Link to="/profile">
+                <img className="user-icon" src={user.avatar} />
+              </Link>
+            </>
+          ) : (
+            <>
+              <p>Гость</p>
+              <Link to="/">
+                <img className="user-icon" src={Guest} />
+              </Link>
+            </>
+          )}
         </div>
       </div>
       <button

@@ -122,7 +122,7 @@
   pointer-events: none;
 }
 
-.guest {
+.user {
   display: flex;
   gap: 0.68rem;
   justify-content: center;
@@ -130,9 +130,22 @@
   width: fit-content;
 }
 
-.guest p {
+.user p {
   font-weight: 600;
   font-size: 1.25rem;
+}
+
+.user p span {
+  text-transform: uppercase;
+}
+
+.user .user-icon {
+  width: 3.5rem;
+  height: 3.5rem;
+  cursor: pointer;
+  user-select: none;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 .btn-up {
@@ -155,13 +168,6 @@
   pointer-events: none;
   width: 1.8rem;
   height: 1rem;
-  user-select: none;
-}
-
-.guest .guest-icon {
-  width: 3.5rem;
-  height: 3.5rem;
-  cursor: pointer;
   user-select: none;
 }
 
