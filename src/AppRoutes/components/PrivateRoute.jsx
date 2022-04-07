@@ -1,13 +1,11 @@
-import React, { useEffect } from "react";
-import { useLocation, Navigate } from "react-router-dom";
-import { useAuth } from "../../hooks/useAuth";
+import React from "react";
+import { Navigate } from "react-router-dom";
+import { useStore } from "react-redux";
 
 const PrivateRoute = ({ children }) => {
-  const auth = useAuth();
-  //const location = useLocation();
-  //<Navigate to="/" state={{ from: location }} />
+  const user = useStore().getState().auth.user;
 
-  return auth.user ? children : <Navigate to="/" />;
+  return user ? children : <Navigate to="/" />;
 };
 
 export default PrivateRoute;

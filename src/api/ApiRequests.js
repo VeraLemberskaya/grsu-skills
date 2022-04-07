@@ -4,6 +4,7 @@ import {
   competenciesEndPoint,
   competenciesLettersEndPoint,
   loginEndPoint,
+  refreshTokenEndPoint,
 } from "../constants";
 
 export const getFaculties = async () => {
@@ -40,13 +41,14 @@ export const getCompetenciesLetters = async () => {
     .catch((error) => console.log(error));
 };
 
-export const authenticateUser = async (login, password) => {
+export const authorizeUser = async (login, password) => {
   return API.post(loginEndPoint, {
     login,
     password,
   })
     .then((response) => response.data)
     .catch((error) => {
+      console.log(error);
       if (error.response.status === 401) {
         return {
           error: "Неверный логин или пароль.",
@@ -55,4 +57,12 @@ export const authenticateUser = async (login, password) => {
         console.log(error);
       }
     });
+};
+
+export const refreshToken = async (refreshToken) => {
+  return API.post(refreshTokenEndPoint, {
+    refreshToken,
+  })
+    .then((response) => response.data)
+    .catch((error) => console.log(error));
 };

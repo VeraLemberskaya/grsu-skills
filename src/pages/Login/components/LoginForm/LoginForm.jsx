@@ -1,16 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import MakeVisible from "../../../../assets/icons/MakeVisible.svg";
 import MakeNotVisible from "../../../../assets/icons/MakeNotVisible.svg";
 import { useState } from "react";
 import useValidation from "./validation.js";
 import "./index.css";
-import { authenticateUser } from "../../../../api/ApiRequests";
+import { authorizeUser } from "../../../../api/ApiRequests";
 import { useNavigate } from "react-router-dom";
-import { useAuthActions } from "../../../../hooks/useAuth";
+import { setAuthData } from "../../../../services/authService";
 
 const LoginForm = () => {
-  const { authorizeUser } = useAuthActions();
   const [loginError, setLoginError] = useState(null);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const { login: loginValidation, password: passwordValidation } =
@@ -28,11 +27,11 @@ const LoginForm = () => {
     const login = e.target.login.value;
     const password = e.target.password.value;
 
-    const result = await authenticateUser(login, password);
+    const result = await authorizeUser(login, password);
     if (result.error) {
       setLoginError(result.error);
     } else {
-      authorizeUser(result);
+      setAuthData(result);
       navigate("/profile", { replace: true });
     }
   };
