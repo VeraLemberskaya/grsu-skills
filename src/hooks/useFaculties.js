@@ -1,12 +1,12 @@
 import { useContext } from "react";
-import FacultiesContext from "../../contexts/FacultiesContext";
+import FacultiesContext from "../contexts/FacultiesContext";
 import {
   facultiesStateContext,
   facultiesFiltersContext,
   facultiesActionsContext,
   facultiesFiltersActionsContext,
-} from "../../contexts/FacultiesContext";
-import { filterFaculties } from "../../services/facultiesService";
+} from "../contexts/FacultiesContext";
+import { filterFaculties } from "../services/facultiesService";
 
 export const useFaculties = () => useContext(FacultiesContext);
 

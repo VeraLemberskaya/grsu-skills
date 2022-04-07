@@ -1,13 +1,13 @@
 import React, { useCallback, useContext } from "react";
 import { useState, useEffect, useMemo, useReducer, createContext } from "react";
-import FacultiesContext from "../../contexts/FacultiesContext";
+import FacultiesContext from "../contexts/FacultiesContext";
 import {
   facultiesStateContext,
   facultiesFiltersContext,
   facultiesActionsContext,
   facultiesFiltersActionsContext,
-} from "../../contexts/FacultiesContext";
-import { getFaculties } from "../../api/ApiRequests";
+} from "../contexts/FacultiesContext";
+import { getFaculties } from "../api/ApiRequests";
 
 export const FORM_TYPE = {
   daytime: "дневная",

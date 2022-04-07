@@ -27,14 +27,13 @@ const LoginForm = () => {
     e.preventDefault();
     const login = e.target.login.value;
     const password = e.target.password.value;
-    try {
-      const result = await authenticateUser(login, password);
-      console.log(result);
+
+    const result = await authenticateUser(login, password);
+    if (result.error) {
+      setLoginError(result.error);
+    } else {
       authorizeUser(result);
       navigate("/profile", { replace: true });
-      if (loginError) setLoginError(null);
-    } catch (error) {
-      setLoginError(error.message);
     }
   };
 

@@ -1,10 +1,10 @@
-import API from "../../api";
+import API from ".";
 import {
   allFacultiesEndPoint,
   competenciesEndPoint,
   competenciesLettersEndPoint,
   loginEndPoint,
-} from "../../constants";
+} from "../constants";
 
 export const getFaculties = async () => {
   return await API.get(allFacultiesEndPoint)
@@ -48,7 +48,9 @@ export const authenticateUser = async (login, password) => {
     .then((response) => response.data)
     .catch((error) => {
       if (error.response.status === 401) {
-        throw new Error("Неверный логин или пароль.");
+        return {
+          error: "Неверный логин или пароль.",
+        };
       } else {
         console.log(error);
       }

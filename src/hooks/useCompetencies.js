@@ -4,7 +4,7 @@ import CompetenciesContext, {
   CompetenciesActionsContext,
   CompetenciesFiltersContext,
   CompetenciesFiltersActionsContext,
-} from "../../contexts/CompetenciesContext";
+} from "../contexts/CompetenciesContext";
 
 export const useCompetenciesState = () => useContext(CompetenciesStateContext);
 export const useCompetenciesActions = () =>

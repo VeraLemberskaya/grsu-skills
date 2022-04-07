@@ -3,11 +3,11 @@ import {
   CompetenciesStateContext,
   CompetenciesFiltersContext,
   CompetenciesFiltersActionsContext,
-} from "../../contexts/CompetenciesContext";
+} from "../contexts/CompetenciesContext";
 import {
   getCompetenciesByLetter,
   getCompetenciesByQuery,
-} from "../../api/ApiRequests";
+} from "../api/ApiRequests";
 
 const CompetenciesProvider = ({ children }) => {
   const [letter, setLetter] = useState("а");
