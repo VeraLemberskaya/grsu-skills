@@ -1,11 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useFilterFaculties } from "../../../../hooks/useFaculties";
 import "./index.css";
+import { selectFilteredFaculties } from "../../../../services/facultiesService";
+import { useSelector } from "react-redux";
 
 const SpecialitiesList = () => {
-  console.log("render SpecList");
-  const filteredFaculties = useFilterFaculties();
+  const filteredFaculties = useSelector(selectFilteredFaculties);
+
   const renderTable = () => {
     return filteredFaculties.map((fac) => {
       return (

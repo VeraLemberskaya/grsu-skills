@@ -30,12 +30,10 @@ const checkFormType = (speciality, formType) => {
   );
 };
 
-export const filterFaculties = (
-  faculties,
-  faculty,
-  queryFilter,
-  educationFormFilter
-) => {
+export const selectFilteredFaculties = (state) => {
+  const { faculties, faculty } = state.faculties;
+  const { query: queryFilter, educationForm: educationFormFilter } =
+    state.facFilters;
   if (faculty) {
     return findSpecialities(
       [{ ...faculty, name: null }],

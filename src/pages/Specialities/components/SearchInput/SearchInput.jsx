@@ -1,17 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
 import Search from "../../../../assets/icons/Search.svg";
-import { useFacultiesActions } from "../../../../hooks/useFaculties";
 import Overlay from "../Overlay";
 import "./index.css";
+import { setQuery } from "../../../../redux/faculties/facFilterSlice";
+import { removeFaculty } from "../../../../redux/faculties/facultiesSlice";
+import { useDispatch } from "react-redux";
 
 const SearchInput = () => {
-  useEffect(() => {
-    console.log("render Search");
-  });
-
   const searchRef = useRef();
   const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const { setFacultyState, setSearchQuery } = useFacultiesActions();
+  const dispatch = useDispatch();
 
   const handleInput = (e) => {
     searchRef.current.classList.remove("incorrect");
@@ -19,8 +17,8 @@ const SearchInput = () => {
       const query = e.target.value;
       if (query.length >= 2) {
         setIsSearchOpen(false);
-        setFacultyState(null);
-        setSearchQuery(query);
+        dispatch(removeFaculty());
+        dispatch(setQuery(query));
       } else {
         searchRef.current.classList.add("incorrect");
         setTimeout(() => {

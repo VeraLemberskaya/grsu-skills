@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import ArrowDown from "../../../../assets/icons/ArrowDown.svg";
-import { useFacultiesState } from "../../../../hooks/useFaculties";
+import { useSelector } from "react-redux";
 import Modal from "../Modal";
 import "./index.css";
 
 const Picker = () => {
-  console.log("render Picker");
   const [isPickerOpen, setIsPickerOpen] = useState(false);
-  const { faculty, queryFilter } = useFacultiesState();
+  const faculty = useSelector((state) => state.faculties.faculty);
+  const queryFilter = useSelector((state) => state.facFilters.query);
+
   return (
     <div className="picker">
       <div className="choose-faculty">

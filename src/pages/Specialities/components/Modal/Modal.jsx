@@ -1,23 +1,18 @@
 import React from "react";
-import {
-  useFaculties,
-  useFacultiesState,
-  useFacultiesActions,
-} from "../../../../hooks/useFaculties";
+import { useSelector, useDispatch } from "react-redux";
+import { setFaculty } from "../../../../redux/faculties/facultiesSlice";
 import Overlay from "../Overlay";
 import "./index.css";
 
 const Modal = ({ isPickerOpen, setIsPickerOpen }) => {
-  console.log("render modal");
-  const faculties = useFaculties();
-  const { faculty } = useFacultiesState();
-  const { setFacultyState: setFaculty } = useFacultiesActions();
+  const { faculties, faculty } = useSelector((state) => state.faculties);
+  const dispatch = useDispatch();
 
   const handlePickerClick = (e) => {
     const id = e.target.dataset.id;
     const chosenFaculty = faculties.find((fac) => fac.id == id);
     setIsPickerOpen(false);
-    setFaculty(chosenFaculty);
+    dispatch(setFaculty(chosenFaculty));
   };
 
   const renderedModalFaculties = faculties.map((fac) => {

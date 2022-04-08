@@ -1,14 +1,14 @@
 import React from "react";
 import "./index.css";
-import { useFacultiesFiltersActions } from "../../../../hooks/useFaculties";
-import { FORM_TYPE } from "../../../../providers/FacultiesProvider";
+import { FORM_TYPE } from "../../../../redux/faculties/facFilterSlice";
+import { useDispatch } from "react-redux";
+import { setEducationForm } from "../../../../redux/faculties/facFilterSlice";
 
 const Filter = () => {
-  console.log("render Filter");
-  const { setEducationForm } = useFacultiesFiltersActions();
+  const dispatch = useDispatch();
 
   const handleFilterChange = (e) => {
-    setEducationForm(e.target.value);
+    dispatch(setEducationForm(e.target.value));
   };
 
   return (
