@@ -1,63 +1,150 @@
-.filter-radio {
-  position: absolute;
-  z-index: -1;
-  opacity: 0;
-  user-select: none;
+.filters {
+  position: relative;
+  width: 100%;
 }
 
-.filter-radio + label {
-  display: inline-flex;
-  align-items: center;
-  margin-right: 2rem;
-}
-
-.filter-radio + label::before {
-  content: "";
-  display: inline-block;
-  width: 1rem;
-  height: 1rem;
-  border: 1px solid #adb5bd;
+.filter-btn {
+  width: 2.5rem;
+  height: 2.5rem;
+  box-shadow: 0 4px 4px var(--color-shadow);
   border-radius: 50%;
-  margin-right: 0.5rem;
+  border: none;
+  background-size: 1.25rem 1.17rem;
   background-repeat: no-repeat;
-  background-position: center center;
-  background-size: 50% 50%;
+  background-position: center;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 3rem;
 }
 
-.filter-radio:not(:disabled):not(:checked) + label:hover::before {
-  border-color: #b3d7ff;
+.filter-btn.closed {
+  background-image: url(../../../../assets/icons/FiltersDark.svg);
 }
 
-.filter-radio:not(:disabled):active + label::before {
-  background-color: #b3d7ff;
-  border-color: #b3d7ff;
-}
-.filter-radio:focus + label::before {
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+.filter-btn.opened {
+  background-image: url(../../../../assets/icons/FiltersLight.svg);
+  background: var(--color-orange);
 }
 
-.filter-radio:checked + label::before {
-  border-color: #0b76ef;
-  background-color: #0b76ef;
+.filter-modal {
+  z-index: 1;
+  display: none;
+  position: absolute;
+  top: -0.5rem;
+  right: 2.5rem;
+  padding: 1.25rem;
+  background: var(--color-gray);
+  border-radius: 1.25rem;
+  box-shadow: 0 4px 4px var(--color-shadow);
 }
 
-.filter-radio:focus:not(:checked) + label::before {
-  border-color: #80bdff;
+.filter-modal.visible {
+  display: block;
 }
 
-.filter-radio:checked + label::before {
-  border-color: #0b76ef;
-  background-color: #0b76ef;
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e");
-}
-.filter-radio:disabled + label::before {
-  background-color: #e9ecef;
-}
-
-.filter-buttons .radio {
-  text-transform: uppercase;
-}
-
-.filter-buttons {
+.filter-header {
   display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.filter-header p {
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  color: var(--color-orange);
+  font-weight: 700;
+}
+
+.filter-icon {
+  width: 1.29rem;
+  height: 1.17rem;
+  cursor: pointer;
+}
+
+.filter-table {
+  display: flex;
+  margin-bottom: 2.5rem;
+}
+
+.filter-table .table-header {
+  background: #c4c4c4;
+  font-weight: 600;
+  padding: 0.6rem 1.125rem;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  border-radius: 1.25rem;
+  color: var(--color-foreground);
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 1.25rem;
+}
+
+.table-education-form {
+  width: 12.5rem;
+  margin-right: 1.25rem;
+}
+
+.table-form-term {
+  width: 7.5rem;
+}
+
+.filter-table .table-item {
+  background: #f8f8f8;
+  box-shadow: 0 4px 4px var(--color-shadow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-weight: 400;
+  font-size: 0.875rem;
+  color: var(--color-foreground);
+  text-transform: uppercase;
+  border-radius: 1.25rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  cursor: pointer;
+}
+
+.filter-table .table-item.active {
+  background: var(--color-orange);
+  color: var(--color-white);
+}
+
+.filter-table ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.filter-modal .clear-btn {
+  font-family: "Montserrat", sans-serif;
+  background: #ff2e2e;
+  border-radius: 1.25rem;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--color-white);
+  width: 12.5rem;
+  height: 1.875rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  margin: 0 auto;
+}
+
+.filter-modal .clear-btn img {
+  position: absolute;
+  width: 1.05rem;
+  height: 1.05rem;
+  right: 1rem;
 }

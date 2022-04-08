@@ -4,6 +4,8 @@ export const FORM_TYPE = {
   daytime: "дневная",
   extramural: "заочная",
   both: "both",
+  extramuralDist: "заочная (дистанционная)",
+  extramuralShort: "заочная (сокращенная)",
 };
 
 export const facFilterSlice = createSlice({

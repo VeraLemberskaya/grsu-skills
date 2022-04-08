@@ -46,10 +46,18 @@ const SpecialitiesList = () => {
         <>
           <div className="table">
             <div className="row table-header">
-              <div className="f-col">Код специальности</div>
-              <div className="s-col">название специальности</div>
-              <div className="t-col">Форма получения образования</div>
-              <div className="four-col">Срок обучения (в годах)</div>
+              <div key="1" className="f-col">
+                Код специальности
+              </div>
+              <div key="2" className="s-col">
+                название специальности
+              </div>
+              <div key="3" className="t-col">
+                Форма получения образования
+              </div>
+              <div key="4" className="four-col">
+                Срок обучения (в годах)
+              </div>
             </div>
           </div>
           {renderTable()}

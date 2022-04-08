@@ -25,6 +25,8 @@ import TreesGlossary from "./TreesGlossary.png";
 import TreesProgress from "./TreesProgress.png";
 import TreesSpecialities from "./TreesSpecialities.png";
 import University from "./University.svg";
+import FiltersDark from "./FiltersDark.svg";
+import FiltersLight from "./FiltersLight.svg";
 
 export {
   ArrowDown,
@@ -54,4 +56,6 @@ export {
   TreesProgress,
   TreesSpecialities,
   University,
+  FiltersDark,
+  FiltersLight,
 };
