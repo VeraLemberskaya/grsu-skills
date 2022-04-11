@@ -24,7 +24,7 @@
 
 .filter-btn.opened {
   background-image: url(../../../../assets/icons/FiltersLight.svg);
-  background: var(--color-orange);
+  background-color: var(--color-orange);
 }
 
 .filter-modal {
@@ -95,7 +95,7 @@
 }
 
 .filter-table .table-item {
-  background: #f8f8f8;
+  background-color: #f8f8f8;
   box-shadow: 0 4px 4px var(--color-shadow);
   display: flex;
   align-items: center;
@@ -111,10 +111,11 @@
   padding-left: 1rem;
   padding-right: 1rem;
   cursor: pointer;
+  transition: background-color 0.5s ease, color 0.5s ease;
 }
 
 .filter-table .table-item.active {
-  background: var(--color-orange);
+  background-color: var(--color-orange);
   color: var(--color-white);
 }
 

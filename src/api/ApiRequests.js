@@ -5,10 +5,17 @@ import {
   competenciesLettersEndPoint,
   loginEndPoint,
   refreshTokenEndPoint,
+  facultiesFilterEndPoint,
 } from "../constants";
 
 export const getFaculties = async () => {
   return await API.get(allFacultiesEndPoint)
+    .then((response) => response.data)
+    .catch((error) => console.log(error));
+};
+
+export const getFilterValues = async () => {
+  return await API.get(facultiesFilterEndPoint)
     .then((response) => response.data)
     .catch((error) => console.log(error));
 };

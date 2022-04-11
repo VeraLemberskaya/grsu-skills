@@ -1,11 +1,11 @@
 import { FORM_TYPE } from "../providers/FacultiesProvider";
 
-const findSpecialities = (faculties, filterValue, callback) => {
+const findSpecialities = (faculties, callback, filterValue, filterValue2) => {
   const result = [];
   faculties.forEach((fac) => {
     let specArray = [];
     fac.specialities.forEach((spec) => {
-      if (callback(spec, filterValue)) {
+      if (callback(spec, filterValue, filterValue2)) {
         specArray.push(spec);
       }
     });
@@ -23,28 +23,33 @@ const checkQuery = (speciality, query) => {
   return speciality.name.toLowerCase().includes(query.toLowerCase());
 };
 
-const checkFormType = (speciality, formType) => {
-  if (formType === FORM_TYPE.both) return true;
-  return speciality.educationForms.some((form) =>
-    form.title.toLowerCase().includes(formType.toLowerCase())
-  );
+const checkFormType = (speciality, formFilters, termFilters) => {
+  if (
+    formFilters.every((form) => {
+      return speciality.educationForms.find((f) =>
+        f.title.toLowerCase().includes(form.toLowerCase())
+      );
+    })
+  ) {
+    if (termFilters.length) {
+      return termFilters.some((term) => {
+        return speciality.educationForms.find((f) => f.termOfStudy === term);
+      });
+    }
+    return true;
+  }
 };
 
 export const selectFilteredFaculties = (state) => {
   const { faculties, faculty } = state.faculties;
-  const { query: queryFilter, educationForm: educationFormFilter } =
-    state.facFilters;
+  const { query: queryFilter, formFilters, termFilters } = state.facFilters;
   if (faculty) {
-    return findSpecialities(
-      [{ ...faculty, name: null }],
-      educationFormFilter,
-      checkFormType
-    );
+    return [{ ...faculty, name: null }];
   } else {
     return findSpecialities(
-      findSpecialities(faculties, educationFormFilter, checkFormType),
-      queryFilter,
-      checkQuery
+      findSpecialities(faculties, checkFormType, formFilters, termFilters),
+      checkQuery,
+      queryFilter
     );
   }
 };

@@ -1,6 +1,9 @@
 export const grsuSkillsURL = "https://localhost:7042";
 
-export const allFacultiesEndPoint = "api/Faculties/faculties";
+export const facultiesURL = "api/Faculties/";
+export const allFacultiesEndPoint = `${facultiesURL}faculties`;
+export const facultiesFilterEndPoint = `${facultiesURL}filters`;
+
 export const competenciesEndPoint = "api/Competences/competences";
 export const userEndPoint = "";
 export const loginEndPoint = "api/Auth/login";

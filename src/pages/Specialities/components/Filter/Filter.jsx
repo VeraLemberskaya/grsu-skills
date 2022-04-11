@@ -1,30 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./index.css";
-import { FORM_TYPE } from "../../../../redux/faculties/facFilterSlice";
 import { useDispatch } from "react-redux";
-import { setEducationForm } from "../../../../redux/faculties/facFilterSlice";
+import { useSelector } from "react-redux";
 import Overlay from "../Overlay";
 import FiltersDark from "../../../../assets/icons/FiltersDark.svg";
-import FiltersLight from "../../../../assets/icons/FiltersLight.svg";
 import Cross from "../../../../assets/icons/Cross.svg";
-
-const educationForms = [
-  FORM_TYPE.daytime,
-  FORM_TYPE.extramural,
-  FORM_TYPE.extramuralDist,
-  FORM_TYPE.extramuralShort,
-];
-
-const educationTerms = [3.5, 4, 4.5, 5];
+import {
+  addFormFilter,
+  removeFormFilter,
+  addTermFilter,
+  removeTermFilter,
+  resetFilters,
+} from "../../../../redux/faculties/facFilterSlice";
+import { v4 as uuidv4 } from "uuid";
 
 const Filter = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const { educationForms, educationTerms } = useSelector(
+    (state) => state.facFilters.filters
+  );
+  const formFilters = useSelector((state) => state.facFilters.formFilters);
+  const termFilters = useSelector((state) => state.facFilters.termFilters);
+  const dispatch = useDispatch();
 
   return (
     <div className="filters">
       <Overlay state={isFilterOpen} setState={setIsFilterOpen} />
       <button
-        className={`filter-btn closed`}
+        className={`${
+          formFilters.length || termFilters.length ? "opened" : "closed"
+        } filter-btn`}
         onClick={() => setIsFilterOpen(true)}
       ></button>
       <div className={`filter-modal ${isFilterOpen ? "visible" : ""}`}>
@@ -41,25 +46,52 @@ const Filter = () => {
           <div className="table-education-form">
             <div className="table-header">Форма получения образования</div>
             <ul>
-              {educationForms.map((form) => (
-                <li className="table-item">
-                  <p>{form}</p>
-                </li>
-              ))}
+              {educationForms.map((form) => {
+                return (
+                  <li
+                    key={uuidv4()}
+                    onClick={() => {
+                      formFilters.includes(form)
+                        ? dispatch(removeFormFilter(form))
+                        : dispatch(addFormFilter(form));
+                    }}
+                    className={`${
+                      formFilters.includes(form) ? "active" : ""
+                    } table-item`}
+                  >
+                    {form.split("(").join(" (")}
+                  </li>
+                );
+              })}
             </ul>
           </div>
           <div className="table-form-term">
             <div className="table-header">Срок обучения (в годах)</div>
             <ul>
               {educationTerms.map((term) => (
-                <li className="table-item">
-                  <p>{term}</p>
+                <li
+                  key={uuidv4()}
+                  onClick={() => {
+                    termFilters.includes(term)
+                      ? dispatch(removeTermFilter(term))
+                      : dispatch(addTermFilter(term));
+                  }}
+                  className={`${
+                    termFilters.includes(term) ? "active" : ""
+                  } table-item`}
+                >
+                  {term}
                 </li>
               ))}
             </ul>
           </div>
         </div>
-        <button className="clear-btn">
+        <button
+          className="clear-btn"
+          onClick={() => {
+            dispatch(resetFilters());
+          }}
+        >
           Очистить
           <img src={Cross} />
         </button>
@@ -67,52 +99,5 @@ const Filter = () => {
     </div>
   );
 };
-
-// const Filter = () => {
-//   const dispatch = useDispatch();
-
-//   const handleFilterChange = (e) => {
-//     dispatch(setEducationForm(e.target.value));
-//   };
-
-//   return (
-//     <div className="filter-buttons">
-//       <div className="radio">
-//         <input
-//           type="radio"
-//           className="filter-radio"
-//           id="both-radio"
-//           name="filter"
-//           value={FORM_TYPE.both}
-//           onChange={handleFilterChange}
-//           defaultChecked
-//         />
-//         <label htmlFor="both-radio">Все формы обучения</label>
-//       </div>
-//       <div className="radio">
-//         <input
-//           type="radio"
-//           className="filter-radio"
-//           id="daily"
-//           name="filter"
-//           value={FORM_TYPE.daytime}
-//           onChange={handleFilterChange}
-//         />
-//         <label htmlFor="daily">Дневная</label>
-//       </div>
-//       <div className="radio">
-//         <input
-//           type="radio"
-//           className="filter-radio"
-//           id="extramural"
-//           name="filter"
-//           value={FORM_TYPE.extramural}
-//           onChange={handleFilterChange}
-//         />
-//         <label htmlFor="extramural">Заочная</label>
-//       </div>
-//     </div>
-//   );
-// };
 
 export default Filter;
