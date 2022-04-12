@@ -1,60 +1,28 @@
 import React from "react";
-import {
-  useCompetenciesFilters,
-  useCompetenciesFiltersActions,
-} from "../../../../hooks/useCompetencies";
 import "./index.css";
-
-// const letters = [
-//   "а",
-//   "б",
-//   "в",
-//   "г",
-//   "д",
-//   "е",
-//   "ж",
-//   "з",
-//   "и",
-//   "к",
-//   "л",
-//   "м",
-//   "н",
-//   "о",
-//   "п",
-//   "р",
-//   "с",
-//   "т",
-//   "у",
-//   "ф",
-//   "х",
-//   "ц",
-//   "ч",
-//   "ш",
-//   "щ",
-//   "э",
-//   "ю",
-//   "я",
-// ];
+import { v4 as uuidv4 } from "uuid";
+import { useSelector, useDispatch } from "react-redux";
+import { setLetterState } from "../../../../services/competenciesService";
 
 const PaginationBar = ({ letters }) => {
-  console.log(letters);
-  const { letter: chosenLetter } = useCompetenciesFilters();
-  const { setLetterState } = useCompetenciesFiltersActions();
-
+  const chosenLetter = useSelector((state) => state.competencies.letter);
   console.log("render Pagination Bar");
 
   const renderedPaginationLetters = letters.map((letter) => {
-    return letter.toLowerCase() === chosenLetter.toLowerCase() ? (
-      <li key={letter} className="letter active">
+    return (
+      <li
+        key={uuidv4()}
+        className={`${
+          letter?.toLowerCase() === chosenLetter?.toLowerCase() ? "active" : ""
+        } letter`}
+      >
         {letter}
       </li>
-    ) : (
-      <li className="letter">{letter}</li>
     );
   });
 
   const handlePagination = (e) => {
-    const letter = e.target.innerText;
+    const letter = e.target.innerHTML;
     if (letter.length === 1) {
       setLetterState(letter);
     }

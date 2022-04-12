@@ -2,11 +2,11 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./index.css";
 import LogOut from "../../../../assets/icons/LogOut.svg";
-import { useStore } from "react-redux";
+import { useSelector } from "react-redux";
 import { logOut } from "../../../../services/authService";
 
 const UserCard = () => {
-  const user = useStore().getState().auth.user;
+  const user = useSelector((state) => state.auth.user);
   const navigate = useNavigate();
 
   return (

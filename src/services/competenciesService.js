@@ -1,3 +1,13 @@
+import store from "../redux/store";
+import {
+  setLetter,
+  removeLetter,
+  setQuery,
+  removeQuery,
+  loadCompetenciesByLetter,
+  loadCompetenciesByQuery,
+} from "../redux/compSlice";
+
 export const divideCompetenciesOnColumns = (competencies) => {
   let col1 = [],
     col2 = [],
@@ -13,4 +23,16 @@ export const divideCompetenciesOnColumns = (competencies) => {
     counter++;
   });
   return [col1, col2, col3];
+};
+
+export const setLetterState = (letter) => {
+  store.dispatch(setLetter(letter));
+  store.dispatch(removeQuery());
+  store.dispatch(loadCompetenciesByLetter());
+};
+
+export const setQueryState = (query) => {
+  store.dispatch(setQuery(query));
+  store.dispatch(removeLetter());
+  store.dispatch(loadCompetenciesByQuery());
 };

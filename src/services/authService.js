@@ -19,8 +19,8 @@ export const setToken = (token) => {
 export const removeToken = () => {
   localStorage.removeItem("jwtToken");
   localStorage.removeItem("refreshToken");
-  store.dispatch(removeJwtToken);
-  store.dispatch(removeRefreshToken);
+  store.dispatch(removeJwtToken());
+  store.dispatch(removeRefreshToken());
 };
 
 export const getUserInfo = (token) => {
@@ -34,7 +34,7 @@ export const getUserInfo = (token) => {
 
 export const logOut = () => {
   removeToken();
-  store.dispatch(removeUser);
+  store.dispatch(removeUser());
 };
 
 export const setCurrentUser = async (token) => {

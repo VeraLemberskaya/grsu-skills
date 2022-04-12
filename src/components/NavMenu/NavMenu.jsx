@@ -11,12 +11,13 @@ import ArrowUp from "../../assets/icons/ArrowUp.svg";
 import Guest from "../../assets/icons/Guest.svg";
 import { Link, Outlet } from "react-router-dom";
 // import { useAuth } from "../../hooks/useAuth";
-import { useStore } from "react-redux";
+import { useSelector } from "react-redux";
+import { USER_ROLES } from "../../constants";
 
 const NavMenu = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   //const { user } = useAuth();
-  const user = useStore().getState().auth.user;
+  const user = useSelector((state) => state.auth.user);
 
   const closeMenu = () => {
     setIsMenuOpen(false);
@@ -96,12 +97,16 @@ const NavMenu = () => {
           </a>
         </nav>
         <div className="user">
-          {user ? (
+          {user?.role === USER_ROLES.student ? (
             <>
               <p>
                 <span>{user.surname}</span>&nbsp;{user.name}
               </p>
-              <Link to="/profile">
+              <Link
+                to="/profile"
+                state={{ animation: "slideInDown" }}
+                onClick={closeMenu}
+              >
                 <img className="user-icon" src={user.avatar} />
               </Link>
             </>

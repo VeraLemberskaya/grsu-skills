@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./index.css";
 import Loader from "../../../../components/Loader";
 import { divideCompetenciesOnColumns } from "../../../../services/competenciesService";
-import { useCompetenciesState } from "../../../../hooks/useCompetencies";
+import { useSelector, useDispatch } from "react-redux";
+import { loadCompetenciesByLetter } from "../../../../redux/compSlice";
 
 const COMP_TYPE = {
   hard: "HARD",
@@ -10,9 +11,14 @@ const COMP_TYPE = {
 };
 
 const GlossaryGrid = () => {
+  const dispatch = useDispatch();
   console.log("render Glossary Grid");
+  const isLoaded = useSelector((state) => state.competencies.isLoaded);
+  const competencies = useSelector((state) => state.competencies.competencies);
 
-  const { competencies, isLoaded } = useCompetenciesState();
+  useEffect(() => {
+    dispatch(loadCompetenciesByLetter());
+  }, []);
 
   const renderedColumns = () => {
     const createColumn = (col) => {

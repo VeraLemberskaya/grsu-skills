@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import facultiesReducer from "./faculties/facultiesSlice";
 import facFilterReducer from "./faculties/facFilterSlice";
+import compSliceReducer from "./compSlice";
 
 import authReducer from "./authSlice";
 
@@ -9,5 +10,6 @@ export default configureStore({
     auth: authReducer,
     faculties: facultiesReducer,
     facFilters: facFilterReducer,
+    competencies: compSliceReducer,
   },
 });

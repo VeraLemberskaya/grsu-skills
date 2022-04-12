@@ -8,6 +8,7 @@ import "./index.css";
 import { authorizeUser } from "../../../../api/ApiRequests";
 import { useNavigate } from "react-router-dom";
 import { setAuthData } from "../../../../services/authService";
+import { AuthorizationError } from "../../../../Errors";
 
 const LoginForm = () => {
   const [loginError, setLoginError] = useState(null);
@@ -26,13 +27,15 @@ const LoginForm = () => {
     e.preventDefault();
     const login = e.target.login.value;
     const password = e.target.password.value;
-
-    const result = await authorizeUser(login, password);
-    if (result.error) {
-      setLoginError(result.error);
-    } else {
+    try {
+      const result = await authorizeUser(login, password);
       setAuthData(result);
       navigate("/profile", { replace: true });
+    } catch (error) {
+      if (error instanceof AuthorizationError) {
+        setLoginError(error.message);
+      }
+      console.log(error);
     }
   };
 

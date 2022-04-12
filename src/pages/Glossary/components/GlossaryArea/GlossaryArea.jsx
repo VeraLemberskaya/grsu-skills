@@ -1,29 +1,32 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import SearchBar from "../SearchBar";
 import PaginationBar from "../PaginationBar";
 import GlossaryGrid from "../GlossaryGrid";
-import CompetenciesProvider from "../../../../providers/CompetenciesProvider";
 import "./index.css";
-import { getCompetenciesLetters } from "../../../../api/ApiRequests";
 import Loader from "../../../../components/Loader";
+import { loadLetters } from "../../../../redux/compSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const GlossaryArea = () => {
-  console.log("render Glossary Area");
-  const [letters, setLetters] = useState(null);
+  const letters = useSelector((state) => state.competencies.letters);
+  const dispatch = useDispatch();
 
   useEffect(async () => {
-    const result = await getCompetenciesLetters();
-    setLetters(result);
+    dispatch(loadLetters());
   }, []);
+
+  useEffect(() => {
+    console.log(letters);
+  });
 
   return (
     <div className="glossary-area">
       {letters ? (
-        <CompetenciesProvider>
+        <>
           <SearchBar />
           <PaginationBar letters={letters} />
           <GlossaryGrid />
-        </CompetenciesProvider>
+        </>
       ) : (
         <Loader />
       )}

@@ -1,3 +1,7 @@
+.profile-page {
+  animation-duration: 0.5s;
+}
+
 .profile-page .main-profile {
   min-height: 44rem;
   background-image: url(../../assets/images/images/TreesProfile.png);

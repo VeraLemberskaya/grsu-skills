@@ -1,4 +1,5 @@
 import API from ".";
+import { AuthorizationError } from "../Errors";
 import {
   allFacultiesEndPoint,
   competenciesEndPoint,
@@ -55,11 +56,8 @@ export const authorizeUser = async (login, password) => {
   })
     .then((response) => response.data)
     .catch((error) => {
-      console.log(error);
       if (error.response.status === 401) {
-        return {
-          error: "Неверный логин или пароль.",
-        };
+        throw new AuthorizationError();
       } else {
         console.log(error);
       }

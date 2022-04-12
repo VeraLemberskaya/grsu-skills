@@ -1,5 +1,3 @@
-import { FORM_TYPE } from "../providers/FacultiesProvider";
-
 const findSpecialities = (faculties, callback, filterValue, filterValue2) => {
   const result = [];
   faculties.forEach((fac) => {

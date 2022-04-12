@@ -1,18 +1,14 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect } from "react";
 import Search from "../../../../assets/icons/Search.svg";
 import "./index.css";
-import {
-  useCompetenciesFiltersActions,
-  useCompetenciesFilters,
-} from "../../../../hooks/useCompetencies";
+import { useSelector } from "react-redux";
+import { setQueryState } from "../../../../services/competenciesService";
 
 const SearchBar = () => {
-  const { query } = useCompetenciesFilters();
-  const { setQueryState } = useCompetenciesFiltersActions();
+  const query = useSelector((state) => state.competencies.query);
   const searchWrapperRef = useRef();
   const searchRef = useRef();
 
-  //change the value of input to '' if the letter is chosen
   useEffect(() => {
     if (!query) searchRef.current.value = "";
   }, [query]);
