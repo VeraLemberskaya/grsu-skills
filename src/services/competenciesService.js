@@ -36,3 +36,7 @@ export const setQueryState = (query) => {
   store.dispatch(removeLetter());
   store.dispatch(loadCompetenciesByQuery());
 };
+
+export const countSemester = (indexCourse, indexSem) => {
+  return 2 * indexCourse + (indexSem + 1);
+};

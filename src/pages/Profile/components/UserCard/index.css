@@ -1,22 +1,27 @@
+.card-wrapper {
+  position: absolute;
+  top: 1rem;
+  right: 3.75rem;
+}
+
 .user-card {
-  background: #f8f8f8;
+  background: var(--color-gray-profile);
   border-radius: 1.25rem;
   box-shadow: 0 4px 4px var(--color-shadow);
   padding: 1.25rem;
   width: 27.5rem;
-  position: absolute;
-  top: 1rem;
-  right: 3.75rem;
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
+  padding-left: 2.5rem;
+  margin-bottom: 0.625rem;
 }
 
 .user-card .main-info {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-left: 1.25rem;
+  margin-bottom: 1.5rem;
 }
 
 .user-card .user-name {
@@ -50,4 +55,37 @@
 .user-card .log-out-btn img {
   user-select: none;
   pointer-events: none;
+  background: var(--color-gray-profile);
+}
+
+.additional-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.additional-info p {
+  font-size: 1.125rem;
+  font-weight: 400;
+}
+
+.resume {
+  float: right;
+  background: var(--color-gray-profile);
+  border-radius: 1.875rem;
+  box-shadow: 0 4px 4px var(--color-shadow);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 0.6875rem 1.375rem;
+  font-size: 1.25rem;
+  font-weight: 400;
+  width: 13.125rem;
+  cursor: pointer;
+}
+
+.resume img {
+  width: 0.9375rem;
+  height: 1.055rem;
 }

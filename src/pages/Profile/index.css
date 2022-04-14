@@ -1,11 +1,22 @@
 .profile-page {
   animation-duration: 0.5s;
+  overflow-x: hidden;
 }
 
 .profile-page .main-profile {
   min-height: 44rem;
   background-image: url(../../assets/images/images/TreesProfile.png);
+  /* background-size: contain; */
   background-repeat: no-repeat;
-  background-position: bottom 2rem right -6.8rem;
+  background-position: top 6.25rem right -6.8rem;
   position: relative;
+  margin-bottom: 3rem;
+}
+
+@media (-webkit-min-device-pixel-ratio: 1.25) {
+  .profile-page .main-profile {
+    min-height: 40rem;
+    background-size: contain;
+    background-position: top 10.25rem right -6.8rem;
+  }
 }

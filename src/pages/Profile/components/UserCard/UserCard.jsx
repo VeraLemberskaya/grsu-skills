@@ -4,30 +4,53 @@ import "./index.css";
 import LogOut from "../../../../assets/icons/LogOut.svg";
 import { useSelector } from "react-redux";
 import { logOut } from "../../../../services/authService";
+import ResumeImg from "../../../../assets/icons/Resume.svg";
+
+const userInfo = {
+  course: 2,
+  speciality: {
+    name: "Программное обеспечение информационных технологий",
+    code: "1-03 01 03",
+  },
+  group: "СДП-ПОИТ-201",
+  form: "дневная",
+};
 
 const UserCard = () => {
   const user = useSelector((state) => state.auth.user);
   const navigate = useNavigate();
 
   return (
-    <div className="user-card">
-      <div className="main-info">
-        <div className="user-name">
-          <p className="name">{user.name}</p>
-          <p className="surname">{user.surname}</p>
+    <div className="card-wrapper">
+      <div className="user-card">
+        <div className="main-info">
+          <div className="user-name">
+            <p className="name">{user.name}</p>
+            <p className="surname">{user.surname}</p>
+          </div>
+          <img src={user.avatar} className="user-avatar" />
         </div>
-        <img src={user.avatar} className="user-avatar" />
-      </div>
+        <div className="additional-info">
+          <p className="spec-name">{`${userInfo.speciality.name}`}</p>
+          <p className="group">{`Группа ${userInfo.group}`}</p>
+          <p className="course">{`Курс ${userInfo.course}`}</p>
+          <p className="form">{`Форма обучения ${userInfo.form}`}</p>
+        </div>
 
-      <button
-        className="log-out-btn"
-        onClick={() => {
-          logOut();
-          navigate("/");
-        }}
-      >
-        <img src={LogOut} />
-      </button>
+        <button
+          className="log-out-btn"
+          onClick={() => {
+            logOut();
+            navigate("/");
+          }}
+        >
+          <img src={LogOut} />
+        </button>
+      </div>
+      <div className="resume">
+        Моё&nbsp;резюме
+        <img src={ResumeImg} />
+      </div>
     </div>
   );
 };
