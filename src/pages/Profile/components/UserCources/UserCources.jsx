@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { countSemester } from "../../../../services/competenciesService";
 import "./index.css";
+import { CSSTransition } from "react-transition-group";
 
 const cources = [
   [
@@ -247,6 +248,8 @@ const UserCources = () => {
   const [openedSubject, setOpenedSubject] = useState(null);
 
   const handleCourseClick = (course) => {
+    setOpenedSemester(null);
+    setOpenedSubject(null);
     if (openedCourse === course) {
       setOpenedCourse(null);
     } else {
@@ -255,6 +258,7 @@ const UserCources = () => {
   };
 
   const handleSemesterClick = (semester) => {
+    setOpenedSubject(null);
     if (openedSemester === semester) {
       setOpenedSemester(null);
     } else {
@@ -295,17 +299,24 @@ const UserCources = () => {
       <ul className="semester-list">
         {course.map((semester, indexSem) => {
           return (
-            <>
-              <li
+            <li>
+              <div
                 className={`${
                   openedSemester === semester ? "active" : ""
                 } item semester`}
                 onClick={() => {
                   handleSemesterClick(semester);
                 }}
-              >{`Семестр ${countSemester(indexCourse, indexSem)}`}</li>
-              {openedSemester === semester ? renderSubjects(semester) : <></>}
-            </>
+              >{`Семестр ${countSemester(indexCourse, indexSem)}`}</div>
+              <CSSTransition
+                in={openedSemester === semester}
+                timeout={1000}
+                classNames="subject-list"
+                unmountOnExit
+              >
+                {renderSubjects(semester)}
+              </CSSTransition>
+            </li>
           );
         })}
       </ul>
@@ -314,15 +325,22 @@ const UserCources = () => {
 
   const renderedCources = cources.map((course, indexCourse) => {
     return (
-      <>
-        <li
+      <li>
+        <div
+          className={`${openedCourse === course ? "active" : ""} item cource`}
           onClick={() => {
             handleCourseClick(course);
           }}
-          className={`${openedCourse === course ? "active" : ""} item cource`}
-        >{`Курс ${indexCourse + 1}`}</li>
-        {openedCourse === course ? renderSemesters(course, indexCourse) : <></>}
-      </>
+        >{`Курс ${indexCourse + 1}`}</div>
+        <CSSTransition
+          in={openedCourse === course}
+          timeout={500}
+          classNames="semester-list"
+          unmountOnExit
+        >
+          {renderSemesters(course, indexCourse)}
+        </CSSTransition>
+      </li>
     );
   });
 

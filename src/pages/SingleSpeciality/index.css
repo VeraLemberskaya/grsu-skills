@@ -1,0 +1,33 @@
+.ball {
+  width: 10rem;
+  height: 10rem;
+  background: blue;
+  border-radius: 50%;
+  position: relative;
+}
+
+.ball.tr {
+}
+
+.example-enter {
+  /* position: relative; */
+  max-height: 0;
+  opacity: 0;
+}
+
+.example-enter-active {
+  opacity: 1;
+  max-height: 10rem;
+  transition: opacity 0.3s, max-height 0.3s;
+}
+
+.example-exit {
+  opacity: 1;
+  max-height: 10rem;
+}
+
+.example-exit-active {
+  opacity: 0;
+  max-height: 0;
+  transition: opacity 0.3s, max-height 0.3s;
+}
