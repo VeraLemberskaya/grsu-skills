@@ -1,0 +1,24 @@
+.semester-list {
+  position: relative;
+  left: 3.5rem;
+}
+
+.subject-list-enter {
+  max-height: 0;
+  overflow: hidden;
+}
+
+.subject-list-enter-active {
+  max-height: 100rem;
+  transition: max-height 0.6s;
+}
+
+.subject-list-exit {
+  max-height: 100rem;
+}
+
+.subject-list-exit-active {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.6s;
+}

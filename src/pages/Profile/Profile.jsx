@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { FooterBottom } from "../../components/FooterBottom";
 import { GrsuSkillsLogoDark } from "../../components/GrsuSkillsLogo";
 import UserCard from "./components/UserCard/UserCard";
-import UserCources from "./components/UserCources";
+import CoursesList from "./components/CoursesList";
 import "./index.css";
 import { useLocation } from "react-router-dom";
 
@@ -18,7 +18,7 @@ const Profile = () => {
         <GrsuSkillsLogoDark />
       </header>
       <main className="main-profile">
-        <UserCources />
+        <CoursesList />
         <UserCard />
       </main>
       <footer>

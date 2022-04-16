@@ -1,0 +1,12 @@
+.subject-list {
+  position: relative;
+  left: 4.5rem;
+}
+
+.subject {
+  width: fit-content;
+  height: fit-content;
+  max-width: 21.25rem;
+  padding: 0.5rem 1rem;
+  text-align: center;
+}

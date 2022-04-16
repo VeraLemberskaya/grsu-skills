@@ -5,16 +5,6 @@
   padding-bottom: 6rem;
 }
 
-.semester-list {
-  position: relative;
-  left: 3.5rem;
-}
-
-.subject-list {
-  position: relative;
-  left: 4.5rem;
-}
-
 /* animation */
 .semester-list-enter {
   max-height: 0;
@@ -34,27 +24,6 @@
   max-height: 0;
   transition: max-height 0.5s;
 }
-
-.subject-list-enter {
-  max-height: 0;
-  overflow: hidden;
-}
-
-.subject-list-enter-active {
-  max-height: 100rem;
-  transition: max-height 0.5s;
-}
-
-.subject-list-exit {
-  max-height: 100rem;
-}
-
-.subject-list-exit-active {
-  overflow: hidden;
-  max-height: 0;
-  transition: max-height 0.5s;
-}
-/**/
 
 .item {
   display: block;
@@ -76,12 +45,4 @@
 .item.active {
   background-color: var(--color-orange);
   color: var(--color-white);
-}
-
-.subject {
-  width: fit-content;
-  height: fit-content;
-  max-width: 21.25rem;
-  padding: 0.5rem 1rem;
-  text-align: center;
 }
