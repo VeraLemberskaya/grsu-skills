@@ -5,6 +5,7 @@ import UserCard from "./components/UserCard/UserCard";
 import CoursesList from "./components/CoursesList";
 import "./index.css";
 import { useLocation } from "react-router-dom";
+import SubjectCard from "./components/SubjectCard/SubjectCard";
 
 const Profile = () => {
   const animation = useLocation().state?.animation;
@@ -19,6 +20,7 @@ const Profile = () => {
       </header>
       <main className="main-profile">
         <CoursesList />
+        <SubjectCard />
         <UserCard />
       </main>
       <footer>

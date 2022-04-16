@@ -15,8 +15,12 @@
 
 @media (-webkit-min-device-pixel-ratio: 1.25) {
   .profile-page .main-profile {
+    background-position: top 4.25rem right -6.8rem;
+    background-size: 50rem;
+  }
+  /* .profile-page .main-profile {
     min-height: 40rem;
     background-size: contain;
     background-position: top 10.25rem right -6.8rem;
-  }
+  } */
 }

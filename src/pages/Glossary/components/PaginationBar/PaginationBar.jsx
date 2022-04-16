@@ -1,6 +1,5 @@
 import React from "react";
 import "./index.css";
-import { v4 as uuidv4 } from "uuid";
 import { useSelector, useDispatch } from "react-redux";
 import { setLetterState } from "../../../../services/competenciesService";
 
@@ -11,7 +10,6 @@ const PaginationBar = ({ letters }) => {
   const renderedPaginationLetters = letters.map((letter) => {
     return (
       <li
-        key={uuidv4()}
         className={`${
           letter?.toLowerCase() === chosenLetter?.toLowerCase() ? "active" : ""
         } letter`}

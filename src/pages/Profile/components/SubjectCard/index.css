@@ -1,0 +1,32 @@
+.subject-card {
+  background: var(--color-gray-profile);
+  border-radius: 1.875rem;
+  width: 32.5rem;
+  height: 53.75rem;
+  box-shadow: 0 6px 6px var(--color-shadow);
+  position: absolute;
+  top: 1.72rem;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 2.5rem;
+  overflow: scroll;
+}
+
+.subject-card::-webkit-scrollbar {
+  width: 0;
+}
+
+.subject-card h3 {
+  font-weight: 600;
+  font-size: 1.5rem;
+  text-align: center;
+  margin-bottom: 1.75rem;
+  line-height: 1.82875rem;
+}
+
+.subject-card p {
+  text-indent: 1rem;
+  line-height: 1.37123rem;
+  font-weight: 300;
+  font-size: 1.125rem;
+}

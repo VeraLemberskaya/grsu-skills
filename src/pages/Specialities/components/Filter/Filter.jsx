@@ -12,7 +12,6 @@ import {
   removeTermFilter,
   resetFilters,
 } from "../../../../redux/faculties/facFilterSlice";
-import { v4 as uuidv4 } from "uuid";
 
 const Filter = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
@@ -49,7 +48,6 @@ const Filter = () => {
               {educationForms.map((form) => {
                 return (
                   <li
-                    key={uuidv4()}
                     onClick={() => {
                       formFilters.includes(form)
                         ? dispatch(removeFormFilter(form))
@@ -70,7 +68,6 @@ const Filter = () => {
             <ul>
               {educationTerms.map((term) => (
                 <li
-                  key={uuidv4()}
                   onClick={() => {
                     termFilters.includes(term)
                       ? dispatch(removeTermFilter(term))
