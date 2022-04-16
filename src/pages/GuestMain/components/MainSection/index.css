@@ -1,0 +1,98 @@
+.main-section {
+  width: 100%;
+  background: var(--color-bg-primary);
+  margin-top: 6.25rem;
+  margin-bottom: 9.625rem;
+  display: flex;
+  border-radius: 20px;
+  position: relative;
+  height: 57rem;
+  padding-top: 2.5rem;
+}
+
+.main-section img {
+  pointer-events: none;
+}
+
+.main-section .container {
+  width: 87%;
+  margin: 0 auto;
+  padding-top: 2.8rem;
+  background: url(../../../../assets/icons/CirclesMainSection.svg) no-repeat;
+}
+
+.main-section a {
+  display: block;
+}
+
+.main-section .university-card-block {
+  width: 100%;
+  position: relative;
+  display: flex;
+}
+
+.main-section .university-card-block img {
+  width: 100%;
+  position: absolute;
+}
+
+.main-section .university-card-block a {
+  margin: 0 auto;
+  margin-top: 1.7rem;
+}
+
+.main-section .card-block {
+  width: 24%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+}
+
+.main-section .card-block img {
+  width: 100%;
+  position: relative;
+  user-select: none;
+}
+
+.main-section .card-block.specialities-card-block {
+  left: 15rem;
+  top: 9.5rem;
+}
+
+.main-section .card-block.glossary-card-block {
+  left: 50%;
+  top: 16.5rem;
+  transform: translateX(-50%);
+  width: 21.5%;
+}
+
+.main-section .card-block.progress-card-block {
+  right: 16.9rem;
+  top: 12.5rem;
+  width: 20.5%;
+}
+
+.main-section .card-block.specialities-card-block img {
+  top: 3.9rem;
+}
+
+.main-section .card-block.glossary-card-block img {
+  top: 4.5rem;
+}
+
+.main-section .card-block.progress-card-block img {
+  top: 4.5rem;
+}
+
+@media (-webkit-min-device-pixel-ratio: 1.25) {
+  .main-section .container {
+    width: 100%;
+  }
+  .main-section .card-block.specialities-card-block {
+    left: 13rem;
+  }
+  .main-section .card-block.progress-card-block {
+    right: 14.9rem;
+  }
+}

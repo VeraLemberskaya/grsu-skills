@@ -1,9 +1,10 @@
 import React from "react";
 import { GrsuSkillsLogoLight } from "../../../../components/GrsuSkillsLogo";
+import "./index.css";
 
 const MainGuestHeader = () => {
   return (
-    <header className="header">
+    <header className="main-header">
       <GrsuSkillsLogoLight />
       <div className="main-title">
         <h1>Узнай больше</h1>

@@ -45,6 +45,7 @@
   height: 7.5rem;
   border-radius: 50%;
   box-shadow: 0 4px 4px var(--color-shadow);
+  user-select: none;
 }
 
 .user-card .log-out-btn {
@@ -88,4 +89,5 @@
 .resume img {
   width: 0.9375rem;
   height: 1.055rem;
+  user-select: none;
 }

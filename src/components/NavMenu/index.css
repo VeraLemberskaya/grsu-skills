@@ -16,7 +16,7 @@
 
 .overlay {
   position: fixed;
-  z-index: 1;
+  z-index: 2;
   top: 0;
   left: 0;
   width: 100%;
@@ -146,6 +146,7 @@
   user-select: none;
   border-radius: 50%;
   object-fit: cover;
+  box-shadow: 0 4px 4px var(--color-shadow);
 }
 
 .btn-up {

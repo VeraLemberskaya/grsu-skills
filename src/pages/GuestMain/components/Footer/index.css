@@ -1,0 +1,31 @@
+.main-footer .footer-info {
+  width: 100%;
+  height: 39.5rem;
+  background: url(../../../../assets/images/TreesMainFooter.png) no-repeat;
+  background-size: contain;
+  display: flex;
+  z-index: -2;
+  position: relative;
+}
+
+.main-footer .footer-info .text {
+  width: 100%;
+  text-align: center;
+  margin-top: 10rem;
+}
+
+.main-footer .footer-info h2 {
+  height: 4.5rem;
+  font-family: "Oswald", sans-serif;
+  font-weight: 700;
+  color: var(--color-orange);
+  font-size: 6rem;
+  text-shadow: 0 4px 4px var(--color-shadow);
+  margin-bottom: 1.2rem;
+}
+
+.main-footer .footer-info h4 {
+  font-weight: 700;
+  font-size: 2.25rem;
+  color: var(--color-foreground);
+}

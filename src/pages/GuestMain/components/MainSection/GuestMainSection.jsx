@@ -5,6 +5,7 @@ import TreesSpecialities from "../../../../assets/icons/TreesSpecialities.png";
 import TreesGlossary from "../../../../assets/icons/TreesGlossary.png";
 import TreesProgress from "../../../../assets/icons/TreesProgress.png";
 import { Link } from "react-router-dom";
+import "./index.css";
 
 const GuestMainSection = () => {
   return (
@@ -22,9 +23,10 @@ const GuestMainSection = () => {
             />
           </a>
         </div>
-        <Link to="/specialities" state={{ animation: "slideInUp" }}>
-          <div className="card-block specialities-card-block">
-            <img src={TreesSpecialities} alt="Специальности" />
+
+        <div className="card-block specialities-card-block">
+          <img src={TreesSpecialities} alt="Специальности" />
+          <Link to="/specialities" state={{ animation: "slideInUp" }}>
             <MainSectionCard
               title="Специальности"
               text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tincidunt purus id quam ullamcorper sodales. Maecenas ut vehicula mi."
@@ -32,11 +34,12 @@ const GuestMainSection = () => {
               height="19.1rem"
               paddingTop="2rem"
             />
-          </div>
-        </Link>
-        <Link to="/glossary" state={{ animation: "slideInUp" }}>
-          <div className="card-block glossary-card-block">
-            <img src={TreesGlossary} alt="Глоссарий" />
+          </Link>
+        </div>
+
+        <div className="card-block glossary-card-block">
+          <img src={TreesGlossary} alt="Глоссарий" />
+          <Link to="/glossary" state={{ animation: "slideInUp" }}>
             <MainSectionCard
               title="Глоссарий"
               text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tincidunt purus id quam ullamcorper sodales. "
@@ -44,11 +47,12 @@ const GuestMainSection = () => {
               height="16.25rem"
               paddingTop="2rem"
             />
-          </div>
-        </Link>
-        <Link to="/progress" state={{ animation: "slideInUp" }}>
-          <div className="card-block progress-card-block">
-            <img src={TreesProgress} alt="Прогресс" />
+          </Link>
+        </div>
+
+        <div className="card-block progress-card-block">
+          <img src={TreesProgress} alt="Прогресс" />
+          <Link to="/progress" state={{ animation: "slideInUp" }}>
             <MainSectionCard
               title="Прогресс"
               text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tincidunt purus id quam ullamcorper sodales. Maecenas ut vehicula mi."
@@ -56,8 +60,8 @@ const GuestMainSection = () => {
               height="18.75rem"
               paddingTop="2rem"
             />
-          </div>
-        </Link>
+          </Link>
+        </div>
       </div>
     </section>
   );
