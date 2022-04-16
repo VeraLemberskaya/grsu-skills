@@ -17,6 +17,7 @@ const GlossaryGrid = () => {
   const competencies = useSelector((state) => state.competencies.competencies);
 
   useEffect(() => {
+    console.log("here in Grid");
     dispatch(loadCompetenciesByLetter());
   }, []);
 

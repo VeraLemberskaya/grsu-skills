@@ -7,7 +7,7 @@ import {
   removeSubject,
 } from "../../../../redux/coursesSlice";
 import SubjectsList from "../SubjectsList/SubjectsList";
-import { countSemester } from "../../../../services/competenciesService";
+import { countSemester } from "../../../../services/coursesService";
 import { CSSTransition } from "react-transition-group";
 import "./index.css";
 

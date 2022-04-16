@@ -4,7 +4,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { setLetterState } from "../../../../services/competenciesService";
 
 const PaginationBar = ({ letters }) => {
-  const chosenLetter = useSelector((state) => state.competencies.letter);
+  const chosenLetter = useSelector((state) => {
+    console.log(state.competencies);
+    return state.competencies.letter;
+  });
   console.log("render Pagination Bar");
 
   const renderedPaginationLetters = letters.map((letter) => {

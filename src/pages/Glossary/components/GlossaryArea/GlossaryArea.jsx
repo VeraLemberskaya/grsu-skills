@@ -12,7 +12,9 @@ const GlossaryArea = () => {
   const dispatch = useDispatch();
 
   useEffect(async () => {
-    dispatch(loadLetters());
+    console.log(letters);
+    console.log("here in area");
+    if (!letters) dispatch(loadLetters());
   }, []);
 
   useEffect(() => {
