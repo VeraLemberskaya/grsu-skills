@@ -10,9 +10,6 @@ import SubjectCard from "./components/SubjectCard/SubjectCard";
 const Profile = () => {
   const animation = useLocation().state?.animation;
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
   return (
     <div className="profile-page" style={{ animationName: animation }}>
       <header>

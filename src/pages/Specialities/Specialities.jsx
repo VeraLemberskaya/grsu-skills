@@ -9,10 +9,6 @@ import { useLocation } from "react-router-dom";
 const Specialities = () => {
   const animation = useLocation().state?.animation;
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   return (
     <div className="specialities-page" style={{ animationName: animation }}>
       <header className="specialities-header">

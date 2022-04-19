@@ -9,12 +9,13 @@ import SingleSpecialityPage from "../pages/SingleSpeciality";
 import GlossaryPage from "../pages/Glossary";
 import ProgressPage from "../pages/Progress";
 import ProfilePage from "../pages/Profile";
+import Layout from "../components/Layout";
 
 const AppRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<LoginPage />} />
-      <Route path="/" element={<NavMenu />}>
+      <Route path="/" element={<Layout />}>
         <Route path="main" element={<MainGuestPage />} />
         <Route path="specialities" element={<SpecialitiesPage />} />
         <Route path="specialities/:title" element={<SingleSpecialityPage />} />

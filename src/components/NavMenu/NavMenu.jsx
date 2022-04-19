@@ -126,7 +126,6 @@ const NavMenu = () => {
       >
         <img src={ArrowUp} />
       </button>
-      <Outlet />
     </>
   );
 };
