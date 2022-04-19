@@ -9,7 +9,7 @@ import SingleSpecialityPage from "../pages/SingleSpeciality";
 import GlossaryPage from "../pages/Glossary";
 import ProgressPage from "../pages/Progress";
 import ProfilePage from "../pages/Profile";
-import Layout from "../components/Layout";
+import Layout from "../components/UI/Layout";
 
 const AppRoutes = () => {
   return (

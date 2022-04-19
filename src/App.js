@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { getUserInfo } from "./services/authService";
 import { setUser } from "./redux/authSlice";
 import { useDispatch } from "react-redux";
+import AnimProvider from "./Providers/AnimProvider";
 
 function App() {
   const { jwtToken, refreshToken } = useSelector((state) => state.auth);
@@ -18,7 +19,9 @@ function App() {
 
   return (
     <div className="App">
-      <Routes />
+      <AnimProvider>
+        <Routes />
+      </AnimProvider>
     </div>
   );
 }

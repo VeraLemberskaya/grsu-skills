@@ -9,16 +9,24 @@ import Progress from "../../assets/icons/Progress.svg";
 import University from "../../assets/icons/University.svg";
 import ArrowUp from "../../assets/icons/ArrowUp.svg";
 import Guest from "../../assets/icons/Guest.svg";
-import { Link, Outlet } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { USER_ROLES } from "../../constants";
+import { ANIMATION } from "../../constants/animation";
+import { useAnim } from "../../hooks/useAnim";
 
 const NavMenu = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const user = useSelector((state) => state.auth.user);
+  const { setAnimation } = useAnim();
 
   const closeMenu = () => {
     setIsMenuOpen(false);
+  };
+
+  const handleLinkClick = () => {
+    closeMenu();
+    setAnimation(ANIMATION.slideInDown);
   };
 
   return (
@@ -46,42 +54,25 @@ const NavMenu = () => {
           <p>Навигация</p>
         </div>
         <nav className="menu-tabs">
-          <Link
-            to="/main"
-            state={{ animation: "slideInDown" }}
-            onClick={closeMenu}
-          >
+          <Link to="/main" onClick={handleLinkClick}>
             <button className="nav-tab main">
               <img src={Main} />
               <p>Главная</p>
             </button>
           </Link>
-          <Link
-            ink
-            to="/specialities"
-            state={{ animation: "slideInDown" }}
-            onClick={closeMenu}
-          >
+          <Link ink to="/specialities" onClick={handleLinkClick}>
             <button className="nav-tab specialities">
               <img src={Specialities} />
               <p>Специальности</p>
             </button>
           </Link>
-          <Link
-            to="/glossary"
-            state={{ animation: "slideInDown" }}
-            onClick={closeMenu}
-          >
+          <Link to="/glossary" onClick={handleLinkClick}>
             <button className="nav-tab glossary">
               <img src={Glossary} />
               <p>Глоссарий</p>
             </button>
           </Link>
-          <Link
-            to="/progress"
-            state={{ animation: "slideInDown" }}
-            onClick={closeMenu}
-          >
+          <Link to="/progress" onClick={handleLinkClick}>
             <button className="nav-tab progress">
               <img src={Progress} />
               <p>Прогресс</p>
@@ -100,11 +91,7 @@ const NavMenu = () => {
               <p>
                 <span>{user.surname}</span>&nbsp;{user.name}
               </p>
-              <Link
-                to="/profile"
-                state={{ animation: "slideInDown" }}
-                onClick={closeMenu}
-              >
+              <Link to="/profile" onClick={handleLinkClick}>
                 <img className="user-icon" src={user.avatar} />
               </Link>
             </>
