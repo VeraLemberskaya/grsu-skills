@@ -1,9 +1,10 @@
 import axios from "axios";
 import { grsuSkillsURL } from "../constants";
-import { removeToken } from "../services/authService";
+import { logOut } from "../services/authService";
 import { useNavigate } from "react-router-dom";
 import { refreshCurrentToken } from "../services/authService";
 import store from "../redux/store";
+import { refreshTokenEndPoint } from "../constants";
 
 const axiosInstance = axios.create({
   baseURL: grsuSkillsURL,
@@ -23,16 +24,19 @@ axiosInstance.interceptors.response.use(
   (response) => {
     return response;
   },
-  (error) => {
+  async (error) => {
+    console.log(JSON.stringify(error));
+    console.log(error.response);
+
     const originalRequest = error.config;
 
-    if (originalRequest.url === "refresh/token") {
-      removeToken();
+    if (originalRequest.url === refreshTokenEndPoint) {
+      logOut();
       window.location.href = "/";
     }
-    if (error.response.status === 403 && !originalRequest._retry) {
+    if (error.response.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
-      return refreshCurrentToken(store.getState().auth.refreshToken).then(
+      return await refreshCurrentToken(store.getState().auth.refreshToken).then(
         () => {
           originalRequest.headers.Authorization = `Bearer ${
             store.getState().auth.jwtToken

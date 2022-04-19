@@ -28,15 +28,17 @@ export const loadCompetenciesByQuery = createAsyncThunk(
   }
 );
 
+const initialState = {
+  letters: null,
+  letter: null,
+  query: null,
+  isLoaded: false,
+  competencies: null,
+};
+
 export const competenciesSlice = createSlice({
   name: "competencies",
-  initialState: {
-    letters: null,
-    letter: null,
-    query: null,
-    isLoaded: false,
-    competencies: null,
-  },
+  initialState,
   reducers: {
     setLetter: (state, action) => {
       state.letter = action.payload;
@@ -49,6 +51,9 @@ export const competenciesSlice = createSlice({
     },
     removeQuery: (state) => {
       state.query = null;
+    },
+    clearComp: () => {
+      return initialState;
     },
   },
   extraReducers: (builder) => {
@@ -73,7 +78,7 @@ export const competenciesSlice = createSlice({
   },
 });
 
-export const { setLetter, setQuery, removeLetter, removeQuery } =
+export const { setLetter, setQuery, removeLetter, removeQuery, clearComp } =
   competenciesSlice.actions;
 
 export default competenciesSlice.reducer;

@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { CSSTransition } from "react-transition-group";
 import "./index.css";
 
 const SubjectCard = () => {
@@ -8,7 +7,7 @@ const SubjectCard = () => {
 
   return subject ? (
     <article className="subject-card">
-      <h3>{subject?.title}</h3>
+      <h3>{subject?.name}</h3>
       <p>
         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Harum
         inventore voluptas labore tenetur, aspernatur maiores consectetur enim

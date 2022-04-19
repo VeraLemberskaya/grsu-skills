@@ -8,18 +8,23 @@ export const loadFaculties = createAsyncThunk(
   }
 );
 
+const initialState = {
+  faculties: null,
+  faculty: null,
+};
+
 export const facultiesSlice = createSlice({
   name: "faculties",
-  initialState: {
-    faculties: null,
-    faculty: null,
-  },
+  initialState,
   reducers: {
     setFaculty: (state, action) => {
       state.faculty = action.payload;
     },
     removeFaculty: (state) => {
       state.faculty = null;
+    },
+    clearFaculties: () => {
+      return initialState;
     },
   },
   extraReducers: (builder) => {
@@ -30,6 +35,7 @@ export const facultiesSlice = createSlice({
   },
 });
 
-export const { setFaculty, removeFaculty } = facultiesSlice.actions;
+export const { setFaculty, removeFaculty, clearFaculties } =
+  facultiesSlice.actions;
 
 export default facultiesSlice.reducer;

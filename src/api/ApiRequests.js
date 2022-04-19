@@ -7,7 +7,11 @@ import {
   loginEndPoint,
   refreshTokenEndPoint,
   facultiesFilterEndPoint,
+  userInfoEndPoint,
+  allDisciplinesEndPoint,
+  disciplineEndPoint,
 } from "../constants";
+import { bearerAuthorization } from ".";
 
 export const getFaculties = async () => {
   return await API.get(allFacultiesEndPoint)
@@ -34,7 +38,7 @@ export const getCompetenciesByLetter = async (letter) => {
 };
 
 export const getCompetenciesByQuery = async (query) => {
-  return API.get(competenciesEndPoint, {
+  return await API.get(competenciesEndPoint, {
     params: {
       query,
     },
@@ -44,19 +48,42 @@ export const getCompetenciesByQuery = async (query) => {
 };
 
 export const getCompetenciesLetters = async () => {
-  return API.get(competenciesLettersEndPoint)
+  return await API.get(competenciesLettersEndPoint)
+    .then((response) => response.data)
+    .catch((error) => console.log(error));
+};
+
+export const getUserInfo = async () => {
+  return await API.get(userInfoEndPoint, bearerAuthorization())
+    .then((response) => response.data)
+    .catch((error) => console.log(error));
+};
+
+export const getAllDisciplines = async () => {
+  return await API.get(allDisciplinesEndPoint)
+    .then((response) => response.data)
+    .catch((error) => console.log(error));
+};
+
+export const getDiscipline = async (id) => {
+  return await API.get(disciplineEndPoint, {
+    params: {
+      id,
+    },
+  })
     .then((response) => response.data)
     .catch((error) => console.log(error));
 };
 
 export const authorizeUser = async (login, password) => {
-  return API.post(loginEndPoint, {
+  return await API.post(loginEndPoint, {
     login,
     password,
   })
     .then((response) => response.data)
     .catch((error) => {
       if (error.response.status === 401) {
+        console.log(error.response);
         throw new AuthorizationError();
       } else {
         console.log(error);
@@ -65,7 +92,7 @@ export const authorizeUser = async (login, password) => {
 };
 
 export const refreshToken = async (refreshToken) => {
-  return API.post(refreshTokenEndPoint, {
+  return await API.post(refreshTokenEndPoint, {
     refreshToken,
   })
     .then((response) => response.data)

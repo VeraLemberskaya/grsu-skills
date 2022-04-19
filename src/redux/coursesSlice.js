@@ -1,12 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const initialState = {
+  course: null,
+  semester: null,
+  subject: null,
+};
+
 export const coursesSlice = createSlice({
   name: "courses",
-  initialState: {
-    course: null,
-    semester: null,
-    subject: null,
-  },
+  initialState,
   reducers: {
     setCourse: (state, action) => {
       state.course = action.payload;
@@ -26,6 +28,9 @@ export const coursesSlice = createSlice({
     removeSubject: (state) => {
       state.subject = null;
     },
+    clearCourses: () => {
+      return initialState;
+    },
   },
 });
 
@@ -36,6 +41,7 @@ export const {
   removeCourse,
   removeSemester,
   removeSubject,
+  clearCourses,
 } = coursesSlice.actions;
 
 export default coursesSlice.reducer;

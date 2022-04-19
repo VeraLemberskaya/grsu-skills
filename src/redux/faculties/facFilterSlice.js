@@ -6,34 +6,19 @@ export const loadFilterValues = createAsyncThunk(
   async () => await getFilterValues()
 );
 
-// export const FORM_TYPE = {
-//   daytime: "дневная",
-//   extramural: "заочная",
-//   both: "both",
-//   extramuralDist: "заочная (дистанционная)",
-//   extramuralShort: "заочная(сокращенная)",
-// };
-
-// const educationForms = [
-//   FORM_TYPE.daytime,
-//   FORM_TYPE.extramural,
-//   FORM_TYPE.extramuralDist,
-//   FORM_TYPE.extramuralShort,
-// ];
-
-// const educationTerms = [3.5, 4, 4.5, 5];
+const initialState = {
+  filters: {
+    educationForms: null,
+    educationTerms: null,
+  },
+  query: "",
+  formFilters: [],
+  termFilters: [],
+};
 
 export const facFilterSlice = createSlice({
   name: "facFilters",
-  initialState: {
-    filters: {
-      educationForms: null,
-      educationTerms: null,
-    },
-    query: "",
-    formFilters: [],
-    termFilters: [],
-  },
+  initialState,
   reducers: {
     setQuery: (state, action) => {
       state.query = action.payload;
@@ -57,6 +42,9 @@ export const facFilterSlice = createSlice({
       state.formFilters = [];
       state.termFilters = [];
     },
+    clearFacFilters: () => {
+      return initialState;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(loadFilterValues.fulfilled, (state, action) => {
@@ -74,6 +62,7 @@ export const {
   addTermFilter,
   removeTermFilter,
   resetFilters,
+  clearFacFilters,
 } = facFilterSlice.actions;
 
 export default facFilterSlice.reducer;

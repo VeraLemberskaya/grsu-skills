@@ -15,7 +15,9 @@ const Picker = () => {
         <p>Выберите факультет</p>
       </div>
       <div className="faculty">
-        <img src={ArrowDown} onClick={() => setIsPickerOpen(true)} />
+        <div className="img-box" onClick={() => setIsPickerOpen(true)}>
+          <img src={ArrowDown} />
+        </div>
         <p>{faculty ? faculty.name : queryFilter}</p>
       </div>
       <Modal isPickerOpen={isPickerOpen} setIsPickerOpen={setIsPickerOpen} />

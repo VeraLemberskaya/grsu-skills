@@ -3,7 +3,7 @@ const useLoginValidation = () => {
     login: {
       required: "Поле обязательно для заполнения.",
       pattern: {
-        value: /^[A-Z][a-z]*_[A-Z]{2}_[0-9]{2}$/,
+        value: /^[A-Z|a-z][a-z]*_[A-Z|a-z]{2}_[0-9]{2}$/,
         message: "Некорректный ввод.",
       },
     },

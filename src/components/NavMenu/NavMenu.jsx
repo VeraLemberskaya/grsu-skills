@@ -10,13 +10,11 @@ import University from "../../assets/icons/University.svg";
 import ArrowUp from "../../assets/icons/ArrowUp.svg";
 import Guest from "../../assets/icons/Guest.svg";
 import { Link, Outlet } from "react-router-dom";
-// import { useAuth } from "../../hooks/useAuth";
 import { useSelector } from "react-redux";
 import { USER_ROLES } from "../../constants";
 
 const NavMenu = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  //const { user } = useAuth();
   const user = useSelector((state) => state.auth.user);
 
   const closeMenu = () => {

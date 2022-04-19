@@ -26,7 +26,7 @@ const SubjectsList = ({ semester }) => {
               openedSubject === subject ? "active" : ""
             } item subject`}
           >
-            {subject.title}
+            {subject.name}
           </li>
         );
       })}

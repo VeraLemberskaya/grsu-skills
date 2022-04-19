@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./index.css";
 import LogOut from "../../../../assets/icons/LogOut.svg";
 import { useSelector } from "react-redux";
 import { logOut } from "../../../../services/authService";
 import ResumeImg from "../../../../assets/icons/Resume.svg";
+import { getUserInfo } from "../../../../api/ApiRequests";
 
 const userInfo = {
   course: 2,
@@ -17,10 +18,16 @@ const userInfo = {
 };
 
 const UserCard = () => {
+  const [userInfo, setUserInfo] = useState(null);
   const user = useSelector((state) => state.auth.user);
   const navigate = useNavigate();
 
-  return (
+  useEffect(async () => {
+    const result = await getUserInfo();
+    setUserInfo(result);
+  }, []);
+
+  return userInfo ? (
     <div className="card-wrapper">
       <div className="user-card">
         <div className="main-info">
@@ -52,6 +59,8 @@ const UserCard = () => {
         <img src={ResumeImg} />
       </div>
     </div>
+  ) : (
+    <React.Fragment />
   );
 };
 

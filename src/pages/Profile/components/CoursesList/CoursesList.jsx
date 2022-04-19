@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./index.css";
 import { CSSTransition } from "react-transition-group";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,6 +9,7 @@ import {
   removeSubject,
 } from "../../../../redux/coursesSlice";
 import SemestersList from "../SemestersList/SemestersList";
+import { getAllDisciplines } from "../../../../api/ApiRequests";
 
 const cources = [
   [
@@ -250,9 +251,14 @@ const cources = [
 ];
 
 const UserCources = () => {
-  console.log("render CourseList");
+  const [cources, setCources] = useState(null);
   const dispatch = useDispatch();
   const openedCourse = useSelector((state) => state.courses.course);
+
+  useEffect(async () => {
+    const result = await getAllDisciplines();
+    setCources(result);
+  }, []);
 
   const handleCourseClick = (course) => {
     dispatch(removeSemester());
@@ -264,31 +270,54 @@ const UserCources = () => {
     }
   };
 
-  const renderedCources = cources.map((course, indexCourse) => {
-    return (
-      <li>
-        <div
-          className={`${openedCourse === course ? "active" : ""} item cource`}
-          onClick={() => {
-            handleCourseClick(course);
-          }}
-        >{`Курс ${indexCourse + 1}`}</div>
-        <CSSTransition
-          in={openedCourse === course}
-          timeout={500}
-          classNames="semester-list"
-          unmountOnExit
-        >
-          <SemestersList course={course} indexCourse={indexCourse} />
-        </CSSTransition>
-      </li>
-    );
-  });
+  // const renderedCources = cources.map((course, indexCourse) => {
+  //   return (
+  //     <li>
+  //       <div
+  //         className={`${openedCourse === course ? "active" : ""} item cource`}
+  //         onClick={() => {
+  //           handleCourseClick(course);
+  //         }}
+  //       >{`Курс ${indexCourse + 1}`}</div>
+  //       <CSSTransition
+  //         in={openedCourse === course}
+  //         timeout={500}
+  //         classNames="semester-list"
+  //         unmountOnExit
+  //       >
+  //         <SemestersList course={course} indexCourse={indexCourse} />
+  //       </CSSTransition>
+  //     </li>
+  //   );
+  // });
 
-  return (
-    <>
-      <ul className="cource-list">{renderedCources}</ul>
-    </>
+  return cources ? (
+    <ul className="cource-list">
+      {cources.map((course, indexCourse) => {
+        return (
+          <li>
+            <div
+              className={`${
+                openedCourse === course ? "active" : ""
+              } item cource`}
+              onClick={() => {
+                handleCourseClick(course);
+              }}
+            >{`Курс ${indexCourse + 1}`}</div>
+            <CSSTransition
+              in={openedCourse === course}
+              timeout={500}
+              classNames="semester-list"
+              unmountOnExit
+            >
+              <SemestersList course={course} indexCourse={indexCourse} />
+            </CSSTransition>
+          </li>
+        );
+      })}
+    </ul>
+  ) : (
+    <React.Fragment />
   );
 };
 

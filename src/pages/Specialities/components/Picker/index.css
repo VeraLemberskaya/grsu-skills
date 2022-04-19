@@ -31,17 +31,27 @@
   background: var(--color-gray);
   border-radius: 1.875rem;
   align-items: center;
-  padding: 1.17rem;
+  /* padding: 1.17rem; */
   text-align: center;
   position: relative;
   left: -3rem;
   box-shadow: 0 4px 4px var(--color-shadow);
   z-index: 0;
 }
+
+.sorting-bar .picker .faculty .img-box {
+  height: 100%;
+  width: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin-left: 0.5rem;
+}
+
 .sorting-bar .picker .faculty img {
   width: 1.4rem;
   height: 0.8rem;
-  cursor: pointer;
   user-select: none;
 }
 

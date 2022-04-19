@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import MakeVisible from "../../../../assets/icons/MakeVisible.svg";
 import MakeNotVisible from "../../../../assets/icons/MakeNotVisible.svg";

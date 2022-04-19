@@ -6,6 +6,7 @@ import { useState } from "react";
 import { GrsuSkillsLogoDark } from "../../../../components/GrsuSkillsLogo";
 import { Link } from "react-router-dom";
 import "./index.css";
+import { logOut } from "../../../../services/authService";
 
 const LoginCard = () => {
   const [isTooltipVisible, setIsTooltipVisible] = useState(false);
