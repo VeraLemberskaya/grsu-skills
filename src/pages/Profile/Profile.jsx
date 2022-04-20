@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { FooterBottom } from "../../components/FooterBottom";
 import { GrsuSkillsLogoDark } from "../../components/GrsuSkillsLogo";
 import UserCard from "./components/UserCard/UserCard";
 import CoursesList from "./components/CoursesList";
 import "./index.css";
-import Page from "../../components/UI/Page";
+import Page from "../../components/Page";
 import SubjectCard from "./components/SubjectCard/SubjectCard";
 
 const Profile = () => {

@@ -4,8 +4,7 @@ import "./index.css";
 import SpecialitiesArea from "./components/SpecialitiesArea";
 import { FooterBottom } from "../../components/FooterBottom";
 import { TreesLeft, TreesRight } from "../../assets/images";
-import { useLocation } from "react-router-dom";
-import Page from "../../components/UI/Page";
+import Page from "../../components/Page";
 
 const Specialities = () => {
   return (

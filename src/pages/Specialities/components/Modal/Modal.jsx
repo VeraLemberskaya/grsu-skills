@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setFaculty } from "../../../../redux/faculties/facultiesSlice";
-import Overlay from "../Overlay";
+import Overlay from "../../../../components/Overlay";
 import "./index.css";
 
 const Modal = ({ isPickerOpen, setIsPickerOpen }) => {
@@ -33,7 +33,12 @@ const Modal = ({ isPickerOpen, setIsPickerOpen }) => {
 
   return (
     <>
-      <Overlay state={isPickerOpen} setState={setIsPickerOpen} />
+      <Overlay
+        state={isPickerOpen}
+        clickHadler={() => {
+          setIsPickerOpen(false);
+        }}
+      />
       <div className={`faculty-modal ${isPickerOpen ? "opened" : ""}`}>
         <ul onClick={handlePickerClick}>{renderedModalFaculties}</ul>
       </div>

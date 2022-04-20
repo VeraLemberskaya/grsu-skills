@@ -1,12 +1,10 @@
 import React from "react";
 import "./index.css";
 
-const Overlay = ({ state, setState }) => {
+const Overlay = ({ state, clickHadler }) => {
   return (
     <div
-      onClick={() => {
-        setState(false);
-      }}
+      onClick={clickHadler}
       className={`overlay ${state ? "visible" : ""}`}
     ></div>
   );

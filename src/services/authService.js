@@ -7,6 +7,7 @@ import {
   setUser,
   removeUser,
 } from "../redux/authSlice";
+import { refreshToken } from "../api/ApiRequests";
 import { clearFaculties } from "../redux/faculties/facultiesSlice";
 import { clearFacFilters } from "../redux/faculties/facFilterSlice";
 import { clearCourses } from "../redux/coursesSlice";
@@ -55,7 +56,11 @@ export const setAuthData = (token) => {
   setCurrentUser(token.jwt);
 };
 
-export const refreshCurrentToken = async (refreshToken) => {
-  const newToken = await refreshToken(refreshToken);
+export const refreshCurrentToken = async (rToken) => {
+  const result = await refreshToken(rToken);
+  const newToken = {
+    jwt: result.token,
+    refreshToken: result.refreshToken,
+  };
   setToken(newToken);
 };

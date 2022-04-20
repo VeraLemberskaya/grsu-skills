@@ -5,7 +5,7 @@ import BooksRight from "../../assets/images/BooksRight.png";
 import { FooterBottom } from "../../components/FooterBottom";
 import GlossaryArea from "./components/GlossaryArea";
 import "./index.css";
-import Page from "../../components/UI/Page";
+import Page from "../../components/Page";
 
 const Glossary = () => {
   return (

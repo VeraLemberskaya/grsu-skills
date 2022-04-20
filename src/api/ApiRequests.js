@@ -83,7 +83,6 @@ export const authorizeUser = async (login, password) => {
     .then((response) => response.data)
     .catch((error) => {
       if (error.response.status === 401) {
-        console.log(error.response);
         throw new AuthorizationError();
       } else {
         console.log(error);

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import Search from "../../../../assets/icons/Search.svg";
-import Overlay from "../Overlay";
+import Overlay from "../../../../components/Overlay";
 import "./index.css";
 import { setQuery } from "../../../../redux/faculties/facFilterSlice";
 import { removeFaculty } from "../../../../redux/faculties/facultiesSlice";
@@ -30,7 +30,12 @@ const SearchInput = () => {
 
   return (
     <>
-      <Overlay state={isSearchOpen} setState={setIsSearchOpen} />
+      <Overlay
+        state={isSearchOpen}
+        clickHadler={() => {
+          setIsSearchOpen(false);
+        }}
+      />
       <div className="search-input">
         <div
           ref={searchRef}

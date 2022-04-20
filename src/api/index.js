@@ -25,8 +25,7 @@ axiosInstance.interceptors.response.use(
     return response;
   },
   async (error) => {
-    console.log(JSON.stringify(error));
-    console.log(error.response);
+    const errObjeect = JSON.parse(JSON.stringify(error));
 
     const originalRequest = error.config;
 
@@ -34,7 +33,7 @@ axiosInstance.interceptors.response.use(
       logOut();
       window.location.href = "/";
     }
-    if (error.response.status === 401 && !originalRequest._retry) {
+    if (errObjeect.status === null && !originalRequest._retry) {
       originalRequest._retry = true;
       return await refreshCurrentToken(store.getState().auth.refreshToken).then(
         () => {

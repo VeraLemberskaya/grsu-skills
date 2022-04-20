@@ -14,6 +14,7 @@ import { useSelector } from "react-redux";
 import { USER_ROLES } from "../../constants";
 import { ANIMATION } from "../../constants/animation";
 import { useAnim } from "../../hooks/useAnim";
+import Overlay from "../Overlay";
 
 const NavMenu = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -31,10 +32,7 @@ const NavMenu = () => {
 
   return (
     <>
-      <div
-        onClick={closeMenu}
-        className={`overlay ${isMenuOpen ? "visible" : ""}`}
-      ></div>
+      <Overlay state={isMenuOpen} clickHadler={closeMenu} />
       <button
         className="menu-btn"
         onClick={() => {

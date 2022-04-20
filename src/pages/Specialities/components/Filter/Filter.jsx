@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./index.css";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import Overlay from "../Overlay";
+import Overlay from "../../../../components/Overlay";
 import FiltersDark from "../../../../assets/icons/FiltersDark.svg";
 import Cross from "../../../../assets/icons/Cross.svg";
 import {
@@ -24,7 +24,12 @@ const Filter = () => {
 
   return (
     <div className="filters">
-      <Overlay state={isFilterOpen} setState={setIsFilterOpen} />
+      <Overlay
+        state={isFilterOpen}
+        clickHadler={() => {
+          setIsFilterOpen(false);
+        }}
+      />
       <button
         className={`${
           formFilters.length || termFilters.length ? "opened" : "closed"

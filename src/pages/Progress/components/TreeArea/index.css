@@ -1,0 +1,20 @@
+/* .tree-area-wrapper {
+  position: absolute;
+} */
+
+.tree-area {
+  position: absolute;
+  left: 10rem;
+  top: 3rem;
+  display: flex;
+  gap: 9rem;
+}
+.tree-box {
+  position: relative;
+  width: fit-content;
+}
+.tree-box img {
+  width: 51.375rem;
+  height: 47rem;
+  user-select: none;
+}
