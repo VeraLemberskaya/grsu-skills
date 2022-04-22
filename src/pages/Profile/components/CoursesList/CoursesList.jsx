@@ -31,27 +31,6 @@ const UserCources = () => {
     }
   };
 
-  // const renderedCources = cources.map((course, indexCourse) => {
-  //   return (
-  //     <li>
-  //       <div
-  //         className={`${openedCourse === course ? "active" : ""} item cource`}
-  //         onClick={() => {
-  //           handleCourseClick(course);
-  //         }}
-  //       >{`Курс ${indexCourse + 1}`}</div>
-  //       <CSSTransition
-  //         in={openedCourse === course}
-  //         timeout={500}
-  //         classNames="semester-list"
-  //         unmountOnExit
-  //       >
-  //         <SemestersList course={course} indexCourse={indexCourse} />
-  //       </CSSTransition>
-  //     </li>
-  //   );
-  // });
-
   return cources ? (
     <ul className="cource-list">
       {cources.map((course, indexCourse) => {

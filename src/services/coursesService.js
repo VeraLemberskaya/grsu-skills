@@ -9,3 +9,10 @@ export const getSemesters = (courses) => {
   );
   return semesterArray;
 };
+
+export const createSubjectLists = (sem) => {
+  const midIndex = Math.floor(sem?.length / 2);
+  const leftList = sem?.slice(0, midIndex);
+  const rightList = sem?.slice(midIndex);
+  return { leftList, rightList };
+};

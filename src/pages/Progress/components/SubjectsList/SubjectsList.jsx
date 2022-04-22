@@ -1,31 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
 import "./index.css";
 import { useSelector, useDispatch } from "react-redux";
+import { createSubjectLists } from "../../../../services/coursesService";
+import { setSubject, removeSubject } from "../../../../redux/coursesSlice";
 
 const SubjectsList = () => {
   const dispatch = useDispatch();
+  const isSemesterChosen = useSelector(
+    (state) => state.courses.isSemesterChosen
+  );
   const semester = useSelector((state) => state.courses.semester);
+  const openedSubject = useSelector((state) => state.courses.subject);
+  const isSubjectChosen = useSelector((state) => state.courses.isSubjectChosen);
+
+  const handleSubjectClick = (subject) => {
+    if (isSubjectChosen && openedSubject === subject) {
+      dispatch(removeSubject());
+    } else {
+      dispatch(setSubject(subject));
+    }
+  };
 
   const renderSubjects = (subList) => {
     return subList.map((subject) => (
-      <li key={subject.id} className="subject">
+      <li
+        key={subject.id}
+        className={`${
+          isSubjectChosen && openedSubject === subject ? "active" : ""
+        } subject`}
+        onClick={() => {
+          handleSubjectClick(subject);
+        }}
+      >
         {subject.name}
       </li>
     ));
   };
 
-  const createSubjectLists = (sem) => {
-    const midIndex = Math.floor(sem?.length / 2);
-    const leftList = sem?.slice(0, midIndex);
-    const rightList = sem?.slice(midIndex);
-    return { leftList, rightList };
-  };
-
   const { leftList, rightList } = createSubjectLists(semester);
 
-  createSubjectLists(semester);
-
-  return semester ? (
+  return isSemesterChosen ? (
     <div className="progress-subject-list">
       <ul className="left">{renderSubjects(leftList)}</ul>
       <ul className="right">{renderSubjects(rightList)}</ul>

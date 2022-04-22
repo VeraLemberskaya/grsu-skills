@@ -6,7 +6,6 @@ import SemesterList from "../SemesterList";
 
 const TreeArea = () => {
   return (
-    // <div className="tree-area-wrapper">
     <div className="tree-area">
       <SemesterList />
       <div className="tree-box">
@@ -14,7 +13,6 @@ const TreeArea = () => {
         <img src={tree} alt="Progress Tree" />
       </div>
     </div>
-    // </div>
   );
 };
 

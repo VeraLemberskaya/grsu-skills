@@ -3,12 +3,19 @@ import { getAllDisciplines } from "../../../../api/ApiRequests";
 import "./index.css";
 import { getSemesters } from "../../../../services/coursesService";
 import { useDispatch, useSelector } from "react-redux";
-import { setSemester, removeSemester } from "../../../../redux/coursesSlice";
+import {
+  setSemester,
+  removeSemester,
+  removeSubject,
+} from "../../../../redux/coursesSlice";
 import Overlay from "../../../../components/Overlay";
 
 const SemesterList = () => {
   const dispatch = useDispatch();
   const openedSemester = useSelector((state) => state.courses.semester);
+  const isSemesterChosen = useSelector(
+    (state) => state.courses.isSemesterChosen
+  );
   const [semesters, setSemesters] = useState(null);
 
   useEffect(async () => {
@@ -17,7 +24,7 @@ const SemesterList = () => {
   }, []);
 
   const handleSemesterClick = (semester) => {
-    // dispatch(removeSubject());
+    dispatch(removeSubject());
     if (openedSemester === semester) {
       dispatch(removeSemester());
     } else {
@@ -28,8 +35,9 @@ const SemesterList = () => {
   return semesters ? (
     <>
       <Overlay
-        state={openedSemester}
+        state={isSemesterChosen}
         clickHadler={() => {
+          dispatch(removeSubject());
           dispatch(removeSemester());
         }}
       />

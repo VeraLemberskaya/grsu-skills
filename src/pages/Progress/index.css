@@ -1,13 +1,21 @@
 .progress-page {
   overflow-x: hidden;
+  width: 100%;
 }
 
 .main-progress {
+  width: 100%;
+  overflow: hidden;
   min-height: 50rem;
   background-image: url(../../assets/images/BgTressProgress.png);
   background-repeat: no-repeat;
   background-position: right;
   position: relative;
+}
+
+.subject-card-section {
+  width: 100%;
+  overflow-x: hidden;
 }
 
 .bg-circle {

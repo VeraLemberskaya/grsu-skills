@@ -4,6 +4,7 @@ import "./index.css";
 import { GrsuSkillsLogoDark } from "../../components/GrsuSkillsLogo";
 import Page from "../../components/Page";
 import TreeArea from "./components/TreeArea/TreeArea";
+import SubjectCard from "./components/SubjectCard";
 
 const Progress = () => {
   return (
@@ -12,6 +13,9 @@ const Progress = () => {
         <header>
           <GrsuSkillsLogoDark />
         </header>
+        <section className="subject-card-section">
+          <SubjectCard />
+        </section>
         <main className="main-progress">
           <div className="bg-circle"></div>
           <TreeArea />

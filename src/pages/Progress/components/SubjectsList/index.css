@@ -8,6 +8,24 @@
   z-index: 2;
 }
 
+.sub-list-enter {
+  opacity: 0;
+}
+
+.sub-list-enter-active {
+  opacity: 100;
+  transition: opacity 5s;
+}
+
+.sub-list-exit {
+  opacity: 100;
+}
+
+.sub-list-exit-active {
+  opacity: 0;
+  transition: opacity 5s;
+}
+
 .left,
 .right {
   width: fit-content;

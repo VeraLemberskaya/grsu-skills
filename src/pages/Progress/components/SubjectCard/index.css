@@ -1,0 +1,46 @@
+.progress-subject-card {
+  width: 37.5rem;
+  height: 52rem;
+  background-color: var(--color-white);
+  z-index: 10;
+  border-radius: 3.75rem 0 0 3.75rem;
+  padding: 3.43rem;
+  position: absolute;
+  right: 0;
+  top: 1.5rem;
+  overflow-x: hidden;
+}
+
+.progress-subject-card h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.progress-subject-card p {
+  font-weight: 300;
+  font-size: 1.125rem;
+}
+
+.card-enter {
+  position: fixed;
+  transform: translateX(100%);
+}
+
+.card-enter-active {
+  position: fixed;
+  transform: translateX(0);
+  transition: transform 0.3s;
+}
+
+.card-exit {
+  position: fixed;
+  transform: translateX(0);
+}
+
+.card-exit-active {
+  position: fixed;
+  transform: translateX(100%);
+  transition: transform 0.3s;
+}
