@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { setFaculty } from "../../../../redux/faculties/facultiesSlice";
 import Overlay from "../../../../components/Overlay";
 import "./index.css";
+import { CSSTransition } from "react-transition-group";
 
 const Modal = ({ isPickerOpen, setIsPickerOpen }) => {
   const { faculties, faculty } = useSelector((state) => state.faculties);
@@ -39,9 +40,20 @@ const Modal = ({ isPickerOpen, setIsPickerOpen }) => {
           setIsPickerOpen(false);
         }}
       />
-      <div className={`faculty-modal ${isPickerOpen ? "opened" : ""}`}>
+      <CSSTransition
+        in={isPickerOpen}
+        timeout={300}
+        classNames="faculty-modal"
+        mountOnEnter
+        unmountOnExit
+      >
+        <div className="faculty-modal">
+          <ul onClick={handlePickerClick}>{renderedModalFaculties}</ul>
+        </div>
+      </CSSTransition>
+      {/* <div className={`faculty-modal ${isPickerOpen ? "opened" : ""}`}>
         <ul onClick={handlePickerClick}>{renderedModalFaculties}</ul>
-      </div>
+      </div> */}
     </>
   );
 };

@@ -1,17 +1,26 @@
 .faculty-modal {
   z-index: 2;
-  transition: opacity 0.5s;
   position: absolute;
   top: 0;
   left: 15%;
-  /* top: 15%;  */
-  display: none;
+}
+
+.faculty-modal-enter {
   opacity: 0;
 }
 
-.faculty-modal.opened {
+.faculty-modal-enter-active {
   opacity: 100;
-  display: block;
+  transition: opacity 0.3s;
+}
+
+.faculty-modal-exit {
+  opacity: 100;
+}
+
+.faculty-modal-exit-active {
+  opacity: 0;
+  transition: opacity 0.3s;
 }
 
 .faculty-modal ul {

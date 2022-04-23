@@ -8,16 +8,6 @@ import ResumeImg from "../../../../assets/icons/Resume.svg";
 import { getUserInfo } from "../../../../api/ApiRequests";
 import ROUTE_PATHS from "../../../../constants/routePaths";
 
-const userInfo = {
-  course: 2,
-  speciality: {
-    name: "Программное обеспечение информационных технологий",
-    code: "1-03 01 03",
-  },
-  group: "СДП-ПОИТ-201",
-  form: "дневная",
-};
-
 const UserCard = () => {
   const [userInfo, setUserInfo] = useState(null);
   const user = useSelector((state) => state.auth.user);

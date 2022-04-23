@@ -30,3 +30,21 @@
   font-weight: 300;
   font-size: 1.125rem;
 }
+
+.profile-subject-card-enter {
+  opacity: 0;
+}
+
+.profile-subject-card-enter-active {
+  opacity: 100;
+  transition: opacity 0.3s;
+}
+
+.profile-subject-card-exit {
+  opacity: 100;
+}
+
+.profile-subject-card-exit-active {
+  opacity: 0;
+  transition: opacity 0.3s;
+}
