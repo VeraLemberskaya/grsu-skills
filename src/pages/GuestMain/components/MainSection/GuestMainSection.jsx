@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import "./index.css";
 import { useAnim } from "../../../../hooks/useAnim";
 import { ANIMATION } from "../../../../constants/animation";
+import ROUTE_PATHS from "../../../../constants/routePaths";
 
 const GuestMainSection = () => {
   const { setAnimation } = useAnim();
@@ -34,7 +35,7 @@ const GuestMainSection = () => {
 
         <div className="card-block specialities-card-block">
           <img src={TreesSpecialities} alt="Специальности" />
-          <Link to="/specialities" onClick={handleLinkClick}>
+          <Link to={ROUTE_PATHS.specialities} onClick={handleLinkClick}>
             <MainSectionCard
               title="Специальности"
               text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tincidunt purus id quam ullamcorper sodales. Maecenas ut vehicula mi."
@@ -47,7 +48,7 @@ const GuestMainSection = () => {
 
         <div className="card-block glossary-card-block">
           <img src={TreesGlossary} alt="Глоссарий" />
-          <Link to="/glossary" onClick={handleLinkClick}>
+          <Link to={ROUTE_PATHS.glossary} onClick={handleLinkClick}>
             <MainSectionCard
               title="Глоссарий"
               text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tincidunt purus id quam ullamcorper sodales. "
@@ -60,7 +61,7 @@ const GuestMainSection = () => {
 
         <div className="card-block progress-card-block">
           <img src={TreesProgress} alt="Прогресс" />
-          <Link to="/progress" onClick={handleLinkClick}>
+          <Link to={ROUTE_PATHS.progress} onClick={handleLinkClick}>
             <MainSectionCard
               title="Прогресс"
               text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tincidunt purus id quam ullamcorper sodales. Maecenas ut vehicula mi."

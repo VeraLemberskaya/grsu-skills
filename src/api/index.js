@@ -1,7 +1,7 @@
 import axios from "axios";
 import { grsuSkillsURL } from "../constants";
 import { logOut } from "../services/authService";
-import { useNavigate } from "react-router-dom";
+import ROUTE_PATHS from "../constants/routePaths";
 import { refreshCurrentToken } from "../services/authService";
 import store from "../redux/store";
 import { refreshTokenEndPoint } from "../constants";
@@ -31,7 +31,7 @@ axiosInstance.interceptors.response.use(
 
     if (originalRequest.url === refreshTokenEndPoint) {
       logOut();
-      window.location.href = "/";
+      window.location.href = ROUTE_PATHS.login;
     }
     if (errObjeect.status === null && !originalRequest._retry) {
       originalRequest._retry = true;

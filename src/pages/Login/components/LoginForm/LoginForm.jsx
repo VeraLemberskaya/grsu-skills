@@ -9,6 +9,7 @@ import { authorizeUser } from "../../../../api/ApiRequests";
 import { useNavigate } from "react-router-dom";
 import { setAuthData } from "../../../../services/authService";
 import { AuthorizationError } from "../../../../Errors";
+import ROUTE_PATHS from "../../../../constants/routePaths";
 
 const LoginForm = () => {
   const [loginError, setLoginError] = useState(null);
@@ -30,7 +31,7 @@ const LoginForm = () => {
     try {
       const result = await authorizeUser(login, password);
       setAuthData(result);
-      navigate("/profile", { replace: true });
+      navigate(ROUTE_PATHS.profile, { replace: true });
     } catch (error) {
       if (error instanceof AuthorizationError) {
         setLoginError(error.message);

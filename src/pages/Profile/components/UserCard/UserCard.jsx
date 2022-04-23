@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { logOut } from "../../../../services/authService";
 import ResumeImg from "../../../../assets/icons/Resume.svg";
 import { getUserInfo } from "../../../../api/ApiRequests";
+import ROUTE_PATHS from "../../../../constants/routePaths";
 
 const userInfo = {
   course: 2,
@@ -48,7 +49,7 @@ const UserCard = () => {
           className="log-out-btn"
           onClick={() => {
             logOut();
-            navigate("/");
+            navigate(ROUTE_PATHS.login);
           }}
         >
           <img src={LogOut} />

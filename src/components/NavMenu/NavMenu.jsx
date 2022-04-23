@@ -15,6 +15,7 @@ import { USER_ROLES } from "../../constants";
 import { ANIMATION } from "../../constants/animation";
 import { useAnim } from "../../hooks/useAnim";
 import Overlay from "../Overlay";
+import ROUTE_PATHS from "../../constants/routePaths";
 
 const NavMenu = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -52,25 +53,25 @@ const NavMenu = () => {
           <p>Навигация</p>
         </div>
         <nav className="menu-tabs">
-          <Link to="/main" onClick={handleLinkClick}>
+          <Link to={ROUTE_PATHS.main} onClick={handleLinkClick}>
             <button className="nav-tab main">
               <img src={Main} />
               <p>Главная</p>
             </button>
           </Link>
-          <Link ink to="/specialities" onClick={handleLinkClick}>
+          <Link ink to={ROUTE_PATHS.specialities} onClick={handleLinkClick}>
             <button className="nav-tab specialities">
               <img src={Specialities} />
               <p>Специальности</p>
             </button>
           </Link>
-          <Link to="/glossary" onClick={handleLinkClick}>
+          <Link to={ROUTE_PATHS.glossary} onClick={handleLinkClick}>
             <button className="nav-tab glossary">
               <img src={Glossary} />
               <p>Глоссарий</p>
             </button>
           </Link>
-          <Link to="/progress" onClick={handleLinkClick}>
+          <Link to={ROUTE_PATHS.progress} onClick={handleLinkClick}>
             <button className="nav-tab progress">
               <img src={Progress} />
               <p>Прогресс</p>
@@ -89,14 +90,14 @@ const NavMenu = () => {
               <p>
                 <span>{user.surname}</span>&nbsp;{user.name}
               </p>
-              <Link to="/profile" onClick={handleLinkClick}>
+              <Link to={ROUTE_PATHS.profile} onClick={handleLinkClick}>
                 <img className="user-icon" src={user.avatar} />
               </Link>
             </>
           ) : (
             <>
               <p>Гость</p>
-              <Link to="/">
+              <Link to={ROUTE_PATHS.login}>
                 <img className="user-icon" src={Guest} />
               </Link>
             </>

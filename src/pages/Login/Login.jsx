@@ -5,11 +5,12 @@ import LoginCard from "./components/LoginCard";
 import LogoGRSU from "../../assets/icons/LogoGRSU.svg";
 import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
+import ROUTE_PATHS from "../../constants/routePaths";
 
 const Login = () => {
   const user = useSelector((state) => state.auth.user);
 
-  if (user) return <Navigate to="/profile" />;
+  if (user) return <Navigate to={ROUTE_PATHS.profile} />;
   return (
     <div className="page-login">
       <LoginCard />

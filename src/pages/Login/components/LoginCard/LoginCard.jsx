@@ -6,7 +6,7 @@ import { useState } from "react";
 import { GrsuSkillsLogoDark } from "../../../../components/GrsuSkillsLogo";
 import { Link } from "react-router-dom";
 import "./index.css";
-import { logOut } from "../../../../services/authService";
+import ROUTE_PATHS from "../../../../constants/routePaths";
 
 const LoginCard = () => {
   const [isTooltipVisible, setIsTooltipVisible] = useState(false);
@@ -35,7 +35,7 @@ const LoginCard = () => {
         </div>
         <LoginForm />
 
-        <Link to="/main">
+        <Link to={ROUTE_PATHS.main}>
           <button className="btn">Войти как гость</button>
         </Link>
         <GrsuSkillsLogoDark />
