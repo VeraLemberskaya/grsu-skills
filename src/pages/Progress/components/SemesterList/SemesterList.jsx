@@ -25,14 +25,14 @@ const SemesterList = () => {
 
   const handleSemesterClick = (semester) => {
     dispatch(removeSubject());
-    if (openedSemester === semester) {
+    if (isSemesterChosen && openedSemester === semester) {
       dispatch(removeSemester());
     } else {
       dispatch(setSemester(semester));
     }
   };
 
-  return semesters ? (
+  return (
     <>
       <Overlay
         state={isSemesterChosen}
@@ -41,10 +41,12 @@ const SemesterList = () => {
           dispatch(removeSemester());
         }}
       />
-      <ul className="semester-list">
-        {semesters.map((sem, index) => (
+      <ul className="progress-semester-list">
+        {semesters?.map((sem, index) => (
           <li
-            className={`${openedSemester === sem ? "active" : ""}`}
+            className={`${
+              isSemesterChosen && openedSemester === sem ? "active" : ""
+            }`}
             onClick={() => {
               handleSemesterClick(sem);
             }}
@@ -55,8 +57,6 @@ const SemesterList = () => {
         ))}
       </ul>
     </>
-  ) : (
-    <React.Fragment />
   );
 };
 

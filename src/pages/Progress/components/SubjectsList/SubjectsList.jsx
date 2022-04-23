@@ -3,6 +3,7 @@ import "./index.css";
 import { useSelector, useDispatch } from "react-redux";
 import { createSubjectLists } from "../../../../services/coursesService";
 import { setSubject, removeSubject } from "../../../../redux/coursesSlice";
+import { CSSTransition } from "react-transition-group";
 
 const SubjectsList = () => {
   const dispatch = useDispatch();
@@ -39,13 +40,19 @@ const SubjectsList = () => {
 
   const { leftList, rightList } = createSubjectLists(semester);
 
-  return isSemesterChosen ? (
-    <div className="progress-subject-list">
-      <ul className="left">{renderSubjects(leftList)}</ul>
-      <ul className="right">{renderSubjects(rightList)}</ul>
-    </div>
-  ) : (
-    <React.Fragment />
+  return (
+    <CSSTransition
+      in={isSemesterChosen}
+      timeout={500}
+      classNames="sub-list"
+      mountOnEnter
+      unmountOnExit
+    >
+      <div className="progress-subject-list">
+        <ul className="left">{renderSubjects(leftList)}</ul>
+        <ul className="right">{renderSubjects(rightList)}</ul>
+      </div>
+    </CSSTransition>
   );
 };
 

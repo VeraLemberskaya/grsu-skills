@@ -4,9 +4,10 @@ import "./index.css";
 
 const SubjectCard = () => {
   const subject = useSelector((state) => state.courses.subject);
+  const isSubjectChosen = useSelector((state) => state.courses.isSubjectChosen);
 
-  return subject ? (
-    <article className="subject-card">
+  return isSubjectChosen ? (
+    <article className="profile-subject-card">
       <h3>{subject?.name}</h3>
       <p>
         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Harum

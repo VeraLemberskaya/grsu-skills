@@ -1,4 +1,4 @@
-.subject-card {
+.profile-subject-card {
   background: var(--color-gray-profile);
   border-radius: 1.875rem;
   width: 32.5rem;
@@ -12,11 +12,11 @@
   overflow: scroll;
 }
 
-.subject-card::-webkit-scrollbar {
+.profile-subject-card::-webkit-scrollbar {
   width: 0;
 }
 
-.subject-card h3 {
+.profile-subject-card h3 {
   font-weight: 600;
   font-size: 1.5rem;
   text-align: center;
@@ -24,7 +24,7 @@
   line-height: 1.82875rem;
 }
 
-.subject-card p {
+.profile-subject-card p {
   text-indent: 1rem;
   line-height: 1.37123rem;
   font-weight: 300;

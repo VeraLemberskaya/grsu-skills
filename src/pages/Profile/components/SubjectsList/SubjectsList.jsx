@@ -6,9 +6,10 @@ import { setSubject, removeSubject } from "../../../../redux/coursesSlice";
 const SubjectsList = ({ semester }) => {
   const dispatch = useDispatch();
   const openedSubject = useSelector((state) => state.courses.subject);
+  const isSubjectChosen = useSelector((state) => state.courses.isSubjectChosen);
 
   const handleSubjectClick = (subject) => {
-    if (openedSubject === subject) {
+    if (isSubjectChosen && openedSubject === subject) {
       dispatch(removeSubject());
     } else {
       dispatch(setSubject(subject));
@@ -16,14 +17,14 @@ const SubjectsList = ({ semester }) => {
   };
 
   return (
-    <ul className="subject-list">
+    <ul className="profile-subject-list">
       {semester.map((subject) => {
         return (
           <li
             onClick={() => handleSubjectClick(subject)}
             key={subject.id}
             className={`${
-              openedSubject === subject ? "active" : ""
+              isSubjectChosen && openedSubject === subject ? "active" : ""
             } item subject`}
           >
             {subject.name}

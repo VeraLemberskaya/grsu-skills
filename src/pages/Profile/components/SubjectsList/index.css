@@ -1,9 +1,9 @@
-.subject-list {
+.profile-subject-list {
   position: relative;
   left: 4.5rem;
 }
 
-.subject {
+.profile-subject-list .subject {
   width: fit-content;
   height: fit-content;
   max-width: 21.25rem;

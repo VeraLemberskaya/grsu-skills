@@ -15,6 +15,7 @@ const UserCources = () => {
   const [cources, setCources] = useState(null);
   const dispatch = useDispatch();
   const openedCourse = useSelector((state) => state.courses.course);
+  const isCourseChosen = useSelector((state) => state.courses.isCourseChosen);
 
   useEffect(async () => {
     const result = await getAllDisciplines();
@@ -24,7 +25,7 @@ const UserCources = () => {
   const handleCourseClick = (course) => {
     dispatch(removeSemester());
     dispatch(removeSubject());
-    if (openedCourse === course) {
+    if (isCourseChosen && openedCourse === course) {
       dispatch(removeCourse());
     } else {
       dispatch(setCourse(course));
@@ -32,20 +33,20 @@ const UserCources = () => {
   };
 
   return cources ? (
-    <ul className="cource-list">
+    <ul className="profile-cource-list">
       {cources.map((course, indexCourse) => {
         return (
           <li>
             <div
               className={`${
-                openedCourse === course ? "active" : ""
+                isCourseChosen && openedCourse === course ? "active" : ""
               } item cource`}
               onClick={() => {
                 handleCourseClick(course);
               }}
             >{`Курс ${indexCourse + 1}`}</div>
             <CSSTransition
-              in={openedCourse === course}
+              in={isCourseChosen && openedCourse === course}
               timeout={500}
               classNames="semester-list"
               unmountOnExit

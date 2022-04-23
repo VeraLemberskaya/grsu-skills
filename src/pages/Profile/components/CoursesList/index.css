@@ -1,4 +1,4 @@
-.cource-list {
+.profile-cource-list {
   position: relative;
   left: 2.5rem;
   top: 4.75rem;
@@ -6,26 +6,26 @@
 }
 
 /* animation */
-.semester-list-enter {
+.profile-cource-list .semester-list-enter {
   max-height: 0;
   overflow: hidden;
 }
 
-.semester-list-enter-active {
+.profile-cource-list .semester-list-enter-active {
   max-height: 10rem;
   transition: max-height 0.5s;
 }
-.semester-list-exit {
+.profile-cource-list .semester-list-exit {
   max-height: 10rem;
 }
 
-.semester-list-exit-active {
+.profile-cource-list .semester-list-exit-active {
   overflow: hidden;
   max-height: 0;
   transition: max-height 0.5s;
 }
 
-.item {
+.profile-cource-list .item {
   display: block;
   background-color: var(--color-gray-profile);
   border-radius: 1.875rem;
@@ -42,7 +42,7 @@
   transition: background-color 0.4s ease;
 }
 
-.item.active {
+.profile-cource-list .item.active {
   background-color: var(--color-orange);
   color: var(--color-white);
 }

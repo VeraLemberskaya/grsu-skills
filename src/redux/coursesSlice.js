@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  isCourseOpened: false,
+  isCourseChosen: false,
   isSemesterChosen: false,
   isSubjectChosen: false,
   course: [],
@@ -14,7 +14,7 @@ export const coursesSlice = createSlice({
   initialState,
   reducers: {
     setCourse: (state, action) => {
-      state.isCourseOpened = true;
+      state.isCourseChosen = true;
       state.course = action.payload;
     },
     setSemester: (state, action) => {
@@ -26,12 +26,10 @@ export const coursesSlice = createSlice({
       state.subject = action.payload;
     },
     removeCourse: (state) => {
-      state.isCourseOpened = false;
-      state.course = [];
+      state.isCourseChosen = false;
     },
     removeSemester: (state) => {
       state.isSemesterChosen = false;
-      state.semester = [];
     },
     removeSubject: (state) => {
       state.isSubjectChosen = false;

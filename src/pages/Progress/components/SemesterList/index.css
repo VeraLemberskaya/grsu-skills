@@ -1,4 +1,4 @@
-.semester-list {
+.progress-semester-list {
   position: relative;
   top: 3rem;
   display: flex;
@@ -6,9 +6,11 @@
   gap: 1.25rem;
   z-index: 2;
   height: fit-content;
+  min-height: 15.23rem;
+  min-width: 11.5rem;
 }
 
-.semester-list > li {
+.progress-semester-list > li {
   width: 11.25rem;
   height: 3.75rem;
   box-shadow: 0 4px 4px var(--color-shadow);
@@ -23,7 +25,7 @@
   transition: background-color 0.3s, color 0.3s;
 }
 
-.semester-list li.active {
+.progress-semester-list li.active {
   background-color: var(--color-orange);
   color: var(--color-white);
 }
