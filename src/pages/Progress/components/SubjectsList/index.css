@@ -8,20 +8,20 @@
   z-index: 2;
 }
 
-.progress-subject-list .sub-list-enter {
+.sub-list-enter {
   opacity: 0;
 }
 
-.progress-subject-list .sub-list-enter-active {
+.sub-list-enter-active {
   opacity: 100;
   transition: opacity 0.5s;
 }
 
-.progress-subject-list .sub-list-exit {
+.sub-list-exit {
   opacity: 100;
 }
 
-.progress-subject-list .sub-list-exit-active {
+.sub-list-exit-active {
   opacity: 0;
   transition: opacity 0.5s;
 }
