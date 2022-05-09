@@ -10,6 +10,7 @@ import {
   glossaryRoute,
   progressRoute,
   profileRoute,
+  resumeRoute,
 } from "../constants/routes";
 
 const AppRoutes = () => {
@@ -29,6 +30,7 @@ const AppRoutes = () => {
         <Route path={glossaryRoute.path} element={glossaryRoute.component} />
         <Route path={progressRoute.path} element={progressRoute.component} />
         <Route path={profileRoute.path} element={profileRoute.component} />
+        <Route path={resumeRoute.path} element={resumeRoute.component} />
       </Route>
     </Routes>
   );

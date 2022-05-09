@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./index.css";
 import { useSelector, useDispatch } from "react-redux";
 import { createSubjectLists } from "../../../../services/coursesService";
@@ -13,6 +13,7 @@ const SubjectsList = () => {
   const semester = useSelector((state) => state.courses.semester);
   const openedSubject = useSelector((state) => state.courses.subject);
   const isSubjectChosen = useSelector((state) => state.courses.isSubjectChosen);
+  const prevSem = useRef(semester);
 
   const handleSubjectClick = (subject) => {
     if (isSubjectChosen && openedSubject === subject) {
@@ -33,7 +34,7 @@ const SubjectsList = () => {
           handleSubjectClick(subject);
         }}
       >
-        {subject.name}
+        <span>{subject.name}</span>
       </li>
     ));
   };
@@ -45,7 +46,6 @@ const SubjectsList = () => {
       in={isSemesterChosen}
       timeout={500}
       classNames="sub-list"
-      mountOnEnter
       unmountOnExit
     >
       <div className="progress-subject-list">

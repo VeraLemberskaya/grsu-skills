@@ -71,6 +71,7 @@
 }
 
 .resume {
+  color: var(--color-foreground);
   float: right;
   background: var(--color-gray-profile);
   border-radius: 1.875rem;

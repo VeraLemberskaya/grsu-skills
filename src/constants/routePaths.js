@@ -7,6 +7,7 @@ const ROUTE_PATHS = {
   glossary: "/glossary",
   progress: "/progress",
   profile: "/profile",
+  resume: "/resume",
 };
 
 export default ROUTE_PATHS;

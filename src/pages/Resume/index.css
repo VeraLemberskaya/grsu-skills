@@ -1,0 +1,75 @@
+@import url("https://fonts.googleapis.com/css2?family=Alice&display=swap");
+
+.resume-page {
+  background: var(--color-gray);
+}
+
+.resume-page > .container {
+  padding: 2.18rem 0;
+}
+
+.edit-section {
+  width: 44.625rem;
+}
+
+.edit-section > .container {
+  padding: 0 3.75rem;
+}
+
+.edit-section.content {
+  display: flex;
+  flex-direction: column;
+}
+
+.section-title {
+  margin: 0 auto;
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  padding: 1rem 7rem;
+  color: var(--color-white);
+  border-radius: 1.25rem;
+  height: 2.75rem;
+  width: fit-content;
+  margin-bottom: 1.5rem;
+}
+
+.section-title.primary {
+  background: var(--color-orange);
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.section-title.secondary {
+  background: var(----color-bg-primary);
+  font-weight: 600;
+}
+
+.edit-section label {
+  font-size: 1.25rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: var(--color-foreground);
+  width: 9.53rem;
+}
+
+.edit-section .input {
+  height: 2.75rem;
+  text-align: center;
+  border-radius: 1.25rem;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-foreground);
+  padding: 1rem;
+  width: 26.25rem;
+}
+
+.edit-section .input.company {
+  text-transform: uppercase;
+}
+
+.edit-section .btn-row {
+  margin-top: 2.5rem;
+  margin-bottom: 2rem;
+}

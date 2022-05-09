@@ -7,6 +7,7 @@ import { logOut } from "../../../../services/authService";
 import ResumeImg from "../../../../assets/icons/Resume.svg";
 import { getUserInfo } from "../../../../api/ApiRequests";
 import ROUTE_PATHS from "../../../../constants/routePaths";
+import { Link } from "react-router-dom";
 
 const UserCard = () => {
   const [userInfo, setUserInfo] = useState(null);
@@ -45,10 +46,12 @@ const UserCard = () => {
           <img src={LogOut} />
         </button>
       </div>
-      <div className="resume">
-        Моё&nbsp;резюме
-        <img src={ResumeImg} />
-      </div>
+      <Link to={ROUTE_PATHS.resume}>
+        <div className="resume">
+          Моё&nbsp;резюме
+          <img src={ResumeImg} />
+        </div>
+      </Link>
     </div>
   ) : (
     <React.Fragment />

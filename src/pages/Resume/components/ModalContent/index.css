@@ -1,0 +1,37 @@
+/* 
+
+.picker-enter {
+  opacity: 0;
+}
+
+.picker-enter-active {
+  opacity: 100;
+  transition: all 5s;
+}
+
+.picker-exit {
+  opacity: 100;
+}
+
+.picker-exit-active {
+  opacity: 0;
+  transition: all 5s;
+} */
+
+.fade-enter {
+  opacity: 0;
+}
+
+.fade-enter-active {
+  opacity: 100;
+  transition: opacity 0.5s ease-in;
+}
+
+.fade-exit {
+  opacity: 100;
+}
+
+.fade-exit-active {
+  opacity: 0;
+  transition: opacity 0.5s ease-in;
+}

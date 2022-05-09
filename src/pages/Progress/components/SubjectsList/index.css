@@ -8,6 +8,19 @@
   z-index: 2;
 }
 
+.progress-subject-list.animated {
+  animation: anim 0.5s;
+}
+
+@keyframes anim {
+  from {
+    opacity: 50%;
+  }
+  to {
+    opacity: 100;
+  }
+}
+
 .sub-list-enter {
   opacity: 0;
 }
