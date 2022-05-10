@@ -277,6 +277,7 @@ const AddContactInput = ({ icons, onClose, onAddItem }) => {
                   setIconsOpened(false);
                   input.current.focus();
                 }}
+                pointer
               />
             ))}
           </Picker>
