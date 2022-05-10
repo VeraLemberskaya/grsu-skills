@@ -2,6 +2,7 @@
 
 .resume-page {
   background: var(--color-gray);
+  min-height: 100vh;
 }
 
 .resume-page > .container {

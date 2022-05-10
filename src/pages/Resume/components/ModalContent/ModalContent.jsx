@@ -3,7 +3,12 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import { v4 as uuidv4 } from "uuid";
 import IconPicker from "../IconPicker";
-import { CSSTransition, SwitchTransition } from "react-transition-group";
+import Picker from "../IconPicker/IconPicker";
+import {
+  CSSTransition,
+  SwitchTransition,
+  TransitionGroup,
+} from "react-transition-group";
 
 import Row from "../Row";
 import Icon from "../Icon";
@@ -34,29 +39,67 @@ import {
 } from "../../../../assets/icons";
 import FIELD_TYPES from "../../fieldTypes";
 
-const MODAL_CONTENT = {
-  [FIELD_TYPES.contacts]: <contactsContent />,
-};
-
 const Wrapper = styled.div`
+  min-height: ${(props) => (props.size == 2 ? "1.75" : "2.75")}rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   position: relative;
   z-index: 3;
   background: #f8f8f8;
   border-radius: 1.25rem;
-  padding-right: 0.75rem;
-  margin: 0.75rem 0;
+  margin: ${(props) => (props.size == 2 ? "0.4" : "0.75")}rem 0;
   input {
     width: 100%;
     z-index: 2;
     background: transparent;
     margin-left: 1rem;
     color: #333;
-    font-size: 1.25rem;
+    font-size: ${(props) => (props.size == 2 ? "1" : "1.25")}rem;
     font-weight: 500;
   }
 `;
 
-const EditItemInput = ({ icon, id, text, onRemove }) => {
+const Textarea = styled.textarea`
+  position: relative;
+  background: transparent;
+  resize: none;
+  padding: ${(props) => (props.size == 2 ? "1" : "1.5")}rem;
+  color: #333;
+  font-size: ${(props) => (props.size == 2 ? "1" : "1.25")}rem;
+  font-weight: 500;
+  min-height: ${(props) => (props.size == 2 ? "4.7" : "20.5")}rem;
+  &::after {
+    content: "";
+    width: 1.25rem;
+    height: 1.25rem;
+    position: absolute;
+    background-image: url(${Edit});
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+`;
+
+const Label = styled.label`
+  position: absolute;
+  top: 0.5rem;
+  right: ${(props) => (props.size == 2 ? "-22" : "-20")}%;
+`;
+
+const EditItemTextarea = ({ size, text }) => {
+  const [value, setValue] = React.useState(text);
+
+  return (
+    <Wrapper size={size}>
+      <Label size={size} htmlFor="textarea">
+        <Icon size={size} src={Edit} />
+      </Label>
+      <Textarea size={size} value={value} id="textarea" autoFocus />
+    </Wrapper>
+  );
+};
+
+const EditItemInput = ({ size, icon, id, text, onRemove, removeable }) => {
   const [inputValue, setInputValue] = React.useState(text);
 
   const handleInputChange = (e) => {
@@ -64,31 +107,29 @@ const EditItemInput = ({ icon, id, text, onRemove }) => {
   };
 
   return (
-    <Wrapper>
+    <Wrapper size={size}>
       <Row spaceBetween>
         <Row>
-          <BaseComponent mr="1rem">
-            <Button type="remove" onClick={() => onRemove(id)} />
-          </BaseComponent>
-          {icon && <Icon src={icon} />}
+          {removeable && (
+            <Button size={size} type="remove" onClick={() => onRemove(id)} />
+          )}
+          {icon && (
+            <BaseComponent ml="1rem">
+              <Icon size={size} src={icon} />
+            </BaseComponent>
+          )}
           <input type="text" value={inputValue} onChange={handleInputChange} />
         </Row>
-        <BaseComponent ml="1rem">
-          <Icon src={Edit} />
+        <BaseComponent ml="1rem" pr="0.75rem">
+          <Icon size={size} src={Edit} />
         </BaseComponent>
       </Row>
     </Wrapper>
   );
 };
 
-const AddContactInput = ({ icons, onClose, onAddItem }) => {
-  const [icon, setIcon] = React.useState(null);
-  const [iconsOpened, setIconsOpened] = React.useState(false);
+const AddItemInput = ({ size, onClose, onAddItem }) => {
   const input = React.useRef();
-
-  React.useEffect(() => {
-    input.current.focus();
-  }, []);
 
   const handleInputChange = (e) => {
     if (e.key === "Enter") {
@@ -98,7 +139,103 @@ const AddContactInput = ({ icons, onClose, onAddItem }) => {
 
   const handleAddItem = () => {
     const text = input.current.value;
-    if (text.length > 0 && icon) {
+    if (text.trim().length > 0) {
+      onAddItem({ id: uuidv4(), text });
+      onClose();
+    }
+  };
+
+  return (
+    <Wrapper size={size} className="add-item-input">
+      <Row spaceBetween>
+        <Row>
+          <Button size={size} type="check" onClick={handleAddItem} />
+          <input
+            autoFocus
+            ref={input}
+            type="text"
+            onKeyPress={handleInputChange}
+          />
+        </Row>
+        <BaseComponent ml="1rem" pr="0.75rem">
+          <Icon
+            size={size == 2 ? "3" : "2"}
+            src={Close}
+            onClick={onClose}
+            pointer
+          />
+        </BaseComponent>
+      </Row>
+    </Wrapper>
+  );
+};
+
+const LangAdd = styled.div`
+  p {
+    font-weight: 500;
+  }
+  button {
+    width: 5rem;
+    height: 1.75rem;
+    background: #f96326;
+    border-radius: 1.25rem;
+    font-size: 1rem;
+    font-weight: 700;
+    text-align: center;
+    color: #fff;
+    cursor: pointer;
+  }
+`;
+
+const AddLanguageInput = ({ onClose }) => {
+  const [levelSpeech, setLevelSpeech] = React.useState("!");
+  const [levelWritten, setLevelWritter] = React.useState("!");
+
+  return (
+    <Wrapper className="add-item-input">
+      <Row spaceBetween>
+        <Row>
+          <Button type="check" />
+          <input autoFocus type="text" />
+        </Row>
+        <BaseComponent ml="1rem" pr="0.75rem">
+          <Icon size="2" src={Close} pointer />
+        </BaseComponent>
+      </Row>
+      <BaseComponent mb="1rem">
+        <Row gap="3.25rem" center>
+          <LangAdd>
+            <Row gap="0.68rem">
+              <p>Разговорный</p>
+              <button>{levelSpeech}</button>
+            </Row>
+          </LangAdd>
+          <LangAdd>
+            <Row gap="0.68rem">
+              <p>Письменный</p>
+              <button>{levelWritten}</button>
+            </Row>
+          </LangAdd>
+        </Row>
+      </BaseComponent>
+    </Wrapper>
+  );
+};
+
+const AddContactInput = ({ icons, onClose, onAddItem }) => {
+  const [icon, setIcon] = React.useState(null);
+  const [iconsOpened, setIconsOpened] = React.useState(false);
+  const input = React.useRef();
+
+  const handleInputChange = (e) => {
+    if (e.key === "Enter") {
+      handleAddItem();
+    }
+  };
+
+  const handleAddItem = () => {
+    const text = input.current.value;
+    if (text.trim().length > 0 && icon) {
       onAddItem({ id: uuidv4(), icon, text });
       onClose();
     }
@@ -117,30 +254,324 @@ const AddContactInput = ({ icons, onClose, onAddItem }) => {
               onClick={() => setIconsOpened(true)}
               pointer
             />
-            <input ref={input} type="text" onKeyPress={handleInputChange} />
+            <input
+              autoFocus
+              ref={input}
+              type="text"
+              onKeyPress={handleInputChange}
+            />
           </Row>
-          <BaseComponent ml="1rem">
+          <BaseComponent ml="1rem" pr="0.75rem">
             <Icon size="2" src={Close} onClick={onClose} pointer />
           </BaseComponent>
         </Row>
       </Wrapper>
       {iconsOpened && (
         <BaseComponent mt="1rem" className="picker">
-          <IconPicker
-            icons={icons}
-            onClickIcon={(icon) => {
-              setIcon(icon);
-              setIconsOpened(false);
-              input.current.focus();
-            }}
-          />
+          <Picker>
+            {icons.map((icon) => (
+              <Icon
+                src={icon}
+                onClick={() => {
+                  setIcon(icon);
+                  setIconsOpened(false);
+                  input.current.focus();
+                }}
+              />
+            ))}
+          </Picker>
         </BaseComponent>
       )}
     </>
   );
 };
 
-const ContactsContent = () => {
+const List = ({ size }) => {
+  const [items, setItems] = React.useState([]);
+  const [inputOpened, setInputOpened] = React.useState(false);
+
+  return (
+    <div style={{ position: "relative" }}>
+      <div style={{ overflow: "auto", maxHeight: "20rem" }}>
+        <TransitionGroup>
+          {items.map((item) => (
+            <CSSTransition key={item.id} timeout={400} classNames="item">
+              <EditItemInput
+                size={size}
+                {...item}
+                onRemove={(id) => {
+                  setItems(items.filter((item) => item.id != id));
+                }}
+                removeable
+              />
+            </CSSTransition>
+          ))}
+        </TransitionGroup>
+        <SwitchTransition mode="out-in">
+          <CSSTransition
+            key={inputOpened}
+            timeout={200}
+            classNames="accordion"
+            unmountOnExit
+          >
+            {inputOpened ? (
+              <AddItemInput
+                size={size}
+                onClose={() => setInputOpened(false)}
+                onAddItem={(item) => {
+                  items.push(item);
+                  setItems(items.slice());
+                }}
+              />
+            ) : (
+              <BaseComponent
+                mb={size == 2 ? "0.4rem" : "1rem"}
+                mt={size == 2 ? "0.4rem" : "0.75rem"}
+              >
+                <Button
+                  size={size}
+                  type="add"
+                  onClick={() => setInputOpened(true)}
+                />
+              </BaseComponent>
+            )}
+          </CSSTransition>
+        </SwitchTransition>
+        {inputOpened && (
+          <Overlay
+            state={inputOpened}
+            clickHadler={() => {
+              setInputOpened(false);
+            }}
+          />
+        )}
+      </div>
+    </div>
+  );
+};
+
+const langLevels = ["A1", "A2", "B1", "B2", "C1", "C2"];
+
+const Lang = styled.div`
+  p {
+    font-weight: 500;
+  }
+  button {
+    width: 5rem;
+    height: 1.75rem;
+    background: #3e97d5;
+    border-radius: 1.25rem;
+    font-size: 1rem;
+    font-weight: 700;
+    text-align: center;
+    color: #fff;
+  }
+`;
+
+export const LangContent = () => {
+  const [items, setItems] = React.useState([]);
+  const [inputOpened, setInputOpened] = React.useState(false);
+  const [levelSpeech, setLevelSpeech] = React.useState(langLevels[0]);
+  const [levelWritten, setLevelWritten] = React.useState(langLevels[0]);
+
+  return (
+    <>
+      <TransitionGroup>
+        {items.map((item) => (
+          <CSSTransition key={item.id} timeout={400} classNames="item">
+            <>
+              <EditItemInput
+                {...item}
+                onRemove={(id) => {
+                  setItems(items.filter((item) => item.id != id));
+                }}
+                removeable
+              />
+              <BaseComponent ml="0.75rem">
+                <Row spaceBetween>
+                  <Lang>
+                    <Row gap="0.68rem">
+                      <p>Разговорный</p>
+                      <button>{levelSpeech}</button>
+                    </Row>
+                  </Lang>
+                  <Lang>
+                    <Row gap="0.68rem">
+                      <p>Письменный</p>
+                      <button>{levelWritten}</button>
+                    </Row>
+                  </Lang>
+                  <BaseComponent ml="1rem" pr="0.75rem">
+                    <Icon size="2" src={Edit} />
+                  </BaseComponent>
+                </Row>
+              </BaseComponent>
+            </>
+          </CSSTransition>
+        ))}
+      </TransitionGroup>
+      <SwitchTransition mode="out-in">
+        <CSSTransition
+          key={inputOpened}
+          timeout={200}
+          classNames="accordion"
+          unmountOnExit
+        >
+          {inputOpened ? (
+            <AddLanguageInput
+              onClose={() => setInputOpened(false)}
+              onAddItem={(item) => {
+                items.push(item);
+                setItems(items.slice());
+              }}
+            />
+          ) : (
+            <BaseComponent mb="1rem" mt="0.75rem">
+              <Button type="add" onClick={() => setInputOpened(true)} />
+            </BaseComponent>
+          )}
+        </CSSTransition>
+      </SwitchTransition>
+      {inputOpened && (
+        <Overlay
+          state={inputOpened}
+          clickHadler={() => {
+            setInputOpened(false);
+          }}
+        />
+      )}
+    </>
+  );
+};
+
+export const HobbiesContent = () => {
+  return <List />;
+};
+
+export const WorkExperienceContent = () => {
+  const [items, setItems] = React.useState([]);
+  const [inputOpened, setInputOpened] = React.useState(false);
+  return (
+    <>
+      <TransitionGroup>
+        {items.map((item) => (
+          <CSSTransition key={item.id} timeout={400} classNames="item">
+            <>
+              <EditItemInput
+                {...item}
+                onRemove={(id) => {
+                  setItems(items.filter((item) => item.id != id));
+                }}
+                removeable
+              />
+              <BaseComponent ml="0.75rem">
+                <List size="2" />
+              </BaseComponent>
+            </>
+          </CSSTransition>
+        ))}
+      </TransitionGroup>
+      <SwitchTransition mode="out-in">
+        <CSSTransition
+          key={inputOpened}
+          timeout={200}
+          classNames="accordion"
+          unmountOnExit
+        >
+          {inputOpened ? (
+            <AddItemInput
+              onClose={() => setInputOpened(false)}
+              onAddItem={(item) => {
+                items.push(item);
+                setItems(items.slice());
+              }}
+            />
+          ) : (
+            <BaseComponent mb="1rem" mt="0.75rem">
+              <Button type="add" onClick={() => setInputOpened(true)} />
+            </BaseComponent>
+          )}
+        </CSSTransition>
+      </SwitchTransition>
+      {inputOpened && (
+        <Overlay
+          state={inputOpened}
+          clickHadler={() => {
+            setInputOpened(false);
+          }}
+        />
+      )}
+    </>
+  );
+};
+
+export const CoursesContent = () => {
+  const [items, setItems] = React.useState([]);
+  const [inputOpened, setInputOpened] = React.useState(false);
+
+  return (
+    <>
+      <TransitionGroup>
+        {items.map((item) => (
+          <CSSTransition key={item.id} timeout={400} classNames="item">
+            <>
+              <EditItemInput
+                {...item}
+                onRemove={(id) => {
+                  setItems(items.filter((item) => item.id != id));
+                }}
+                removeable
+              />
+              <BaseComponent ml="0.75rem">
+                <EditItemTextarea size="2" />
+              </BaseComponent>
+            </>
+          </CSSTransition>
+        ))}
+      </TransitionGroup>
+      <SwitchTransition mode="out-in">
+        <CSSTransition
+          key={inputOpened}
+          timeout={200}
+          classNames="accordion"
+          unmountOnExit
+        >
+          {inputOpened ? (
+            <AddItemInput
+              onClose={() => setInputOpened(false)}
+              onAddItem={(item) => {
+                items.push(item);
+                setItems(items.slice());
+              }}
+            />
+          ) : (
+            <BaseComponent mb="1rem" mt="0.75rem">
+              <Button type="add" onClick={() => setInputOpened(true)} />
+            </BaseComponent>
+          )}
+        </CSSTransition>
+      </SwitchTransition>
+      {inputOpened && (
+        <Overlay
+          state={inputOpened}
+          clickHadler={() => {
+            setInputOpened(false);
+          }}
+        />
+      )}
+    </>
+  );
+};
+
+export const AboutContent = () => {
+  return <EditItemTextarea />;
+};
+
+export const LocationContent = () => {
+  return <EditItemInput text={"Гродно, Беларусь"} />;
+};
+
+export const ContactsContent = () => {
   const [items, setItems] = React.useState([]);
   const [inputOpened, setInputOpened] = React.useState(false);
 
@@ -167,52 +598,49 @@ const ContactsContent = () => {
     <div style={{ position: "relative" }}>
       <div style={{ overflow: "auto", maxHeight: "20rem" }}>
         <BaseComponent ml="0.5rem">
-          {items.map((item) => (
-            <EditItemInput
-              id={item.id}
-              icon={item.icon}
-              text={item.text}
-              onRemove={(id) => {
-                setItems(items.filter((item) => item.id != id));
+          <TransitionGroup>
+            {items.map((item) => (
+              <CSSTransition key={item.id} timeout={400} classNames="item">
+                <EditItemInput
+                  {...item}
+                  onRemove={(id) => {
+                    setItems(items.filter((item) => item.id != id));
+                  }}
+                  removeable
+                />
+              </CSSTransition>
+            ))}
+          </TransitionGroup>
+          <SwitchTransition mode="out-in">
+            <CSSTransition
+              key={inputOpened}
+              timeout={200}
+              classNames="accordion"
+              unmountOnExit
+            >
+              {inputOpened ? (
+                <AddContactInput
+                  icons={icons}
+                  onClose={() => setInputOpened(false)}
+                  onAddItem={(item) => {
+                    items.push(item);
+                    setItems(items.slice());
+                  }}
+                />
+              ) : (
+                <BaseComponent mb="1rem" mt="0.75rem">
+                  <Button type="add" onClick={() => setInputOpened(true)} />
+                </BaseComponent>
+              )}
+            </CSSTransition>
+          </SwitchTransition>
+          {inputOpened && (
+            <Overlay
+              state={inputOpened}
+              clickHadler={() => {
+                setInputOpened(false);
               }}
             />
-          ))}
-          <CSSTransition
-            in={inputOpened}
-            timeout={500}
-            classNames="fade"
-            unmountOnExit
-          >
-            <AddContactInput
-              icons={icons}
-              onClose={() => setInputOpened(false)}
-              onAddItem={(item) => {
-                items.push(item);
-                setItems(items.slice());
-              }}
-            />
-          </CSSTransition>
-          {inputOpened ? (
-            <>
-              <Overlay
-                state={inputOpened}
-                clickHadler={() => {
-                  setInputOpened(false);
-                }}
-              />
-              {/* <AddContactInput
-                icons={icons}
-                onClose={() => setInputOpened(false)}
-                onAddItem={(item) => {
-                  items.push(item);
-                  setItems(items.slice());
-                }}
-              /> */}
-            </>
-          ) : (
-            <BaseComponent mb="1rem" mt="0.75rem">
-              <Button type="add" onClick={() => setInputOpened(true)} />
-            </BaseComponent>
           )}
         </BaseComponent>
       </div>

@@ -5,15 +5,15 @@ import PropTypes from "prop-types";
 import Icon from "../Icon/Icon";
 import BaseComponent from "../BaseComponent";
 
-const Wrapper = styled.div`
-  z-index: 2;
+const Picker = styled.div`
+  z-index: 3;
   display: flex;
   flex-wrap: wrap;
   gap: 1.1875rem;
   padding: 1rem 1.25rem;
   position: absolute;
-  width: 20.9rem;
-  height: 5.77rem;
+  max-width: 20.9rem;
+  ${"" /* height: 5.77rem; */}
   border-radius: 1.25rem;
   background: #f8f8f8;
   &:before {
@@ -28,21 +28,25 @@ const Wrapper = styled.div`
   }
 `;
 
-const IconPicker = ({ icons, onClickIcon }) => {
-  return (
-    <BaseComponent>
-      <Wrapper>
-        {icons?.map((icon) => (
-          <Icon src={icon} onClick={() => onClickIcon(icon)} pointer />
-        ))}
-      </Wrapper>
-    </BaseComponent>
-  );
-};
+export default Picker;
 
-IconPicker.propTypes = {
-  icons: PropTypes.array.isRequired,
-  onClickIcon: PropTypes.func,
-};
+// export const Picker = ({ items, onClick }) => {
+//   return <Wrapper>{items?.map((item) => item)}</Wrapper>;
+// };
 
-export default IconPicker;
+// const IconPicker = ({ icons, onClickIcon }) => {
+//   return (
+//     <Wrapper>
+//       {icons?.map((icon) => (
+//         <Icon src={icon} onClick={() => onClickIcon(icon)} pointer />
+//       ))}
+//     </Wrapper>
+//   );
+// };
+
+// IconPicker.propTypes = {
+//   icons: PropTypes.array.isRequired,
+//   onClickIcon: PropTypes.func,
+// };
+
+// export default IconPicker;

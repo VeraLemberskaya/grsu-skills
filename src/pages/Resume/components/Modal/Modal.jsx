@@ -3,6 +3,26 @@ import styled from "styled-components";
 
 import ModalContent from "../ModalContent";
 import Title from "../Title";
+import {
+  ContactsContent,
+  LocationContent,
+  HobbiesContent,
+  WorkExperienceContent,
+  AboutContent,
+  CoursesContent,
+  LangContent,
+} from "../ModalContent/ModalContent";
+import FIELD_TYPES from "../../fieldTypes";
+
+const MODAL_CONTENT = {
+  [FIELD_TYPES.contacts]: <ContactsContent />,
+  [FIELD_TYPES.location]: <LocationContent />,
+  [FIELD_TYPES.hobby]: <HobbiesContent />,
+  [FIELD_TYPES.workExperience]: <WorkExperienceContent />,
+  [FIELD_TYPES.aboutMe]: <AboutContent />,
+  [FIELD_TYPES.cources]: <CoursesContent />,
+  [FIELD_TYPES.languages]: <LangContent />,
+};
 
 const Wrapper = styled.div`
   width: 41.25rem;
@@ -25,9 +45,7 @@ const Modal = ({ icon, type, title, isPrimary }) => {
       <Title icon={icon} isPrimary={isPrimary} underlined>
         {title}
       </Title>
-      <Container>
-        <ModalContent items={[1, 2, 3]} />
-      </Container>
+      <Container>{MODAL_CONTENT[type]}</Container>
     </Wrapper>
   );
 };

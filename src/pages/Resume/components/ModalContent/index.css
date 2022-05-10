@@ -17,21 +17,48 @@
   opacity: 0;
   transition: all 5s;
 } */
+textarea {
+  position: relative;
+  z-index: 3;
+  background: transparent;
+}
 
-.fade-enter {
+.accordion-enter {
+  opacity: 0;
+  /* overflow: hidden;
+  max-width: 2.75rem; */
+}
+
+.accordion-enter-active {
+  opacity: 1;
+  transition: opacity 200ms;
+  /* max-width: 37rem;
+  transition: max-width 0.2s; */
+}
+
+.accordion-exit {
+  opacity: 1;
+  /* max-width: 37rem; */
+}
+
+.accordion-exit-active {
+  opacity: 0;
+  transition: opacity 200ms;
+  /* max-width: 2.75rem;
+  transition: max-width 0.2s; */
+}
+
+.item-enter {
   opacity: 0;
 }
-
-.fade-enter-active {
-  opacity: 100;
-  transition: opacity 0.5s ease-in;
+.item-enter-active {
+  opacity: 1;
+  transition: opacity 400ms;
 }
-
-.fade-exit {
-  opacity: 100;
+.item-exit {
+  opacity: 1;
 }
-
-.fade-exit-active {
+.item-exit-active {
   opacity: 0;
-  transition: opacity 0.5s ease-in;
+  transition: opacity 400ms;
 }

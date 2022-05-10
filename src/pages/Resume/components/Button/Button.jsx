@@ -5,12 +5,12 @@ import PropTypes from "prop-types";
 import BaseComponent from "../BaseComponent/BaseComponent";
 import { Plus, Minus, Check } from "../../../../assets/icons";
 
-const Button = styled(BaseComponent)`
+const Button = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 2.75rem;
-  height: 2.75rem;
+  min-width: ${(props) => (props.size == 2 ? "1.75" : "2.75")}rem;
+  height: ${(props) => (props.size == 2 ? "1.75" : "2.75")}rem;
   border-radius: 1.25rem;
   background: #fff;
   ${(props) =>
@@ -22,7 +22,7 @@ const Button = styled(BaseComponent)`
     ${(props) =>
     props.type === "check" &&
     `background-color: #3e97d5;background-image:url(${Check});`}
-  background-size: 1rem;
+  background-size: ${(props) => (props.size == 2 ? "0.75" : "1")}rem;
   background-repeat: no-repeat;
   background-position: center;
   cursor: pointer;

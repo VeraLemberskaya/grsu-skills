@@ -14,7 +14,7 @@ const SectionBtnGroup = ({ onClick, sections }) => {
       <List>
         {sections?.map((section) => (
           <Button key={section.type} onClick={() => onClick(section)}>
-            <Icon src={section.icon} />
+            <Icon pointer src={section.icon} />
           </Button>
         ))}
       </List>

@@ -8,7 +8,8 @@ const Row = styled(BaseComponent)`
   display: flex;
   align-items: center;
   gap: ${(props) => (props.gap ? props.gap : 0)};
-  ${(props) => props.spaceBetween && `justify-content:space-between`}
+  ${(props) => props.center && `justify-content:center`};
+  ${(props) => props.spaceBetween && `justify-content:space-between`};
 `;
 
 export default Row;

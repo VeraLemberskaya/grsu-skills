@@ -1,11 +1,17 @@
 import React from "react";
 import styled from "styled-components";
 
+const sizes = {
+  2: "0.9",
+  3: "0.5625",
+};
+
 const Icon = styled.img`
   cursor: ${(props) => (props.pointer ? "pointer" : "auto")};
-  width: ${(props) => (props.size == "2" ? "0.75rem" : "1.2rem")};
-  height: ${(props) => (props.size == "2" ? "0.75rem" : "1.2rem")};
+  width: ${({ size }) => (size ? sizes[size] : "1.2")}rem;
+  height: ${({ size }) => (size ? sizes[size] : "1.2")}rem;
   object-fit: contain;
+  user-select: none;
 `;
 
 export default Icon;

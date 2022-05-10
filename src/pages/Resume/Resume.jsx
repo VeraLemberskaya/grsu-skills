@@ -16,7 +16,7 @@ import FIELD_TYPES from "./fieldTypes";
 
 const sections = [
   {
-    type: "location",
+    type: FIELD_TYPES.location,
     title: "Место жительства",
     icon: Location2,
   },
@@ -26,12 +26,12 @@ const sections = [
     icon: Communication,
   },
   {
-    type: "languages",
+    type: FIELD_TYPES.languages,
     title: "Языки",
     icon: Languages,
   },
   {
-    type: "hobby",
+    type: FIELD_TYPES.hobby,
     title: "Хобби",
     icon: Hobby,
   },
@@ -44,19 +44,22 @@ const sections = [
 
 const sections2 = [
   {
-    type: "aboutMe",
+    type: FIELD_TYPES.aboutMe,
     title: "Кратко обо мне",
     icon: AboutMe,
+    isPrimary: true,
   },
   {
-    type: "job",
+    type: FIELD_TYPES.workExperience,
     title: "Опыт работы",
     icon: Job,
+    isPrimary: true,
   },
   {
-    type: "courses",
+    type: FIELD_TYPES.cources,
     title: "Курсы и тренинги",
     icon: Courses,
+    isPrimary: true,
   },
 ];
 
@@ -105,7 +108,8 @@ const Resume = () => {
                 </div>
               </div>
             </div>
-            <Modal icon={Communication} type="contacts" title={"Контакты"} />
+            {section && <Modal {...section} />}
+            {/* <Modal icon={Communication} type="contacts" title={"Контакты"} /> */}
           </section>
         </div>
       </div>

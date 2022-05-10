@@ -19,15 +19,22 @@ const Border = styled.div`
   margin-top: 1.3rem;
 `;
 
-const Title = ({ icon, children, isPrimary, underlined, ...attr }) => {
+const Title = ({
+  icon,
+  children,
+  className,
+  isPrimary,
+  underlined,
+  ...attr
+}) => {
   return (
-    <>
+    <div className={className}>
       <Row gap="1.5rem">
         <Icon src={icon} />
         <SectionTitle {...attr}>{children}</SectionTitle>
       </Row>
       {underlined && <Border isPrimary={isPrimary} />}
-    </>
+    </div>
   );
 };
 
