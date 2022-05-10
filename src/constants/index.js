@@ -1,4 +1,4 @@
-export const grsuSkillsURL = "http://abandonedscope-001-site1";
+export const grsuSkillsURL = "http://abandonedscope-001-site1.gtempurl.com";
 
 const facultiesURL = "api/Faculties/";
 export const allFacultiesEndPoint = `${facultiesURL}faculties`;
