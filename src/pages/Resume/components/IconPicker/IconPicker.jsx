@@ -13,15 +13,18 @@ const Picker = styled.div`
   padding: 1rem 1.25rem;
   position: absolute;
   max-width: 20.9rem;
-  ${"" /* height: 5.77rem; */}
   border-radius: 1.25rem;
   background: #f8f8f8;
+  top: ${(props) => props.top}rem;
+  left: ${(props) => props.left}rem;
+  bottom: ${(props) => props.bottom}rem;
+  right: ${(props) => props.right}rem;
   &:before {
     content: "";
     width: 1rem;
     height: 1rem;
     transform: rotate(45deg);
-    left: 3.7rem;
+    ${(props) => (props.arrowRight ? "right:3.7" : "left:3.7")}rem;
     background: #f8f8f8;
     position: absolute;
     top: -0.2rem;

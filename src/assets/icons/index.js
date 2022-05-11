@@ -53,6 +53,15 @@ import Twitter from "./Twitter.svg";
 import Whatsapp from "./Whatsapp.svg";
 import Dribble from "./Dribble.svg";
 import Snapchat from "./Snapchat.svg";
+import Location2Color from "./Location2Color.svg";
+import CommunicationColor from "./CommunicationColor.svg";
+import LanguagesColor from "./LanguagesColor.svg";
+import HobbyColor from "./HobbyColor.svg";
+import SkillsColor from "./SkillsColor.svg";
+import AboutMeColor from "./AboutMeColor.svg";
+import JobColor from "./JobColor.svg";
+import CoursesColor from "./CoursesColor.svg";
+import Download from "./Download.svg";
 // import LogoDark from " ./LogoDark.svg";
 // import LogoLight from "./LogoLight.svg";
 // import Glossary from " ./Glossary.svg";
@@ -118,4 +127,13 @@ export {
   Whatsapp,
   Dribble,
   Snapchat,
+  Location2Color,
+  CommunicationColor,
+  LanguagesColor,
+  HobbyColor,
+  SkillsColor,
+  AboutMeColor,
+  JobColor,
+  CoursesColor,
+  Download,
 };

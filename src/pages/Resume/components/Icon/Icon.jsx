@@ -4,6 +4,7 @@ import styled from "styled-components";
 const sizes = {
   2: "0.9",
   3: "0.5625",
+  4: "2.05",
 };
 
 const Icon = styled.img`

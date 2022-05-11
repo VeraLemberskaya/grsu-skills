@@ -8,15 +8,26 @@ const List = styled.ul`
   gap: 1.5rem;
 `;
 
-const SectionBtnGroup = ({ onClick, sections }) => {
+const SectionBtnGroup = ({ activeSection, onClick, sections }) => {
   return (
     <div className="section-btn-group">
       <List>
-        {sections?.map((section) => (
-          <Button key={section.type} onClick={() => onClick(section)}>
-            <Icon pointer src={section.icon} />
-          </Button>
-        ))}
+        {sections?.map((section) =>
+          section === activeSection ? (
+            <Button
+              key={section.type}
+              onClick={() => onClick(section)}
+              isPrimary={section.isPrimary}
+              isSecondary={section.isSecondary}
+            >
+              <Icon src={section.icon} pointer />
+            </Button>
+          ) : (
+            <Button key={section.type} onClick={() => onClick(section)}>
+              <Icon src={section.iconColor} pointer />
+            </Button>
+          )
+        )}
       </List>
     </div>
   );

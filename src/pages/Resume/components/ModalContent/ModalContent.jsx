@@ -37,7 +37,6 @@ import {
   Dribble,
   Snapchat,
 } from "../../../../assets/icons";
-import FIELD_TYPES from "../../fieldTypes";
 
 const Wrapper = styled.div`
   min-height: ${(props) => (props.size == 2 ? "1.75" : "2.75")}rem;
@@ -170,14 +169,14 @@ const AddItemInput = ({ size, onClose, onAddItem }) => {
   );
 };
 
-const LangAdd = styled.div`
+const LanguageStyledComponent = styled.div`
   p {
     font-weight: 500;
   }
   button {
     width: 5rem;
     height: 1.75rem;
-    background: #f96326;
+    background: ${(props) => (props.isPrimary ? "#f96326" : "#3E97D5")};
     border-radius: 1.25rem;
     font-size: 1rem;
     font-weight: 700;
@@ -187,37 +186,119 @@ const LangAdd = styled.div`
   }
 `;
 
-const AddLanguageInput = ({ onClose }) => {
+const LanguageComponent = ({ type, level, onButtonClick, isPrimary }) => {
+  return (
+    <LanguageStyledComponent isPrimary={isPrimary}>
+      <Row gap="0.68rem">
+        <p>{type}</p>
+        <button onClick={onButtonClick}>{level}</button>
+      </Row>
+    </LanguageStyledComponent>
+  );
+};
+
+const AddLanguageInput = ({ onClose, onAddItem }) => {
   const [levelSpeech, setLevelSpeech] = React.useState("!");
   const [levelWritten, setLevelWritter] = React.useState("!");
+  const [inputLeftOpened, setInputLeftOpened] = React.useState(false);
+  const [inputRightOpened, setInputRightOpened] = React.useState(false);
+
+  const langLevels = ["A1", "A2", "B1", "B2", "C1", "C2"];
+
+  const input = React.useRef();
+
+  const handleInputChange = (e) => {
+    if (e.key === "Enter") {
+      handleAddItem();
+    }
+  };
+
+  const handleAddItem = () => {
+    const text = input.current.value;
+    if (text.trim().length > 0 && levelSpeech != "!" && levelWritten != "!") {
+      onAddItem({ id: uuidv4(), text, levelSpeech, levelWritten });
+      onClose();
+    }
+  };
 
   return (
     <Wrapper className="add-item-input">
       <Row spaceBetween>
         <Row>
-          <Button type="check" />
-          <input autoFocus type="text" />
+          <Button type="check" onClick={handleAddItem} />
+          <input
+            ref={input}
+            autoFocus
+            type="text"
+            onKeyPress={handleInputChange}
+          />
         </Row>
         <BaseComponent ml="1rem" pr="0.75rem">
-          <Icon size="2" src={Close} pointer />
+          <Icon size="2" src={Close} onClick={onClose} pointer />
         </BaseComponent>
       </Row>
-      <BaseComponent mb="1rem">
+      <BaseComponent mb="1rem" ml="-1rem">
         <Row gap="3.25rem" center>
-          <LangAdd>
-            <Row gap="0.68rem">
-              <p>Разговорный</p>
-              <button>{levelSpeech}</button>
-            </Row>
-          </LangAdd>
-          <LangAdd>
-            <Row gap="0.68rem">
-              <p>Письменный</p>
-              <button>{levelWritten}</button>
-            </Row>
-          </LangAdd>
+          <LanguageComponent
+            type="Разговорный"
+            level={levelSpeech}
+            onButtonClick={() => {
+              setInputRightOpened(false);
+              setInputLeftOpened(true);
+            }}
+            isPrimary
+          />
+          <LanguageComponent
+            type="Письменный"
+            level={levelWritten}
+            onButtonClick={() => {
+              setInputLeftOpened(false);
+              setInputRightOpened(true);
+            }}
+            isPrimary
+          />
         </Row>
       </BaseComponent>
+      {inputLeftOpened && (
+        <Picker top="6.5" left="9">
+          {langLevels.map((level) => (
+            <p
+              onClick={() => {
+                setLevelSpeech(level);
+                setInputLeftOpened(false);
+                input.current.focus();
+              }}
+              style={{
+                fontSize: "1.25rem",
+                fontWeight: "700",
+                cursor: "pointer",
+              }}
+            >
+              {level}
+            </p>
+          ))}
+        </Picker>
+      )}
+      {inputRightOpened && (
+        <Picker top="6.5" right="2" arrowRight>
+          {langLevels.map((level) => (
+            <p
+              onClick={() => {
+                setLevelWritter(level);
+                setInputRightOpened(false);
+                input.current.focus();
+              }}
+              style={{
+                fontSize: "1.25rem",
+                fontWeight: "700",
+                cursor: "pointer",
+              }}
+            >
+              {level}
+            </p>
+          ))}
+        </Picker>
+      )}
     </Wrapper>
   );
 };
@@ -388,20 +469,16 @@ export const LangContent = () => {
                 }}
                 removeable
               />
-              <BaseComponent ml="0.75rem">
+              <BaseComponent ml="3rem">
                 <Row spaceBetween>
-                  <Lang>
-                    <Row gap="0.68rem">
-                      <p>Разговорный</p>
-                      <button>{levelSpeech}</button>
-                    </Row>
-                  </Lang>
-                  <Lang>
-                    <Row gap="0.68rem">
-                      <p>Письменный</p>
-                      <button>{levelWritten}</button>
-                    </Row>
-                  </Lang>
+                  <LanguageComponent
+                    type="Разговорный"
+                    level={item.levelSpeech}
+                  />
+                  <LanguageComponent
+                    type="Письменный"
+                    level={item.levelWritten}
+                  />
                   <BaseComponent ml="1rem" pr="0.75rem">
                     <Icon size="2" src={Edit} />
                   </BaseComponent>

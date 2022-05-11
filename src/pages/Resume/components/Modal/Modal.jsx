@@ -39,10 +39,10 @@ const Container = styled.div`
   margin: 0 1.5rem 0 1rem;
 `;
 
-const Modal = ({ icon, type, title, isPrimary }) => {
+const Modal = ({ iconColor, type, title, isPrimary }) => {
   return (
     <Wrapper className="resume-modal">
-      <Title icon={icon} isPrimary={isPrimary} underlined>
+      <Title icon={iconColor} isPrimary={isPrimary} underlined>
         {title}
       </Title>
       <Container>{MODAL_CONTENT[type]}</Container>

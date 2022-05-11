@@ -17,35 +17,36 @@
   opacity: 0;
   transition: all 5s;
 } */
-textarea {
+/* textarea {
   position: relative;
   z-index: 3;
   background: transparent;
-}
+} */
 
 .accordion-enter {
-  opacity: 0;
-  /* overflow: hidden;
-  max-width: 2.75rem; */
+  /* opacity: 0; */
+  overflow: hidden;
+  max-width: 2.75rem;
 }
 
 .accordion-enter-active {
-  opacity: 1;
-  transition: opacity 200ms;
-  /* max-width: 37rem;
-  transition: max-width 0.2s; */
+  /* opacity: 1;
+  transition: opacity 200ms; */
+  max-width: 37rem;
+  transition: max-width 0.2s;
 }
 
 .accordion-exit {
-  opacity: 1;
-  /* max-width: 37rem; */
+  /* opacity: 1; */
+  max-width: 37rem;
 }
 
 .accordion-exit-active {
-  opacity: 0;
-  transition: opacity 200ms;
-  /* max-width: 2.75rem;
-  transition: max-width 0.2s; */
+  /* opacity: 0;
+  transition: opacity 200ms; */
+  overflow: hidden;
+  max-width: 2.75rem;
+  transition: max-width 0.2s;
 }
 
 .item-enter {

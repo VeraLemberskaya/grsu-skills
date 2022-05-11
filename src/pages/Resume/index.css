@@ -6,6 +6,7 @@
 }
 
 .resume-page > .container {
+  display: flex;
   padding: 2.18rem 0;
 }
 
@@ -13,13 +14,27 @@
   width: 44.625rem;
 }
 
+.cv-section {
+  width: 100%;
+}
+
 .edit-section > .container {
   padding: 0 3.75rem;
 }
 
+.cv-section > .container {
+  padding-right: 6.25rem;
+}
+
+.cv-section.content,
 .edit-section.content {
   display: flex;
   flex-direction: column;
+}
+
+.resume-page .header {
+  margin-bottom: 1.5rem;
+  position: relative;
 }
 
 .section-title {
@@ -32,7 +47,7 @@
   border-radius: 1.25rem;
   height: 2.75rem;
   width: fit-content;
-  margin-bottom: 1.5rem;
+  /* margin-bottom: 1.5rem; */
 }
 
 .section-title.primary {
@@ -42,7 +57,7 @@
 }
 
 .section-title.secondary {
-  background: var(----color-bg-primary);
+  background: var(--color-bg-primary);
   font-weight: 600;
 }
 
@@ -73,4 +88,10 @@
 .edit-section .btn-row {
   margin-top: 2.5rem;
   margin-bottom: 2rem;
+}
+
+.download-btn {
+  position: absolute;
+  top: -0.5rem;
+  right: 0;
 }
