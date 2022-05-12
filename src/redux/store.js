@@ -3,6 +3,7 @@ import facultiesReducer from "./faculties/facultiesSlice";
 import facFilterReducer from "./faculties/facFilterSlice";
 import compSliceReducer from "./compSlice";
 import coursesReducer from "./coursesSlice";
+import cvReducer from "./cvSlice";
 
 import authReducer from "./authSlice";
 
@@ -13,5 +14,6 @@ export default configureStore({
     facFilters: facFilterReducer,
     competencies: compSliceReducer,
     courses: coursesReducer,
+    cv: cvReducer,
   },
 });

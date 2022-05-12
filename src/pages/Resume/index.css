@@ -10,20 +10,13 @@
   padding: 2.18rem 0;
 }
 
+/**/
 .edit-section {
   width: 44.625rem;
 }
 
-.cv-section {
-  width: 100%;
-}
-
 .edit-section > .container {
   padding: 0 3.75rem;
-}
-
-.cv-section > .container {
-  padding-right: 6.25rem;
 }
 
 .cv-section.content,
@@ -61,7 +54,9 @@
   font-weight: 600;
 }
 
-.edit-section label {
+.edit-section label,
+.cv-section .header .info .company,
+.cv-section .header .info .position {
   font-size: 1.25rem;
   font-weight: 500;
   text-transform: uppercase;
@@ -79,6 +74,7 @@
   color: var(--color-foreground);
   padding: 1rem;
   width: 26.25rem;
+  font-family: inherit;
 }
 
 .edit-section .input.company {
@@ -94,4 +90,121 @@
   position: absolute;
   top: -0.5rem;
   right: 0;
+}
+
+/**/
+.cv-section {
+  width: 100%;
+}
+
+.cv-section > .container {
+  padding-right: 6.25rem;
+}
+
+.cv-section .page {
+  width: 68.75rem;
+  min-height: 97rem;
+  background: var(--color-white);
+  box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.25);
+  padding: 3.75rem 5rem;
+}
+
+.cv-section .avatar-box {
+  position: relative;
+  width: fit-content;
+  margin: 1rem;
+  margin-left: 3rem;
+  cursor: pointer;
+}
+
+.cv-section .avatar-box::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  border-radius: 50%;
+  top: 0;
+  left: 0;
+  transition: background-color 0.3s ease-in;
+}
+
+.cv-section .avatar-box:hover::after {
+  background-color: rgba(51, 51, 51, 0.25);
+}
+
+.cv-section .avatar-box:hover .hover-img {
+  opacity: 1;
+}
+
+.cv-section .hover-img {
+  position: absolute;
+  z-index: 2;
+  width: 3.9rem;
+  height: 3.37rem;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.3s ease-in;
+  pointer-events: none;
+}
+
+.cv-section .avatar {
+  width: 11.25rem;
+  height: 11.25rem;
+  border-radius: 50%;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  object-fit: cover;
+  user-select: none;
+  transition: filter 0.3s ease-in;
+}
+
+.cv-section .edit-icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.cv-section .header .info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+.cv-section .header .info .cv-title {
+  max-width: 40rem;
+  text-align: center;
+  line-height: 3.5rem;
+  font-family: "Alice", serif;
+  font-size: 3rem;
+  font-weight: 400;
+  margin-bottom: 1rem;
+}
+
+.cv-section .header .info .cv-title span {
+  text-transform: uppercase;
+}
+
+.cv-section .header .info .company,
+.cv-section .header .info .position {
+  margin-bottom: 0.4rem;
+  width: fit-content;
+}
+
+.cv-section .header .info .company span,
+.cv-section .header .info .position span {
+  font-weight: 600;
+}
+
+.cv-section .header .info .position span {
+  text-transform: none;
+}
+
+.cv-section .user-info p {
+  min-height: 1.4rem;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  font-size: 1.25rem;
 }

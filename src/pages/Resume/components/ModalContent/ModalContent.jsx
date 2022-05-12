@@ -37,6 +37,8 @@ import {
   Dribble,
   Snapchat,
 } from "../../../../assets/icons";
+import { useDispatch } from "react-redux";
+import { setLocation } from "../../../../redux/cvSlice";
 
 const Wrapper = styled.div`
   min-height: ${(props) => (props.size == 2 ? "1.75" : "2.75")}rem;
@@ -98,10 +100,19 @@ const EditItemTextarea = ({ size, text }) => {
   );
 };
 
-const EditItemInput = ({ size, icon, id, text, onRemove, removeable }) => {
+const EditItemInput = ({
+  size,
+  icon,
+  id,
+  text,
+  onRemove,
+  onChange,
+  removeable,
+}) => {
   const [inputValue, setInputValue] = React.useState(text);
 
   const handleInputChange = (e) => {
+    onChange(e.target.value);
     setInputValue(e.target.value);
   };
 
@@ -646,7 +657,15 @@ export const AboutContent = () => {
 };
 
 export const LocationContent = () => {
-  return <EditItemInput text={"Гродно, Беларусь"} />;
+  const dispatch = useDispatch();
+
+  const handleLocationChange = (location) => {
+    dispatch(setLocation(location));
+  };
+
+  return (
+    <EditItemInput onChange={handleLocationChange} text={"Гродно, Беларусь"} />
+  );
 };
 
 export const ContactsContent = () => {

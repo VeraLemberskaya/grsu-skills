@@ -62,6 +62,7 @@ import AboutMeColor from "./AboutMeColor.svg";
 import JobColor from "./JobColor.svg";
 import CoursesColor from "./CoursesColor.svg";
 import Download from "./Download.svg";
+import Photo from "./Photo.svg";
 // import LogoDark from " ./LogoDark.svg";
 // import LogoLight from "./LogoLight.svg";
 // import Glossary from " ./Glossary.svg";
@@ -136,4 +137,5 @@ export {
   JobColor,
   CoursesColor,
   Download,
+  Photo,
 };
