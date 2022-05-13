@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-
 import Icon from "../Icon";
 import Border from "../Border";
 import Row from "../Row";
@@ -16,13 +15,16 @@ const Title = ({
   children,
   className,
   isPrimary,
+  isSecondary,
   underlined,
   ...attr
 }) => {
   return (
     <div className={className}>
       <Row gap="1.5rem">
-        <Icon src={icon} />
+        <Icon isPrimary={isPrimary} isSecondary={isSecondary}>
+          {icon}
+        </Icon>
         <SectionTitle {...attr}>{children}</SectionTitle>
       </Row>
       {underlined && <Border width="85.5" isPrimary={isPrimary} />}

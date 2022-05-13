@@ -103,6 +103,10 @@ img {
   object-fit: cover;
 }
 
+svg {
+  display: block;
+}
+
 ::-webkit-scrollbar {
   width: 0.3rem;
 }

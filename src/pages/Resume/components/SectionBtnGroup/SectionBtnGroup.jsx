@@ -20,11 +20,18 @@ const SectionBtnGroup = ({ activeSection, onClick, sections }) => {
               isPrimary={section.isPrimary}
               isSecondary={section.isSecondary}
             >
-              <Icon src={section.icon} pointer />
+              <Icon pointer>{section.icon}</Icon>
             </Button>
           ) : (
             <Button key={section.type} onClick={() => onClick(section)}>
-              <Icon src={section.iconColor} pointer />
+              <Icon
+                isPrimary={section.isPrimary}
+                isSecondary={section.isSecondary}
+                src={section.iconColor}
+                pointer
+              >
+                {section.icon}
+              </Icon>
             </Button>
           )
         )}

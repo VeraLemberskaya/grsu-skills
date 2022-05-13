@@ -139,8 +139,6 @@
 .cv-section .hover-img {
   position: absolute;
   z-index: 2;
-  width: 3.9rem;
-  height: 3.37rem;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);

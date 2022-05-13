@@ -14,6 +14,7 @@ import {
 } from "../constants/routes";
 
 const AppRoutes = () => {
+  console.log(loginRoute.component);
   return (
     <Routes>
       <Route path={loginRoute.path} element={loginRoute.component} />

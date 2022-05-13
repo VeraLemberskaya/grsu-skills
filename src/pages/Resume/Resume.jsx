@@ -40,35 +40,35 @@ const sections = [
     type: FIELD_TYPES.location,
     title: "Место жительства",
     iconColor: Location2Color,
-    icon: Location2,
+    icon: <Location2 />,
     isSecondary: true,
   },
   {
     type: FIELD_TYPES.contacts,
     title: "Контакты",
     iconColor: CommunicationColor,
-    icon: Communication,
+    icon: <Communication />,
     isSecondary: true,
   },
   {
     type: FIELD_TYPES.languages,
     title: "Языки",
     iconColor: LanguagesColor,
-    icon: Languages,
+    icon: <Languages />,
     isSecondary: true,
   },
   {
     type: FIELD_TYPES.hobby,
-    title: "Хобби",
+    title: "Мои хобби",
     iconColor: HobbyColor,
-    icon: Hobby,
+    icon: <Hobby />,
     isSecondary: true,
   },
   {
     type: "skills",
     title: "Навыки",
     iconColor: SkillsColor,
-    icon: Skills,
+    icon: <Skills />,
     isSecondary: true,
   },
 ];
@@ -77,21 +77,21 @@ const sections2 = [
   {
     type: FIELD_TYPES.aboutMe,
     title: "Кратко обо мне",
-    icon: AboutMe,
+    icon: <AboutMe />,
     iconColor: AboutMeColor,
     isPrimary: true,
   },
   {
     type: FIELD_TYPES.workExperience,
     title: "Опыт работы",
-    icon: Job,
+    icon: <Job />,
     iconColor: JobColor,
     isPrimary: true,
   },
   {
     type: FIELD_TYPES.cources,
     title: "Курсы и тренинги",
-    icon: Courses,
+    icon: <Courses />,
     iconColor: CoursesColor,
     isPrimary: true,
   },
@@ -171,17 +171,24 @@ const Resume = () => {
               <div className="content">
                 <div className="header">
                   <h4 className="section-title secondary">Моё резюме</h4>
-                  <Button className="download-btn" size="3" bg="#3BC261">
-                    <Icon size="4" src={Download} pointer />
+                  <Button className="download-btn" bg="green" size="1">
+                    <Icon pointer>
+                      <Download />
+                    </Icon>
                   </Button>
                 </div>
                 <div className="page">
                   <Row className="header">
                     <div className="avatar-box">
                       <img className="avatar" src={user.avatar} alt="avatar" />
+                      <Icon className="hover-img">
+                        <Photo />
+                      </Icon>
                       <img className="hover-img" src={Photo} />
                       <div className="edit-icon">
-                        <Icon src={Edit} />
+                        <Icon>
+                          <Edit />
+                        </Icon>
                       </div>
                     </div>
                     <div className="info">
@@ -200,12 +207,14 @@ const Resume = () => {
                   <div className="user-info">
                     <div className="location">
                       <Row gap="1.25rem">
-                        <Icon src={Location2Color} />
+                        <Icon isSecondary>
+                          <Location2 />
+                        </Icon>
                         <p>{location}</p>
                       </Row>
                     </div>
                     <div className="birth-date">
-                      <BaseComponent ml="2.5rem">
+                      <BaseComponent ml="2.4rem">
                         <p>Дата рождения: 01.01.2002</p>
                       </BaseComponent>
                     </div>

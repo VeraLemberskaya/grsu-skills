@@ -93,7 +93,9 @@ const EditItemTextarea = ({ size, text }) => {
   return (
     <Wrapper size={size}>
       <Label size={size} htmlFor="textarea">
-        <Icon size={size} src={Edit} />
+        <Icon size={size}>
+          <Edit />
+        </Icon>
       </Label>
       <Textarea size={size} value={value} id="textarea" autoFocus />
     </Wrapper>
@@ -121,17 +123,23 @@ const EditItemInput = ({
       <Row spaceBetween>
         <Row>
           {removeable && (
-            <Button size={size} type="remove" onClick={() => onRemove(id)} />
+            <Button
+              size={+size + 1}
+              type="remove"
+              onClick={() => onRemove(id)}
+            />
           )}
           {icon && (
             <BaseComponent ml="1rem">
-              <Icon size={size} src={icon} />
+              <Icon size={size}>{icon}</Icon>
             </BaseComponent>
           )}
           <input type="text" value={inputValue} onChange={handleInputChange} />
         </Row>
         <BaseComponent ml="1rem" pr="0.75rem">
-          <Icon size={size} src={Edit} />
+          <Icon size={size}>
+            <Edit />
+          </Icon>
         </BaseComponent>
       </Row>
     </Wrapper>
@@ -159,7 +167,7 @@ const AddItemInput = ({ size, onClose, onAddItem }) => {
     <Wrapper size={size} className="add-item-input">
       <Row spaceBetween>
         <Row>
-          <Button size={size} type="check" onClick={handleAddItem} />
+          <Button size={+size + 1} type="check" onClick={handleAddItem} />
           <input
             autoFocus
             ref={input}
@@ -168,12 +176,9 @@ const AddItemInput = ({ size, onClose, onAddItem }) => {
           />
         </Row>
         <BaseComponent ml="1rem" pr="0.75rem">
-          <Icon
-            size={size == 2 ? "3" : "2"}
-            src={Close}
-            onClick={onClose}
-            pointer
-          />
+          <Icon size={+size + 1} onClick={onClose} pointer>
+            <Close />
+          </Icon>
         </BaseComponent>
       </Row>
     </Wrapper>
@@ -245,7 +250,9 @@ const AddLanguageInput = ({ onClose, onAddItem }) => {
           />
         </Row>
         <BaseComponent ml="1rem" pr="0.75rem">
-          <Icon size="2" src={Close} onClick={onClose} pointer />
+          <Icon size="2" onClick={onClose} pointer>
+            <Close />
+          </Icon>
         </BaseComponent>
       </Row>
       <BaseComponent mb="1rem" ml="-1rem">
@@ -341,11 +348,9 @@ const AddContactInput = ({ icons, onClose, onAddItem }) => {
             <BaseComponent mr="1rem">
               <Button type="check" onClick={handleAddItem} />
             </BaseComponent>
-            <Icon
-              src={icon ? icon : ChooseIcon}
-              onClick={() => setIconsOpened(true)}
-              pointer
-            />
+            <Icon onClick={() => setIconsOpened(true)} pointer>
+              {icon ? icon : <ChooseIcon />}
+            </Icon>
             <input
               autoFocus
               ref={input}
@@ -354,7 +359,9 @@ const AddContactInput = ({ icons, onClose, onAddItem }) => {
             />
           </Row>
           <BaseComponent ml="1rem" pr="0.75rem">
-            <Icon size="2" src={Close} onClick={onClose} pointer />
+            <Icon size="2" onClick={onClose} pointer>
+              <Close />
+            </Icon>
           </BaseComponent>
         </Row>
       </Wrapper>
@@ -363,14 +370,15 @@ const AddContactInput = ({ icons, onClose, onAddItem }) => {
           <Picker>
             {icons.map((icon) => (
               <Icon
-                src={icon}
                 onClick={() => {
                   setIcon(icon);
                   setIconsOpened(false);
                   input.current.focus();
                 }}
                 pointer
-              />
+              >
+                {icon}
+              </Icon>
             ))}
           </Picker>
         </BaseComponent>
@@ -422,7 +430,7 @@ const List = ({ size }) => {
                 mt={size == 2 ? "0.4rem" : "0.75rem"}
               >
                 <Button
-                  size={size}
+                  size={+size + 1}
                   type="add"
                   onClick={() => setInputOpened(true)}
                 />
@@ -553,9 +561,9 @@ export const WorkExperienceContent = () => {
                 }}
                 removeable
               />
-              <BaseComponent ml="0.75rem">
+              <div style={{ width: "97%", margin: "0 auto" }}>
                 <List size="2" />
-              </BaseComponent>
+              </div>
             </>
           </CSSTransition>
         ))}
@@ -673,22 +681,22 @@ export const ContactsContent = () => {
   const [inputOpened, setInputOpened] = React.useState(false);
 
   const icons = [
-    Chat,
-    Call,
-    Message,
-    Mail,
-    Adress,
-    Messenger,
-    Facebook,
-    Skype,
-    Instagram,
-    Youtube,
-    Vk,
-    Telegram,
-    Twitter,
-    Whatsapp,
-    Dribble,
-    Snapchat,
+    <Chat />,
+    <Call />,
+    <Message />,
+    <Mail />,
+    <Adress />,
+    <Messenger />,
+    <Facebook />,
+    <Skype />,
+    <Instagram />,
+    <Youtube />,
+    <Vk />,
+    <Telegram />,
+    <Twitter />,
+    <Whatsapp />,
+    <Dribble />,
+    <Snapchat />,
   ];
 
   return (

@@ -9,10 +9,10 @@ const Picker = styled.div`
   z-index: 3;
   display: flex;
   flex-wrap: wrap;
-  gap: 1.1875rem;
+  gap: 1.1rem;
   padding: 1rem 1.25rem;
   position: absolute;
-  max-width: 20.9rem;
+  max-width: 21rem;
   border-radius: 1.25rem;
   background: #f8f8f8;
   top: ${(props) => props.top}rem;
