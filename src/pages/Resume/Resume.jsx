@@ -8,6 +8,7 @@ import {
   Button,
   Icon,
   Border,
+  CVSection,
 } from "./components";
 import {
   Location2,
@@ -34,40 +35,36 @@ import FIELD_TYPES from "./fieldTypes";
 import { setCompany, setPosition } from "../../redux/cvSlice";
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
 import BaseComponent from "./components/BaseComponent";
+import Avatar from "./components/Avatar";
 
 const sections = [
   {
     type: FIELD_TYPES.location,
     title: "Место жительства",
-    iconColor: Location2Color,
     icon: <Location2 />,
     isSecondary: true,
   },
   {
     type: FIELD_TYPES.contacts,
     title: "Контакты",
-    iconColor: CommunicationColor,
     icon: <Communication />,
     isSecondary: true,
   },
   {
     type: FIELD_TYPES.languages,
     title: "Языки",
-    iconColor: LanguagesColor,
     icon: <Languages />,
     isSecondary: true,
   },
   {
     type: FIELD_TYPES.hobby,
     title: "Мои хобби",
-    iconColor: HobbyColor,
     icon: <Hobby />,
     isSecondary: true,
   },
   {
     type: "skills",
-    title: "Навыки",
-    iconColor: SkillsColor,
+    title: "Мои навыки",
     icon: <Skills />,
     isSecondary: true,
   },
@@ -78,21 +75,18 @@ const sections2 = [
     type: FIELD_TYPES.aboutMe,
     title: "Кратко обо мне",
     icon: <AboutMe />,
-    iconColor: AboutMeColor,
     isPrimary: true,
   },
   {
     type: FIELD_TYPES.workExperience,
     title: "Опыт работы",
     icon: <Job />,
-    iconColor: JobColor,
     isPrimary: true,
   },
   {
     type: FIELD_TYPES.cources,
     title: "Курсы и тренинги",
     icon: <Courses />,
-    iconColor: CoursesColor,
     isPrimary: true,
   },
 ];
@@ -179,18 +173,7 @@ const Resume = () => {
                 </div>
                 <div className="page">
                   <Row className="header">
-                    <div className="avatar-box">
-                      <img className="avatar" src={user.avatar} alt="avatar" />
-                      <Icon className="hover-img">
-                        <Photo />
-                      </Icon>
-                      <img className="hover-img" src={Photo} />
-                      <div className="edit-icon">
-                        <Icon>
-                          <Edit />
-                        </Icon>
-                      </div>
-                    </div>
+                    <Avatar img={user.avatar} />
                     <div className="info">
                       <div className="cv-title">
                         {user.name}
@@ -220,8 +203,10 @@ const Resume = () => {
                     </div>
                   </div>
                   <Border />
+                  <div className="cv-sections-container">
+                    <CVSection {...sections[1]} />
+                  </div>
                 </div>
-
                 {/* AIzaSyBLhvsZS6duJFD2DktfTj4FLrJoyhMXqMc */}
               </div>
             </div>

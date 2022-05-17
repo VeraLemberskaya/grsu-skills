@@ -6,9 +6,10 @@ import Icon from "../Icon/Icon";
 import BaseComponent from "../BaseComponent";
 
 const Picker = styled.div`
-  z-index: 3;
+  z-index: 100 !important;
   display: flex;
   flex-wrap: wrap;
+  flex-direction: row !important;
   gap: 1.1rem;
   padding: 1rem 1.25rem;
   position: absolute;

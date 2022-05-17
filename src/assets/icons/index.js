@@ -53,14 +53,6 @@ import Twitter from "./Twitter.js";
 import Whatsapp from "./Whatsapp.js";
 import Dribble from "./Dribble.js";
 import Snapchat from "./Snapchat.js";
-import Location2Color from "./Location2Color.svg";
-import CommunicationColor from "./CommunicationColor.svg";
-import LanguagesColor from "./LanguagesColor.svg";
-import HobbyColor from "./HobbyColor.svg";
-import SkillsColor from "./SkillsColor.svg";
-import AboutMeColor from "./AboutMeColor.svg";
-import JobColor from "./JobColor.svg";
-import CoursesColor from "./CoursesColor.svg";
 import Download from "./Download.js";
 import Photo from "./Photo.js";
 // import LogoDark from " ./LogoDark.svg";
@@ -128,14 +120,6 @@ export {
   Whatsapp,
   Dribble,
   Snapchat,
-  Location2Color,
-  CommunicationColor,
-  LanguagesColor,
-  HobbyColor,
-  SkillsColor,
-  AboutMeColor,
-  JobColor,
-  CoursesColor,
   Download,
   Photo,
 };

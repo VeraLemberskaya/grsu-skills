@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import { v4 as uuidv4 } from "uuid";
-import IconPicker from "../IconPicker";
+// import IconPicker from "../IconPicker";
 import Picker from "../IconPicker/IconPicker";
 import {
   CSSTransition,
@@ -37,8 +37,13 @@ import {
   Dribble,
   Snapchat,
 } from "../../../../assets/icons";
-import { useDispatch } from "react-redux";
-import { setLocation } from "../../../../redux/cvSlice";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addContact,
+  removeContact,
+  setContact,
+  setLocation,
+} from "../../../../redux/cvSlice";
 
 const Wrapper = styled.div`
   min-height: ${(props) => (props.size == 2 ? "1.75" : "2.75")}rem;
@@ -101,48 +106,50 @@ const EditItemTextarea = ({ size, text }) => {
     </Wrapper>
   );
 };
-
+//в качестве children передавать какой-то компонент(иконка с пикером)
 const EditItemInput = ({
   size,
-  icon,
-  id,
-  text,
+  item,
   onRemove,
   onChange,
   removeable,
+  children,
 }) => {
+  const { id, icon, text } = item;
   const [inputValue, setInputValue] = React.useState(text);
 
   const handleInputChange = (e) => {
-    onChange(e.target.value);
+    onChange({ ...item, text: e.target.value });
     setInputValue(e.target.value);
   };
 
   return (
-    <Wrapper size={size}>
-      <Row spaceBetween>
-        <Row>
-          {removeable && (
-            <Button
-              size={+size + 1}
-              type="remove"
-              onClick={() => onRemove(id)}
+    <>
+      <Wrapper size={size}>
+        <Row spaceBetween>
+          <Row>
+            {removeable && (
+              <Button
+                size={+size + 1}
+                type="remove"
+                onClick={() => onRemove(id)}
+              />
+            )}
+            {children && <BaseComponent ml="1rem">{children}</BaseComponent>}
+            <input
+              type="text"
+              value={inputValue}
+              onChange={handleInputChange}
             />
-          )}
-          {icon && (
-            <BaseComponent ml="1rem">
-              <Icon size={size}>{icon}</Icon>
-            </BaseComponent>
-          )}
-          <input type="text" value={inputValue} onChange={handleInputChange} />
+          </Row>
+          <BaseComponent ml="1rem" pr="0.75rem">
+            <Icon size={size}>
+              <Edit />
+            </Icon>
+          </BaseComponent>
         </Row>
-        <BaseComponent ml="1rem" pr="0.75rem">
-          <Icon size={size}>
-            <Edit />
-          </Icon>
-        </BaseComponent>
-      </Row>
-    </Wrapper>
+      </Wrapper>
+    </>
   );
 };
 
@@ -318,72 +325,6 @@ const AddLanguageInput = ({ onClose, onAddItem }) => {
         </Picker>
       )}
     </Wrapper>
-  );
-};
-
-const AddContactInput = ({ icons, onClose, onAddItem }) => {
-  const [icon, setIcon] = React.useState(null);
-  const [iconsOpened, setIconsOpened] = React.useState(false);
-  const input = React.useRef();
-
-  const handleInputChange = (e) => {
-    if (e.key === "Enter") {
-      handleAddItem();
-    }
-  };
-
-  const handleAddItem = () => {
-    const text = input.current.value;
-    if (text.trim().length > 0 && icon) {
-      onAddItem({ id: uuidv4(), icon, text });
-      onClose();
-    }
-  };
-
-  return (
-    <>
-      <Wrapper className="add-contact-input">
-        <Row spaceBetween>
-          <Row>
-            <BaseComponent mr="1rem">
-              <Button type="check" onClick={handleAddItem} />
-            </BaseComponent>
-            <Icon onClick={() => setIconsOpened(true)} pointer>
-              {icon ? icon : <ChooseIcon />}
-            </Icon>
-            <input
-              autoFocus
-              ref={input}
-              type="text"
-              onKeyPress={handleInputChange}
-            />
-          </Row>
-          <BaseComponent ml="1rem" pr="0.75rem">
-            <Icon size="2" onClick={onClose} pointer>
-              <Close />
-            </Icon>
-          </BaseComponent>
-        </Row>
-      </Wrapper>
-      {iconsOpened && (
-        <BaseComponent mt="1rem" className="picker">
-          <Picker>
-            {icons.map((icon) => (
-              <Icon
-                onClick={() => {
-                  setIcon(icon);
-                  setIconsOpened(false);
-                  input.current.focus();
-                }}
-                pointer
-              >
-                {icon}
-              </Icon>
-            ))}
-          </Picker>
-        </BaseComponent>
-      )}
-    </>
   );
 };
 
@@ -676,9 +617,116 @@ export const LocationContent = () => {
   );
 };
 
+const IconPicker = ({ defaultIcon, icons, onIconChange }) => {
+  const [pickerOpened, setPickerOpened] = React.useState(false);
+
+  const handleIconClick = (icon) => {
+    onIconChange(icon);
+    setPickerOpened(false);
+  };
+
+  return (
+    <>
+      <div style={{ position: "relative" }}>
+        <Icon onClick={() => setPickerOpened((prev) => !prev)} pointer>
+          {defaultIcon}
+        </Icon>
+      </div>
+      {pickerOpened && (
+        <Picker top="3.5" left="-0">
+          {icons.map((icon) => (
+            <Icon onClick={() => handleIconClick(icon)} pointer>
+              {icon}
+            </Icon>
+          ))}
+        </Picker>
+      )}
+    </>
+  );
+};
+
+const AddContactInput = ({ icons, onClose, onAddItem }) => {
+  const [icon, setIcon] = React.useState(null);
+  const [iconsOpened, setIconsOpened] = React.useState(false);
+  const input = React.useRef();
+
+  const handleInputChange = (e) => {
+    if (e.key === "Enter") {
+      handleAddItem();
+    }
+  };
+
+  const handleAddItem = () => {
+    const text = input.current.value;
+    if (text.trim().length > 0 && icon) {
+      onAddItem({ id: uuidv4(), icon, text });
+      onClose();
+    }
+  };
+
+  return (
+    <>
+      <Wrapper className="add-contact-input">
+        <Row spaceBetween>
+          <Row>
+            <BaseComponent mr="1rem">
+              <Button type="check" onClick={handleAddItem} />
+            </BaseComponent>
+            <Icon onClick={() => setIconsOpened(true)} pointer>
+              {icon ? icon : <ChooseIcon />}
+            </Icon>
+            <input
+              autoFocus
+              ref={input}
+              type="text"
+              onKeyPress={handleInputChange}
+            />
+          </Row>
+          <BaseComponent ml="1rem" pr="0.75rem">
+            <Icon size="2" onClick={onClose} pointer>
+              <Close />
+            </Icon>
+          </BaseComponent>
+        </Row>
+      </Wrapper>
+      {iconsOpened && (
+        <BaseComponent mt="1rem" className="picker">
+          <Picker>
+            {icons.map((icon) => (
+              <Icon
+                onClick={() => {
+                  setIcon(icon);
+                  setIconsOpened(false);
+                  input.current.focus();
+                }}
+                pointer
+              >
+                {icon}
+              </Icon>
+            ))}
+          </Picker>
+        </BaseComponent>
+      )}
+    </>
+  );
+};
+
 export const ContactsContent = () => {
-  const [items, setItems] = React.useState([]);
+  const contacts = useSelector((state) => state.cv.contacts);
   const [inputOpened, setInputOpened] = React.useState(false);
+  const dispatch = useDispatch();
+
+  const handleAddContact = (contact) => {
+    dispatch(addContact(contact));
+  };
+
+  const handleRemoveItem = (id) => {
+    dispatch(removeContact(id));
+  };
+
+  const handleEditItem = (contact) => {
+    dispatch(setContact(contact));
+  };
 
   const icons = [
     <Chat />,
@@ -704,15 +752,22 @@ export const ContactsContent = () => {
       <div style={{ overflow: "auto", maxHeight: "20rem" }}>
         <BaseComponent ml="0.5rem">
           <TransitionGroup>
-            {items.map((item) => (
-              <CSSTransition key={item.id} timeout={400} classNames="item">
+            {contacts.map((contact) => (
+              <CSSTransition key={contact.id} timeout={400} classNames="item">
                 <EditItemInput
-                  {...item}
-                  onRemove={(id) => {
-                    setItems(items.filter((item) => item.id != id));
-                  }}
+                  item={contact}
+                  onChange={handleEditItem}
+                  onRemove={handleRemoveItem}
                   removeable
-                />
+                >
+                  <IconPicker
+                    defaultIcon={contact.icon}
+                    icons={icons}
+                    onIconChange={(newIcon) => {
+                      handleEditItem({ ...contact, icon: newIcon });
+                    }}
+                  />
+                </EditItemInput>
               </CSSTransition>
             ))}
           </TransitionGroup>
@@ -727,10 +782,7 @@ export const ContactsContent = () => {
                 <AddContactInput
                   icons={icons}
                   onClose={() => setInputOpened(false)}
-                  onAddItem={(item) => {
-                    items.push(item);
-                    setItems(items.slice());
-                  }}
+                  onAddItem={handleAddContact}
                 />
               ) : (
                 <BaseComponent mb="1rem" mt="0.75rem">

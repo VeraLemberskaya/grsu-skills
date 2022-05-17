@@ -33,7 +33,7 @@
   /* opacity: 1;
   transition: opacity 200ms; */
   max-width: 37rem;
-  transition: max-width 0.2s;
+  transition: max-width 0.2s ease-out;
 }
 
 .accordion-exit {
@@ -46,7 +46,7 @@
   transition: opacity 200ms; */
   overflow: hidden;
   max-width: 2.75rem;
-  transition: max-width 0.2s;
+  transition: max-width 0.2s ease-out;
 }
 
 .item-enter {

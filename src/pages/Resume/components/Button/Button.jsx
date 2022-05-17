@@ -50,6 +50,7 @@ const ButtonWrapper = styled.button`
   }};
   cursor: pointer;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+  transition: background-color 0.2s ease-in;
 `;
 
 const Button = (props) => {

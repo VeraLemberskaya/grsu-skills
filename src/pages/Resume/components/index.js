@@ -6,6 +6,7 @@ export { default as IconPicker } from "./IconPicker";
 export { default as ModalContent } from "./ModalContent";
 export { default as SectionBtnGroup } from "./SectionBtnGroup";
 export { default as Modal } from "./Modal";
+export { default as CVSection } from "./CVSection";
 
 //styled
 export { default as Border } from "./Border";
