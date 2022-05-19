@@ -3,11 +3,13 @@
 .resume-page {
   background: var(--color-gray);
   min-height: 100vh;
+  overflow: hidden;
 }
 
 .resume-page > .container {
   display: flex;
   padding: 2.18rem 0;
+  gap: 1rem;
 }
 
 /**/
@@ -98,7 +100,7 @@
 }
 
 .cv-section > .container {
-  padding-right: 6.25rem;
+  padding-right: 5.25rem;
 }
 
 .cv-section .page {
@@ -209,4 +211,15 @@
 
 .cv-sections-container {
   margin-top: 2.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1.68rem;
+}
+
+.cv-sections-container .left-sections,
+.cv-sections-container .right-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 2.125rem;
 }

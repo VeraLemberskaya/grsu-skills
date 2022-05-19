@@ -55,6 +55,7 @@ import Dribble from "./Dribble.js";
 import Snapchat from "./Snapchat.js";
 import Download from "./Download.js";
 import Photo from "./Photo.js";
+import Education from "./Education.js";
 // import LogoDark from " ./LogoDark.svg";
 // import LogoLight from "./LogoLight.svg";
 // import Glossary from " ./Glossary.svg";
@@ -122,4 +123,5 @@ export {
   Snapchat,
   Download,
   Photo,
+  Education,
 };

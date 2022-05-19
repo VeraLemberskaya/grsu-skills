@@ -57,7 +57,7 @@ const Button = (props) => {
   return (
     <ButtonWrapper {...props}>
       {props.type ? (
-        <Icon size={+props.size - 1} pointer>
+        <Icon size={props.size ? Number(props.size) - 1 : null} pointer>
           {BUTTON_TYPES[props.type].icon}
         </Icon>
       ) : (
@@ -69,6 +69,8 @@ const Button = (props) => {
 
 Button.propTypes = {
   type: PropTypes.oneOf(["add", "remove", "check"]),
+  isPrimary: PropTypes.bool,
+  isSecondary: PropTypes.bool,
 };
 
 export default Button;

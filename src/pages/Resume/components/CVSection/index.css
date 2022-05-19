@@ -1,0 +1,29 @@
+.cv-section .cv-double-list > li {
+  margin-bottom: 0.6rem;
+}
+
+.cv-section .nested-list {
+  margin-left: 2rem;
+  margin-top: 0.1rem;
+  margin-bottom: 0.1rem;
+}
+
+.cv-section .nested-list li {
+  position: relative;
+}
+
+.cv-section .nested-list li::before {
+  content: "";
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: var(--color-foreground);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: -0.75rem;
+}
+
+.cv-section .education-section {
+  max-width: 18.5rem;
+}

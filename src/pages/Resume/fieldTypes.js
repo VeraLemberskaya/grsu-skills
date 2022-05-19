@@ -6,6 +6,8 @@ const FIELD_TYPES = {
   aboutMe: "ABOUT_ME",
   cources: "COURCES",
   languages: "LANGUAGES",
+  education: "EDUCATION",
+  skills: "SKILLS",
 };
 
 export default FIELD_TYPES;

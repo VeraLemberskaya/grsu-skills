@@ -11,6 +11,7 @@ import {
   AboutContent,
   CoursesContent,
   LangContent,
+  SkillsContent,
 } from "../ModalContent/ModalContent";
 import FIELD_TYPES from "../../fieldTypes";
 
@@ -22,6 +23,7 @@ const MODAL_CONTENT = {
   [FIELD_TYPES.aboutMe]: <AboutContent />,
   [FIELD_TYPES.cources]: <CoursesContent />,
   [FIELD_TYPES.languages]: <LangContent />,
+  [FIELD_TYPES.skills]: <SkillsContent />,
 };
 
 const Wrapper = styled.div`
@@ -39,7 +41,7 @@ const Container = styled.div`
   margin: 0 1.5rem 0 1rem;
 `;
 
-const Modal = ({ icon, iconColor, type, title, isPrimary, isSecondary }) => {
+const Modal = ({ icon, type, title, isPrimary, isSecondary }) => {
   return (
     <Wrapper className="resume-modal">
       <Title

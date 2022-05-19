@@ -41,8 +41,25 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   addContact,
   removeContact,
+  setAboutMe,
   setContact,
+  addLanguage,
+  removeLanguage,
+  setLanguage,
   setLocation,
+  addJob,
+  removeJob,
+  setJob,
+  addJobInfo,
+  setJobInfo,
+  removeJobInfo,
+  addHobby,
+  removeHobby,
+  setHobby,
+  addCourse,
+  removeCourse,
+  setCourse,
+  setCourseInfo,
 } from "../../../../redux/cvSlice";
 
 const Wrapper = styled.div`
@@ -92,8 +109,12 @@ const Label = styled.label`
   right: ${(props) => (props.size == 2 ? "-22" : "-20")}%;
 `;
 
-const EditItemTextarea = ({ size, text }) => {
+const EditItemTextarea = ({ size, text, onChange }) => {
   const [value, setValue] = React.useState(text);
+
+  const handleTextareaChange = (e) => {
+    onChange(e.target.value);
+  };
 
   return (
     <Wrapper size={size}>
@@ -102,7 +123,13 @@ const EditItemTextarea = ({ size, text }) => {
           <Edit />
         </Icon>
       </Label>
-      <Textarea size={size} value={value} id="textarea" autoFocus />
+      <Textarea
+        size={size}
+        value={value}
+        id="textarea"
+        onChange={handleTextareaChange}
+        autoFocus
+      />
     </Wrapper>
   );
 };
@@ -113,6 +140,7 @@ const EditItemInput = ({
   onRemove,
   onChange,
   removeable,
+  maxLength,
   children,
 }) => {
   const { id, icon, text } = item;
@@ -130,7 +158,7 @@ const EditItemInput = ({
           <Row>
             {removeable && (
               <Button
-                size={+size + 1}
+                size={Number(size) + 1}
                 type="remove"
                 onClick={() => onRemove(id)}
               />
@@ -140,6 +168,7 @@ const EditItemInput = ({
               type="text"
               value={inputValue}
               onChange={handleInputChange}
+              maxLength={maxLength ? maxLength : "50"}
             />
           </Row>
           <BaseComponent ml="1rem" pr="0.75rem">
@@ -174,7 +203,11 @@ const AddItemInput = ({ size, onClose, onAddItem }) => {
     <Wrapper size={size} className="add-item-input">
       <Row spaceBetween>
         <Row>
-          <Button size={+size + 1} type="check" onClick={handleAddItem} />
+          <Button
+            size={Number(size) + 1}
+            type="check"
+            onClick={handleAddItem}
+          />
           <input
             autoFocus
             ref={input}
@@ -183,7 +216,7 @@ const AddItemInput = ({ size, onClose, onAddItem }) => {
           />
         </Row>
         <BaseComponent ml="1rem" pr="0.75rem">
-          <Icon size={+size + 1} onClick={onClose} pointer>
+          <Icon size={Number(size) + 1} onClick={onClose} pointer>
             <Close />
           </Icon>
         </BaseComponent>
@@ -328,22 +361,23 @@ const AddLanguageInput = ({ onClose, onAddItem }) => {
   );
 };
 
-const List = ({ size }) => {
-  const [items, setItems] = React.useState([]);
+const List = ({ items, size, onAddItem, onRemoveItem, onChangeItem }) => {
+  // const [items, setItems] = React.useState([]);
   const [inputOpened, setInputOpened] = React.useState(false);
 
   return (
     <div style={{ position: "relative" }}>
       <div style={{ overflow: "auto", maxHeight: "20rem" }}>
         <TransitionGroup>
-          {items.map((item) => (
+          {items?.map((item) => (
             <CSSTransition key={item.id} timeout={400} classNames="item">
               <EditItemInput
                 size={size}
-                {...item}
+                item={item}
                 onRemove={(id) => {
-                  setItems(items.filter((item) => item.id != id));
+                  onRemoveItem(id);
                 }}
+                onChange={(item) => onChangeItem(item)}
                 removeable
               />
             </CSSTransition>
@@ -361,8 +395,7 @@ const List = ({ size }) => {
                 size={size}
                 onClose={() => setInputOpened(false)}
                 onAddItem={(item) => {
-                  items.push(item);
-                  setItems(items.slice());
+                  onAddItem(item);
                 }}
               />
             ) : (
@@ -371,7 +404,7 @@ const List = ({ size }) => {
                 mt={size == 2 ? "0.4rem" : "0.75rem"}
               >
                 <Button
-                  size={+size + 1}
+                  size={Number(size) + 1}
                   type="add"
                   onClick={() => setInputOpened(true)}
                 />
@@ -411,22 +444,25 @@ const Lang = styled.div`
 `;
 
 export const LangContent = () => {
-  const [items, setItems] = React.useState([]);
   const [inputOpened, setInputOpened] = React.useState(false);
-  const [levelSpeech, setLevelSpeech] = React.useState(langLevels[0]);
-  const [levelWritten, setLevelWritten] = React.useState(langLevels[0]);
+  // const [levelSpeech, setLevelSpeech] = React.useState(langLevels[0]);
+  // const [levelWritten, setLevelWritten] = React.useState(langLevels[0]);
+  const languages = useSelector((state) => state.cv.languages);
+  const dispatch = useDispatch();
 
   return (
     <>
       <TransitionGroup>
-        {items.map((item) => (
+        {languages.map((item) => (
           <CSSTransition key={item.id} timeout={400} classNames="item">
             <>
               <EditItemInput
-                {...item}
+                item={item}
                 onRemove={(id) => {
-                  setItems(items.filter((item) => item.id != id));
+                  dispatch(removeLanguage(id));
                 }}
+                onChange={(lang) => dispatch(setLanguage(lang))}
+                maxLength="26"
                 removeable
               />
               <BaseComponent ml="3rem">
@@ -459,8 +495,7 @@ export const LangContent = () => {
             <AddLanguageInput
               onClose={() => setInputOpened(false)}
               onAddItem={(item) => {
-                items.push(item);
-                setItems(items.slice());
+                dispatch(addLanguage(item));
               }}
             />
           ) : (
@@ -483,27 +518,58 @@ export const LangContent = () => {
 };
 
 export const HobbiesContent = () => {
-  return <List />;
+  const hobbies = useSelector((state) => state.cv.hobbies);
+  const dispatch = useDispatch();
+
+  return (
+    <List
+      items={hobbies}
+      onAddItem={(item) => dispatch(addHobby(item))}
+      onRemoveItem={(id) => dispatch(removeHobby(id))}
+      onChangeItem={(item) => dispatch(setHobby(item))}
+    />
+  );
 };
 
 export const WorkExperienceContent = () => {
-  const [items, setItems] = React.useState([]);
+  const jobs = useSelector((state) => state.cv.jobs);
   const [inputOpened, setInputOpened] = React.useState(false);
+  const dispatch = useDispatch();
+
+  const handleAddJobInfo = (item, info) => {
+    dispatch(addJobInfo({ id: item.id, info }));
+  };
+
+  const handleChangeJobInfo = (item, info) => {
+    dispatch(setJobInfo({ idJob: item.id, info }));
+  };
+
+  const handleRemoveJobInfo = (item, id) => {
+    dispatch(removeJobInfo({ idJob: item.id, idInfo: id }));
+  };
+
   return (
     <>
       <TransitionGroup>
-        {items.map((item) => (
+        {jobs.map((item) => (
           <CSSTransition key={item.id} timeout={400} classNames="item">
             <>
               <EditItemInput
-                {...item}
+                item={item}
                 onRemove={(id) => {
-                  setItems(items.filter((item) => item.id != id));
+                  dispatch(removeJob(id));
                 }}
+                onChange={(item) => dispatch(setJob(item))}
                 removeable
               />
               <div style={{ width: "97%", margin: "0 auto" }}>
-                <List size="2" />
+                <List
+                  items={item.info}
+                  size="2"
+                  onAddItem={(info) => handleAddJobInfo(item, info)}
+                  onChangeItem={(info) => handleChangeJobInfo(item, info)}
+                  onRemoveItem={(id) => handleRemoveJobInfo(item, id)}
+                />
               </div>
             </>
           </CSSTransition>
@@ -520,8 +586,13 @@ export const WorkExperienceContent = () => {
             <AddItemInput
               onClose={() => setInputOpened(false)}
               onAddItem={(item) => {
-                items.push(item);
-                setItems(items.slice());
+                const { id, text } = item;
+                const job = {
+                  id,
+                  text,
+                  info: [],
+                };
+                dispatch(addJob(job));
               }}
             />
           ) : (
@@ -544,24 +615,32 @@ export const WorkExperienceContent = () => {
 };
 
 export const CoursesContent = () => {
-  const [items, setItems] = React.useState([]);
+  const courses = useSelector((state) => state.cv.courses);
+  const dispatch = useDispatch();
+  // const [items, setItems] = React.useState([]);
   const [inputOpened, setInputOpened] = React.useState(false);
 
   return (
     <>
       <TransitionGroup>
-        {items.map((item) => (
+        {courses.map((item) => (
           <CSSTransition key={item.id} timeout={400} classNames="item">
             <>
               <EditItemInput
-                {...item}
+                item={item}
                 onRemove={(id) => {
-                  setItems(items.filter((item) => item.id != id));
+                  dispatch(removeCourse(id));
                 }}
+                onChange={(item) => dispatch(setCourse(item))}
                 removeable
               />
               <BaseComponent ml="0.75rem">
-                <EditItemTextarea size="2" />
+                <EditItemTextarea
+                  onChange={(text) =>
+                    dispatch(setCourseInfo({ idCourse: item.id, info: text }))
+                  }
+                  size="2"
+                />
               </BaseComponent>
             </>
           </CSSTransition>
@@ -578,8 +657,12 @@ export const CoursesContent = () => {
             <AddItemInput
               onClose={() => setInputOpened(false)}
               onAddItem={(item) => {
-                items.push(item);
-                setItems(items.slice());
+                let course = {
+                  id: item.id,
+                  text: item.text,
+                  info: "",
+                };
+                dispatch(addCourse(course));
               }}
             />
           ) : (
@@ -602,7 +685,8 @@ export const CoursesContent = () => {
 };
 
 export const AboutContent = () => {
-  return <EditItemTextarea />;
+  const dispatch = useDispatch();
+  return <EditItemTextarea onChange={(text) => dispatch(setAboutMe(text))} />;
 };
 
 export const LocationContent = () => {
@@ -613,7 +697,10 @@ export const LocationContent = () => {
   };
 
   return (
-    <EditItemInput onChange={handleLocationChange} text={"Гродно, Беларусь"} />
+    <EditItemInput
+      onChange={handleLocationChange}
+      item={{ id: uuidv4(), text: "Гродно, Беларусь" }}
+    />
   );
 };
 
@@ -803,6 +890,10 @@ export const ContactsContent = () => {
       </div>
     </div>
   );
+};
+
+export const SkillsContent = () => {
+  return <Wrapper></Wrapper>;
 };
 
 const ModalContent = ({ type, items }) => {

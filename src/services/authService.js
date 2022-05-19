@@ -12,6 +12,7 @@ import { clearFaculties } from "../redux/faculties/facultiesSlice";
 import { clearFacFilters } from "../redux/faculties/facFilterSlice";
 import { clearCourses } from "../redux/coursesSlice";
 import { clearComp } from "../redux/compSlice";
+import { clearCV } from "../redux/cvSlice";
 import store from "../redux/store";
 
 export const setToken = (token) => {
@@ -44,6 +45,7 @@ export const logOut = () => {
   store.dispatch(clearFaculties());
   removeToken();
   store.dispatch(removeUser());
+  store.dispatch(clearCV());
 };
 
 export const setCurrentUser = async (token) => {

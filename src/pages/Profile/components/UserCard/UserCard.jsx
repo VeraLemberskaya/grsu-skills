@@ -16,6 +16,7 @@ const UserCard = () => {
 
   useEffect(async () => {
     const result = await getUserInfo();
+    console.log(result);
     setUserInfo(result);
   }, []);
 

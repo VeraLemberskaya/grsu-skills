@@ -30,12 +30,16 @@ import {
   Download,
   Edit,
   Photo,
+  Education,
 } from "../../assets/icons";
 import FIELD_TYPES from "./fieldTypes";
 import { setCompany, setPosition } from "../../redux/cvSlice";
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
 import BaseComponent from "./components/BaseComponent";
 import Avatar from "./components/Avatar";
+import { getUserInfo } from "../../api/ApiRequests";
+import { jsPDF } from "jspdf";
+import html2canvas from "html2canvas";
 
 const sections = [
   {
@@ -63,7 +67,7 @@ const sections = [
     isSecondary: true,
   },
   {
-    type: "skills",
+    type: FIELD_TYPES.skills,
     title: "Мои навыки",
     icon: <Skills />,
     isSecondary: true,
@@ -98,6 +102,30 @@ const Resume = () => {
   const position = useSelector((state) => state.cv.position, shallowEqual);
   const location = useSelector((state) => state.cv.location, shallowEqual);
   const dispatch = useDispatch();
+  const CVPage = React.useRef();
+
+  const handleDownloadPDF = () => {
+    // const CVTemplate = CVPage.current;
+    // html2canvas(CVTemplate).then((canvas) => {
+    //   document.body.appendChild(canvas);
+    //   const imgData = canvas.toDataURL("image/png");
+    //   const pdf = new jsPDF("p", "pt", "a1");
+    //   pdf.addImage(imgData, "PNG", 0, 0);
+    //   // pdf.output('dataurlnewwindow');
+    //   pdf.save("download.pdf");
+    // });
+    // console.log(CVPage.current.innerHTML);
+    // const doc = new jsPDF("p", "pt", "a4");
+    // doc.html(CVPage.current.innerHTML, {
+    //   callback: function (pdf) {
+    //     pdf.save(`${user.name} ${user.surname}.pdf`);
+    //   },
+    // });
+    // console.log("here");
+    // savePDF(CVPage.current, {
+    //   paperSize: "A4",
+    // });
+  };
 
   const handleSectionBtnClick = (section) => {
     setSection(section);
@@ -165,13 +193,18 @@ const Resume = () => {
               <div className="content">
                 <div className="header">
                   <h4 className="section-title secondary">Моё резюме</h4>
-                  <Button className="download-btn" bg="green" size="1">
+                  <Button
+                    onClick={handleDownloadPDF}
+                    className="download-btn"
+                    bg="green"
+                    size="1"
+                  >
                     <Icon pointer>
                       <Download />
                     </Icon>
                   </Button>
                 </div>
-                <div className="page">
+                <div ref={CVPage} className="page">
                   <Row className="header">
                     <Avatar img={user.avatar} />
                     <div className="info">
@@ -204,7 +237,23 @@ const Resume = () => {
                   </div>
                   <Border />
                   <div className="cv-sections-container">
-                    <CVSection {...sections[1]} />
+                    <div className="left-sections">
+                      <CVSection {...sections[1]} />
+                      <CVSection {...sections[2]} />
+                      <CVSection {...sections[4]} />
+                      <CVSection {...sections[3]} />
+                    </div>
+                    <div className="right-sections">
+                      <CVSection {...sections2[0]} />
+                      <CVSection
+                        type={FIELD_TYPES.education}
+                        icon={<Education />}
+                        title="Образование"
+                        isPrimary
+                      />
+                      <CVSection {...sections2[1]} />
+                      <CVSection {...sections2[2]} />
+                    </div>
                   </div>
                 </div>
                 {/* AIzaSyBLhvsZS6duJFD2DktfTj4FLrJoyhMXqMc */}
