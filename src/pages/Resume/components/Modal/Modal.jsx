@@ -5,7 +5,7 @@ import ModalContent from "../ModalContent";
 import Title from "../Title";
 import {
   ContactsContent,
-  LocationContent,
+  GeneralInfoContent,
   HobbiesContent,
   WorkExperienceContent,
   AboutContent,
@@ -17,7 +17,7 @@ import FIELD_TYPES from "../../fieldTypes";
 
 const MODAL_CONTENT = {
   [FIELD_TYPES.contacts]: <ContactsContent />,
-  [FIELD_TYPES.location]: <LocationContent />,
+  [FIELD_TYPES.location]: <GeneralInfoContent />,
   [FIELD_TYPES.hobby]: <HobbiesContent />,
   [FIELD_TYPES.workExperience]: <WorkExperienceContent />,
   [FIELD_TYPES.aboutMe]: <AboutContent />,
@@ -35,10 +35,16 @@ const Wrapper = styled.div`
   z-index: 2;
   margin-left: 2rem;
   padding: 1.56rem;
+  position: relative;
 `;
 
 const Container = styled.div`
-  margin: 0 1.5rem 0 1rem;
+  margin: 1rem 1rem 2rem 1rem;
+  padding-bottom: 0.5rem;
+  padding-left: 0.5rem;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  max-height: 22.5rem;
 `;
 
 const Modal = ({ icon, type, title, isPrimary, isSecondary }) => {

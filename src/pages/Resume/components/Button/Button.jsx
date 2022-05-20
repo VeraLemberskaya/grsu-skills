@@ -39,7 +39,8 @@ const ButtonWrapper = styled.button`
   justify-content: center;
   align-items: center;
   min-width: ${({ size }) => (size ? BUTTON_SIZE[size] : BUTTON_SIZE[2])}rem;
-  height: ${({ size }) => (size ? BUTTON_SIZE[size] : BUTTON_SIZE[2])}rem;
+  min-height: ${({ size }) => (size ? BUTTON_SIZE[size] : BUTTON_SIZE[2])}rem;
+  width: ${({ size }) => (size ? BUTTON_SIZE[size] : BUTTON_SIZE[2])}rem;
   border-radius: ${(props) => (props.size === "1" ? "1.875" : "1.25")}rem;
   background: ${(props) => {
     if (props.type) return BUTTON_TYPES[props.type].background;
@@ -49,6 +50,7 @@ const ButtonWrapper = styled.button`
     return BUTTON_BG.default;
   }};
   cursor: pointer;
+  margin-bottom: 0.4rem;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
   transition: background-color 0.2s ease-in;
 `;

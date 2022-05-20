@@ -235,7 +235,7 @@ const Resume = () => {
                       </BaseComponent>
                     </div>
                   </div>
-                  <Border />
+                  <Border isSecondary />
                   <div className="cv-sections-container">
                     <div className="left-sections">
                       <CVSection {...sections[1]} />

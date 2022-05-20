@@ -24,7 +24,6 @@ const SECTION_TYPES = {
 };
 
 const Text = styled.p`
-  word-wrap: break-word;
   font-size: ${(props) => (props.size == 2 ? "1" : "1.25")}rem;
   font-weight: ${(props) => (props.weight ? props.weight : "500")};
   max-width: 29.3rem;
@@ -35,13 +34,19 @@ const Wrapper = styled.div`
   max-width: 18.5rem;
 `;
 
+const List = styled.ul`
+  & > div > li {
+    margin-bottom: 0.6rem;
+  }
+`;
+
 //COURSES
 function CoursesSection() {
   const courses = useSelector((state) => state.cv.courses);
   console.log(courses);
   return (
     <Wrapper>
-      <ul className="cv-double-list">
+      <List className="cv-double-list">
         <TransitionGroup>
           {courses.map((course) => (
             <CSSTransition key={course.id} timeout={400} classNames="item">
@@ -58,7 +63,7 @@ function CoursesSection() {
             </CSSTransition>
           ))}
         </TransitionGroup>
-      </ul>
+      </List>
     </Wrapper>
   );
 }
@@ -68,15 +73,17 @@ function HobbySection() {
   const hobbies = useSelector((state) => state.cv.hobbies);
   return (
     <Wrapper>
-      <ul>
+      <List>
         <TransitionGroup>
           {hobbies.map((hobby) => (
             <CSSTransition key={hobby.id} timeout={400} classNames="item">
-              <Text>{hobby.text}</Text>
+              <li className="list-item">
+                <Text>{hobby.text}</Text>
+              </li>
             </CSSTransition>
           ))}
         </TransitionGroup>
-      </ul>
+      </List>
     </Wrapper>
   );
 }
@@ -87,7 +94,7 @@ function WorkExperienceSection() {
 
   return (
     <Wrapper>
-      <ul className="cv-double-list">
+      <List className="cv-double-list">
         <TransitionGroup>
           {jobs.map((job) => (
             <CSSTransition key={job.id} timeout={400} classNames="item">
@@ -112,14 +119,39 @@ function WorkExperienceSection() {
             </CSSTransition>
           ))}
         </TransitionGroup>
-      </ul>
+      </List>
     </Wrapper>
   );
 }
 
 //SKILLS
 function SkillsSection() {
-  return <div></div>;
+  const skills = useSelector((state) => state.cv.skills);
+
+  return (
+    <div style={{ maxWidth: "10rem" }}>
+      <List>
+        <TransitionGroup>
+          {skills.map((skill) => (
+            <CSSTransition key={skill.id} timeout={400} classNames="item">
+              <li>
+                <Text>
+                  {skill.name}&nbsp;
+                  <span
+                    style={{
+                      fontWeight: `${skill.type === "Hard" ? "600" : "400"}`,
+                    }}
+                  >
+                    {skill.type}
+                  </span>
+                </Text>
+              </li>
+            </CSSTransition>
+          ))}
+        </TransitionGroup>
+      </List>
+    </div>
+  );
 }
 
 //EDUCATION
@@ -156,7 +188,7 @@ function LanguagesSection() {
 
   return (
     <Wrapper>
-      <ul className="cv-double-list">
+      <List className="cv-double-list">
         <TransitionGroup>
           {languages.map((lang) => (
             <CSSTransition key={lang.id} timeout={400} classNames="item">
@@ -183,7 +215,7 @@ function LanguagesSection() {
             </CSSTransition>
           ))}
         </TransitionGroup>
-      </ul>
+      </List>
     </Wrapper>
   );
 }
@@ -200,20 +232,23 @@ function ContactsSection() {
   const contacts = useSelector((state) => state.cv.contacts);
   return (
     <Wrapper>
-      <ul>
+      <List>
         <TransitionGroup>
           {contacts?.map((contact) => (
             <CSSTransition key={contact.id} timeout={400} classNames="item">
-              <BaseComponent mt="1rem" key={contact.id}>
-                <Row gap="0.875rem">
-                  <Icon>{contact.icon}</Icon>
-                  <Text>{contact.text}</Text>
-                </Row>
-              </BaseComponent>
+              <li>
+                {" "}
+                <BaseComponent mt="1rem" key={contact.id}>
+                  <Row gap="0.875rem">
+                    <Icon>{contact.icon}</Icon>
+                    <Text>{contact.text}</Text>
+                  </Row>
+                </BaseComponent>
+              </li>
             </CSSTransition>
           ))}
         </TransitionGroup>
-      </ul>
+      </List>
     </Wrapper>
   );
 }
@@ -224,7 +259,7 @@ const CVSection = ({ type, title, icon, isPrimary, isSecondary }) => {
       <Title icon={icon} isPrimary={isPrimary} isSecondary={isSecondary}>
         {title}
       </Title>
-      <BaseComponent ml="2rem" mt="1.5rem">
+      <BaseComponent ml="2.8rem" mt="1.5rem">
         {SECTION_TYPES[type]}
       </BaseComponent>
     </div>

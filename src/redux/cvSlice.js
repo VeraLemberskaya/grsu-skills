@@ -5,12 +5,14 @@ const initialState = {
   company: "Лучшая компания",
   position: "Лучший сотрудник",
   location: "Гродно, Беларусь",
+  birthday: "",
   contacts: [],
   aboutMe: "",
   languages: [],
   jobs: [],
   hobbies: [],
   courses: [],
+  skills: [],
 };
 
 const removeItem = (items, id) => {
@@ -35,6 +37,9 @@ const cvSlice = createSlice({
     },
     setLocation: (state, action) => {
       state.location = action.payload;
+    },
+    setBirthday: (state, action) => {
+      state.birthday = action.payload;
     },
     setContact: (state, action) => {
       setItem(state.contacts, action.payload);
@@ -102,6 +107,12 @@ const cvSlice = createSlice({
       );
       course.info = action.payload.info;
     },
+    addSkill: (state, action) => {
+      state.skills.push(action.payload);
+    },
+    removeSkill: (state, action) => {
+      state.skills = removeItem(state.skills, action.payload);
+    },
     clearCV: () => initialState,
   },
 });
@@ -131,6 +142,9 @@ export const {
   removeCourse,
   setCourse,
   setCourseInfo,
+  addSkill,
+  removeSkill,
+  setBirthday,
 } = cvSlice.actions;
 
 export default cvSlice.reducer;

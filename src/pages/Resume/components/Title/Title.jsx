@@ -27,7 +27,9 @@ const Title = ({
         </Icon>
         <SectionTitle {...attr}>{children}</SectionTitle>
       </Row>
-      {underlined && <Border width="85.5" isPrimary={isPrimary} />}
+      {underlined && (
+        <Border width="85.5" isPrimary={isPrimary} isSecondary={isSecondary} />
+      )}
     </div>
   );
 };

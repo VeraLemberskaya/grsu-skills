@@ -36,6 +36,7 @@ import {
   Whatsapp,
   Dribble,
   Snapchat,
+  SearchSkills,
 } from "../../../../assets/icons";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -60,7 +61,18 @@ import {
   removeCourse,
   setCourse,
   setCourseInfo,
+  addSkill,
+  removeSkill,
+  setBirthday,
 } from "../../../../redux/cvSlice";
+import Border from "../Border";
+import {
+  divideIntoTwoColumns,
+  filterByQuery,
+  divideIntoColumns,
+} from "../../../../services/resumeService";
+import moment from "moment";
+import IMask from "imask";
 
 const Wrapper = styled.div`
   min-height: ${(props) => (props.size == 2 ? "1.75" : "2.75")}rem;
@@ -68,10 +80,10 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   position: relative;
-  z-index: 3;
+  z-index: 2;
   background: #f8f8f8;
   border-radius: 1.25rem;
-  margin: ${(props) => (props.size == 2 ? "0.4" : "0.75")}rem 0;
+  margin-bottom: ${(props) => (props.size == 2 ? "0.4" : "0.75")}rem;
   input {
     width: 100%;
     z-index: 2;
@@ -81,6 +93,26 @@ const Wrapper = styled.div`
     font-size: ${(props) => (props.size == 2 ? "1" : "1.25")}rem;
     font-weight: 500;
   }
+`;
+
+const Input = styled.input`
+  width: 100%;
+  z-index: 2;
+  background: transparent;
+  margin-left: 1rem;
+  color: #333;
+  font-size: ${(props) => (props.size == 2 ? "1" : "1.25")}rem;
+  font-weight: 500;
+`;
+
+const Text = styled.p`
+  width: 13.75rem;
+  padding: 0.2rem 0;
+  margin-left: 1rem;
+  z-index: 2;
+  color: #333;
+  font-size: ${(props) => (props.size == 2 ? "1" : "1.25")}rem;
+  font-weight: ${(props) => (props.weight ? props.weight : "500")};
 `;
 
 const Textarea = styled.textarea`
@@ -134,12 +166,14 @@ const EditItemTextarea = ({ size, text, onChange }) => {
   );
 };
 //в качестве children передавать какой-то компонент(иконка с пикером)
-const EditItemInput = ({
+const ItemInput = ({
+  ref,
   size,
   item,
   onRemove,
   onChange,
   removeable,
+  editable,
   maxLength,
   children,
 }) => {
@@ -164,18 +198,26 @@ const EditItemInput = ({
               />
             )}
             {children && <BaseComponent ml="1rem">{children}</BaseComponent>}
-            <input
-              type="text"
-              value={inputValue}
-              onChange={handleInputChange}
-              maxLength={maxLength ? maxLength : "50"}
-            />
+            {!editable ? (
+              <Text size={size}>{inputValue}</Text>
+            ) : (
+              <Input
+                ref={ref}
+                size={size}
+                type="text"
+                value={inputValue}
+                onChange={handleInputChange}
+                maxLength={maxLength ? maxLength : "50"}
+              />
+            )}
           </Row>
-          <BaseComponent ml="1rem" pr="0.75rem">
-            <Icon size={size}>
-              <Edit />
-            </Icon>
-          </BaseComponent>
+          {editable && (
+            <BaseComponent ml="1rem" pr="0.75rem">
+              <Icon size={size}>
+                <Edit />
+              </Icon>
+            </BaseComponent>
+          )}
         </Row>
       </Wrapper>
     </>
@@ -361,66 +403,66 @@ const AddLanguageInput = ({ onClose, onAddItem }) => {
   );
 };
 
-const List = ({ items, size, onAddItem, onRemoveItem, onChangeItem }) => {
-  // const [items, setItems] = React.useState([]);
+const List = ({
+  items,
+  size,
+  onAddItem,
+  onRemoveItem,
+  onChangeItem,
+  editable,
+}) => {
   const [inputOpened, setInputOpened] = React.useState(false);
 
   return (
     <div style={{ position: "relative" }}>
-      <div style={{ overflow: "auto", maxHeight: "20rem" }}>
-        <TransitionGroup>
-          {items?.map((item) => (
-            <CSSTransition key={item.id} timeout={400} classNames="item">
-              <EditItemInput
-                size={size}
-                item={item}
-                onRemove={(id) => {
-                  onRemoveItem(id);
-                }}
-                onChange={(item) => onChangeItem(item)}
-                removeable
-              />
-            </CSSTransition>
-          ))}
-        </TransitionGroup>
-        <SwitchTransition mode="out-in">
-          <CSSTransition
-            key={inputOpened}
-            timeout={200}
-            classNames="accordion"
-            unmountOnExit
-          >
-            {inputOpened ? (
-              <AddItemInput
-                size={size}
-                onClose={() => setInputOpened(false)}
-                onAddItem={(item) => {
-                  onAddItem(item);
-                }}
-              />
-            ) : (
-              <BaseComponent
-                mb={size == 2 ? "0.4rem" : "1rem"}
-                mt={size == 2 ? "0.4rem" : "0.75rem"}
-              >
-                <Button
-                  size={Number(size) + 1}
-                  type="add"
-                  onClick={() => setInputOpened(true)}
-                />
-              </BaseComponent>
-            )}
+      <TransitionGroup>
+        {items?.map((item) => (
+          <CSSTransition key={item.id} timeout={400} classNames="item">
+            <ItemInput
+              size={size}
+              item={item}
+              onRemove={(id) => {
+                onRemoveItem(id);
+              }}
+              onChange={(item) => onChangeItem(item)}
+              removeable
+              editable={editable}
+            />
           </CSSTransition>
-        </SwitchTransition>
-        {inputOpened && (
-          <Overlay
-            state={inputOpened}
-            clickHadler={() => {
-              setInputOpened(false);
-            }}
-          />
-        )}
-      </div>
+        ))}
+      </TransitionGroup>
+      <SwitchTransition mode="out-in">
+        <CSSTransition
+          key={inputOpened}
+          timeout={200}
+          classNames="accordion"
+          unmountOnExit
+        >
+          {inputOpened ? (
+            <AddItemInput
+              size={size}
+              onClose={() => setInputOpened(false)}
+              onAddItem={(item) => {
+                onAddItem(item);
+              }}
+            />
+          ) : (
+            <Button
+              size={Number(size) + 1}
+              type="add"
+              onClick={() => setInputOpened(true)}
+            />
+          )}
+        </CSSTransition>
+      </SwitchTransition>
+      {inputOpened && (
+        <Overlay
+          state={inputOpened}
+          clickHadler={() => {
+            setInputOpened(false);
+          }}
+        />
+      )}
     </div>
   );
 };
@@ -456,7 +498,7 @@ export const LangContent = () => {
         {languages.map((item) => (
           <CSSTransition key={item.id} timeout={400} classNames="item">
             <>
-              <EditItemInput
+              <ItemInput
                 item={item}
                 onRemove={(id) => {
                   dispatch(removeLanguage(id));
@@ -464,6 +506,7 @@ export const LangContent = () => {
                 onChange={(lang) => dispatch(setLanguage(lang))}
                 maxLength="26"
                 removeable
+                editable
               />
               <BaseComponent ml="3rem">
                 <Row spaceBetween>
@@ -499,9 +542,7 @@ export const LangContent = () => {
               }}
             />
           ) : (
-            <BaseComponent mb="1rem" mt="0.75rem">
-              <Button type="add" onClick={() => setInputOpened(true)} />
-            </BaseComponent>
+            <Button type="add" onClick={() => setInputOpened(true)} />
           )}
         </CSSTransition>
       </SwitchTransition>
@@ -527,6 +568,7 @@ export const HobbiesContent = () => {
       onAddItem={(item) => dispatch(addHobby(item))}
       onRemoveItem={(id) => dispatch(removeHobby(id))}
       onChangeItem={(item) => dispatch(setHobby(item))}
+      editable
     />
   );
 };
@@ -554,13 +596,14 @@ export const WorkExperienceContent = () => {
         {jobs.map((item) => (
           <CSSTransition key={item.id} timeout={400} classNames="item">
             <>
-              <EditItemInput
+              <ItemInput
                 item={item}
                 onRemove={(id) => {
                   dispatch(removeJob(id));
                 }}
                 onChange={(item) => dispatch(setJob(item))}
                 removeable
+                editable
               />
               <div style={{ width: "97%", margin: "0 auto" }}>
                 <List
@@ -596,9 +639,7 @@ export const WorkExperienceContent = () => {
               }}
             />
           ) : (
-            <BaseComponent mb="1rem" mt="0.75rem">
-              <Button type="add" onClick={() => setInputOpened(true)} />
-            </BaseComponent>
+            <Button type="add" onClick={() => setInputOpened(true)} />
           )}
         </CSSTransition>
       </SwitchTransition>
@@ -626,13 +667,14 @@ export const CoursesContent = () => {
         {courses.map((item) => (
           <CSSTransition key={item.id} timeout={400} classNames="item">
             <>
-              <EditItemInput
+              <ItemInput
                 item={item}
                 onRemove={(id) => {
                   dispatch(removeCourse(id));
                 }}
                 onChange={(item) => dispatch(setCourse(item))}
                 removeable
+                editable
               />
               <BaseComponent ml="0.75rem">
                 <EditItemTextarea
@@ -666,9 +708,7 @@ export const CoursesContent = () => {
               }}
             />
           ) : (
-            <BaseComponent mb="1rem" mt="0.75rem">
-              <Button type="add" onClick={() => setInputOpened(true)} />
-            </BaseComponent>
+            <Button type="add" onClick={() => setInputOpened(true)} />
           )}
         </CSSTransition>
       </SwitchTransition>
@@ -689,18 +729,37 @@ export const AboutContent = () => {
   return <EditItemTextarea onChange={(text) => dispatch(setAboutMe(text))} />;
 };
 
-export const LocationContent = () => {
+//GENERAL INFO
+export const GeneralInfoContent = () => {
   const dispatch = useDispatch();
 
-  const handleLocationChange = (location) => {
-    dispatch(setLocation(location));
+  const handleLocationChange = (item) => {
+    dispatch(setLocation(item.text));
+  };
+  const handleBirthdayChange = (item) => {
+    dispatch(setBirthday(item.text));
   };
 
   return (
-    <EditItemInput
-      onChange={handleLocationChange}
-      item={{ id: uuidv4(), text: "Гродно, Беларусь" }}
-    />
+    <>
+      <Row spaceBetween>
+        <Text weight="600">Место жительства</Text>
+        <ItemInput
+          ref={dateInput}
+          onChange={handleLocationChange}
+          item={{ id: uuidv4(), text: "Гродно, Беларусь" }}
+          editable
+        />
+      </Row>
+      <Row spaceBetween>
+        <Text weight="600">Дата рождения</Text>
+        <ItemInput
+          onChange={handleBirthdayChange}
+          item={{ id: uuidv4(), text: "" }}
+          editable
+        />
+      </Row>
+    </>
   );
 };
 
@@ -837,63 +896,363 @@ export const ContactsContent = () => {
   return (
     <div style={{ position: "relative" }}>
       <div style={{ overflow: "auto", maxHeight: "20rem" }}>
-        <BaseComponent ml="0.5rem">
-          <TransitionGroup>
-            {contacts.map((contact) => (
-              <CSSTransition key={contact.id} timeout={400} classNames="item">
-                <EditItemInput
-                  item={contact}
-                  onChange={handleEditItem}
-                  onRemove={handleRemoveItem}
-                  removeable
-                >
-                  <IconPicker
-                    defaultIcon={contact.icon}
-                    icons={icons}
-                    onIconChange={(newIcon) => {
-                      handleEditItem({ ...contact, icon: newIcon });
-                    }}
-                  />
-                </EditItemInput>
-              </CSSTransition>
-            ))}
-          </TransitionGroup>
-          <SwitchTransition mode="out-in">
-            <CSSTransition
-              key={inputOpened}
-              timeout={200}
-              classNames="accordion"
-              unmountOnExit
-            >
-              {inputOpened ? (
-                <AddContactInput
+        {/* <BaseComponent ml="0.5rem"> */}
+        <TransitionGroup>
+          {contacts.map((contact) => (
+            <CSSTransition key={contact.id} timeout={400} classNames="item">
+              <ItemInput
+                item={contact}
+                onChange={handleEditItem}
+                onRemove={handleRemoveItem}
+                removeable
+                editable
+              >
+                <IconPicker
+                  defaultIcon={contact.icon}
                   icons={icons}
-                  onClose={() => setInputOpened(false)}
-                  onAddItem={handleAddContact}
+                  onIconChange={(newIcon) => {
+                    handleEditItem({ ...contact, icon: newIcon });
+                  }}
                 />
-              ) : (
-                <BaseComponent mb="1rem" mt="0.75rem">
-                  <Button type="add" onClick={() => setInputOpened(true)} />
-                </BaseComponent>
-              )}
+              </ItemInput>
             </CSSTransition>
-          </SwitchTransition>
-          {inputOpened && (
-            <Overlay
-              state={inputOpened}
-              clickHadler={() => {
-                setInputOpened(false);
-              }}
-            />
-          )}
-        </BaseComponent>
+          ))}
+        </TransitionGroup>
+        <SwitchTransition mode="out-in">
+          <CSSTransition
+            key={inputOpened}
+            timeout={200}
+            classNames="accordion"
+            unmountOnExit
+          >
+            {inputOpened ? (
+              <AddContactInput
+                icons={icons}
+                onClose={() => setInputOpened(false)}
+                onAddItem={handleAddContact}
+              />
+            ) : (
+              <BaseComponent mb="1rem">
+                <Button type="add" onClick={() => setInputOpened(true)} />
+              </BaseComponent>
+            )}
+          </CSSTransition>
+        </SwitchTransition>
+        {inputOpened && (
+          <Overlay
+            state={inputOpened}
+            clickHadler={() => {
+              setInputOpened(false);
+            }}
+          />
+        )}
+        {/* </BaseComponent> */}
       </div>
     </div>
   );
 };
 
+const SKILL_TYPES = {
+  hard: "Hard",
+  soft: "Soft",
+};
+
+const skills = [
+  {
+    id: "1",
+    name: "Skill 1",
+    type: SKILL_TYPES.hard,
+  },
+  {
+    id: "2",
+    name: "Skill 2",
+    type: SKILL_TYPES.hard,
+  },
+  {
+    id: "3",
+    name: "Навык 5 с названием",
+    type: SKILL_TYPES.hard,
+  },
+  {
+    id: "4",
+    name: "Skill 4",
+    type: SKILL_TYPES.soft,
+  },
+  {
+    id: "5",
+    name: "Skill 5",
+    type: SKILL_TYPES.hard,
+  },
+  {
+    id: "6",
+    name: "Skill 6",
+    type: SKILL_TYPES.soft,
+  },
+  {
+    id: "7",
+    name: "Навык 7 с длинным названием",
+    type: SKILL_TYPES.hard,
+  },
+  {
+    id: "8",
+    name: "Skill 8",
+    type: SKILL_TYPES.soft,
+  },
+  {
+    id: "9",
+    name: "Skill 9",
+    type: SKILL_TYPES.soft,
+  },
+  {
+    id: "10",
+    name: "Навык 7 с длинным названием",
+    type: SKILL_TYPES.soft,
+  },
+  {
+    id: "11",
+    name: "Skill 11",
+    type: SKILL_TYPES.soft,
+  },
+  {
+    id: "12",
+    name: "Skill 12",
+    type: SKILL_TYPES.soft,
+  },
+  {
+    id: "13",
+    name: "Навык 13 с длинным названием",
+    type: SKILL_TYPES.hard,
+  },
+  {
+    id: "14",
+    name: "Skill 14",
+    type: SKILL_TYPES.soft,
+  },
+  {
+    id: "15",
+    name: "Skill 15",
+    type: SKILL_TYPES.soft,
+  },
+  {
+    id: "16",
+    name: "Навык 16 с длинным названием",
+    type: SKILL_TYPES.soft,
+  },
+  {
+    id: "17",
+    name: "Skill 17",
+    type: SKILL_TYPES.soft,
+  },
+  {
+    id: "18",
+    name: "Skill 18",
+    type: SKILL_TYPES.soft,
+  },
+];
+
+const SkillWrapper = styled.div`
+  min-width: 13.75rem;
+  max-width: 15rem;
+  min-height: 2.75rem;
+  border-radius: 1.25rem;
+  background: ${(props) => (props.disabled ? "#fff" : "#f8f8f8")};
+  box-shadow: ${(props) =>
+    props.disabled
+      ? "inset 0px 4px 8px rgba(0, 0, 0, 0.15)"
+      : "0px 4px 4px rgba(0, 0, 0, 0.15)"};
+  font-size: 1.25rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  cursor: ${(props) => (props.removeable ? "auto" : "pointer")};
+  ${(props) =>
+    !props.removeable && "padding:0.625rem 1.25rem; padding-left:2rem;"}
+  ${(props) => props.removeable && "box-shadow: none;"}
+  ${(props) => props.disabled && "color: #b0b0b0"};
+  transition: all 0.2s;
+  .type {
+    font-weight: ${(props) =>
+      props.type === SKILL_TYPES.soft ? "400" : "600"};
+    align-self: flex-end;
+  }
+  .button {
+    align-self: flex-start;
+  }
+`;
+
+const Skill = ({ id, type, name, removeable, disabled, onClick, onRemove }) => {
+  return (
+    <SkillWrapper
+      onClick={onClick}
+      type={type}
+      disabled={disabled}
+      removeable={removeable}
+    >
+      {removeable ? (
+        <Row>
+          <Button
+            className="button"
+            type="remove"
+            onClick={() => onRemove(id)}
+          />
+          <BaseComponent ml="0.68rem" mt="0.5rem" mb="0.5rem" pr="0.68rem">
+            <p>
+              {name}&nbsp;
+              <span className="type">{type}</span>
+            </p>
+          </BaseComponent>
+        </Row>
+      ) : (
+        <>
+          {name}&nbsp;
+          <span className="type">{type}</span>
+        </>
+      )}
+    </SkillWrapper>
+  );
+};
+
+const SkillsModal = ({
+  skills,
+  selectedSkills,
+  onAddItem,
+  onRemoveItem,
+  onClose,
+}) => {
+  const [filteredSkills, setFilteredSkills] = React.useState(skills);
+
+  const [skills1, skills2] = React.useMemo(
+    () => divideIntoTwoColumns(filteredSkills),
+    [filteredSkills]
+  );
+
+  const handleSkillClick = (item) => {
+    selectedSkills.includes(item) ? onRemoveItem(item.id) : onAddItem(item);
+  };
+
+  const renderedSkills = (items) => {
+    return (
+      <ul className="skills-list">
+        {items.map((item) => (
+          <li key={item.id}>
+            <Skill
+              {...item}
+              onClick={() => handleSkillClick(item)}
+              disabled={selectedSkills.includes(item)}
+            />
+          </li>
+        ))}
+      </ul>
+    );
+  };
+
+  const handleInputChange = (e) => {
+    setFilteredSkills(filterByQuery(skills, e.target.value));
+  };
+
+  return (
+    <div className="add-skills-modal">
+      <Row spaceBetween>
+        <Row gap="1rem">
+          <Button type="check" onClick={onClose} />
+          <Row>
+            <Icon>
+              <SearchSkills />
+            </Icon>
+            <Input
+              type="text"
+              onChange={handleInputChange}
+              autoFocus
+              underlined
+            />
+          </Row>
+        </Row>
+        <BaseComponent ml="1rem" pr="0.75rem">
+          <Icon onClick={onClose} pointer>
+            <Close />
+          </Icon>
+        </BaseComponent>
+      </Row>
+      <Border width="80" mt="-0.2" />
+      <BaseComponent pr="2.18rem" pl="2.18rem" mt="1.25rem" mb="1.25">
+        <ul className="skill-list-wrapper">
+          {renderedSkills(skills1)}
+          {renderedSkills(skills2)}
+        </ul>
+      </BaseComponent>
+    </div>
+  );
+};
+
 export const SkillsContent = () => {
-  return <Wrapper></Wrapper>;
+  const [modalOpened, setModalOpened] = React.useState(false);
+  const selectedSkills = useSelector((state) => state.cv.skills);
+  const dispatch = useDispatch();
+  const buttonPositionFlag = React.useRef(true);
+
+  const [column1, column2] = React.useMemo(
+    () => divideIntoColumns(selectedSkills),
+    [selectedSkills]
+  );
+
+  if (!(column1.length % 5) && column1.length) {
+    buttonPositionFlag.current = false;
+  }
+  if (!(column2.length % 5) && column2.length) {
+    buttonPositionFlag.current = true;
+  }
+
+  const renderSkillsColumn = (column, isButton) => (
+    <div style={{ display: "flex", flexDirection: "column" }}>
+      <ul className="skills-list">
+        <TransitionGroup>
+          {column.map((skill) => (
+            <CSSTransition key={skill.id} timeout={400} classNames="item">
+              <li key={skill.id}>
+                <Skill
+                  {...skill}
+                  removeable
+                  onRemove={(id) => {
+                    column = column.filter((item) => item.id !== id);
+                    dispatch(removeSkill(id));
+                  }}
+                />
+              </li>
+            </CSSTransition>
+          ))}
+        </TransitionGroup>
+      </ul>
+      {isButton && <Button type="add" onClick={() => setModalOpened(true)} />}
+    </div>
+  );
+
+  return (
+    <div>
+      <Row gap="2.5rem" alignTop>
+        {buttonPositionFlag.current
+          ? renderSkillsColumn(column1, true)
+          : renderSkillsColumn(column1, false)}
+        {buttonPositionFlag.current
+          ? renderSkillsColumn(column2, false)
+          : renderSkillsColumn(column2, true)}
+      </Row>
+      <Overlay state={modalOpened} clickHadler={() => setModalOpened(false)} />
+      <CSSTransition
+        in={modalOpened}
+        timeout={400}
+        classNames="item"
+        unmountOnExit
+      >
+        <SkillsModal
+          skills={skills}
+          selectedSkills={selectedSkills}
+          onAddItem={(item) => dispatch(addSkill(item))}
+          onRemoveItem={(id) => dispatch(removeSkill(id))}
+          onClose={() => setModalOpened(false)}
+        />
+      </CSSTransition>
+    </div>
+  );
 };
 
 const ModalContent = ({ type, items }) => {
