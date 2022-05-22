@@ -50,7 +50,7 @@ const ButtonWrapper = styled.button`
     return BUTTON_BG.default;
   }};
   cursor: pointer;
-  margin-bottom: 0.4rem;
+  ${"" /* margin-bottom: 0.4rem; */}
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
   transition: background-color 0.2s ease-in;
 `;
