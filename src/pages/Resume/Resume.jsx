@@ -105,6 +105,15 @@ const Resume = () => {
   const CVPage = React.useRef();
 
   const handleDownloadPDF = () => {
+    var printContents = CVPage.current.innerHTML;
+    var originalContents = document.body.innerHTML;
+
+    document.body.innerHTML = printContents;
+
+    window.print();
+
+    document.body.innerHTML = originalContents;
+
     // const CVTemplate = CVPage.current;
     // html2canvas(CVTemplate).then((canvas) => {
     //   document.body.appendChild(canvas);
